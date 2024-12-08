@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup Form</title>
+    <style>
+        /* Import Google font - Poppins */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        body {
+            min-height: 100vh;
+            width: 100%;
+            background: #66b4db;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            max-width: 430px;
+            width: 100%;
+            background: #fff;
+            border-radius: 7px;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+            padding: 2rem;
+        }
+        .container h1 {
+            font-size: 2rem;
+            font-weight: 500;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: #1d5c7c;
+        }
+        .form label {
+            font-size: 1rem;
+            color: #333;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        .form input {
+            height: 40px;
+            width: 100%;
+            padding: 0 15px;
+            font-size: 1rem;
+            margin-bottom: 1.3rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+        .form input:focus {
+            box-shadow: 0 0 5px rgba(102, 180, 219, 0.5);
+            border-color: #66b4db;
+        }
+        .form button {
+            width: 100%;
+            height: 40px;
+            color: #fff;
+            background: #66b4db;
+            font-size: 1.2rem;
+            font-weight: 500;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.4s;
+        }
+        .form button:hover {
+            background: #1d5c7c;
+        }
+        .signup {
+            font-size: 0.9rem;
+            text-align: center;
+            margin-top: 1rem;
+        }
+        .signup label {
+            color: #66b4db;
+            cursor: pointer;
+        }
+        .signup label:hover {
+            text-decoration: none;
+            color: #1d5c7c;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+   
+    <div class="container">
+        <h1>Sign Up</h1>
+        <form id="signup-form" class="form" method="POST" action="/signup">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Enter Your Name" required>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Enter Your Email" required>
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="Enter Your Password" required>
+
+            <label for="confirm-password">Confirm Password</label>
+            <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm Your Password" required>
+
+            <button type="submit" class="button">Sign Up</button>
+        </form>
+        <div class="signup">
+            <span>Already have an account?</span>
+            <a href="/signin"  style="text-decoration: none;"><label for="check">Sign In</label></a>
+        </div>
+    </div>
+
+    <script>
+        // Check if a message exists in the URL query parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const message = urlParams.get('message');
+        const type = urlParams.get('type');
+
+        if (message && type) {
+            Swal.fire({
+                text: message,
+                icon: type,
+                confirmButtonText: 'OK'
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DopeShield FAQs</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+        
+        /* General Styles */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: "Poppins", sans-serif;
+            background-color: white;
+            color: #333;
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between; /* Ensures elements in the header are spaced properly */
+            padding: 10px 20px;
+            background-color: white; /* Light background for the header */
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Optional: Adds a slight shadow */
+        }
+
+        header .logo {
+            display: flex; /* Ensures proper alignment */
+            align-items: center; /* Vertically aligns the logo */
+        }
+
+        .faq-container {
+            margin-top: 1rem;
+            max-width: 800px;
+            width: 100%;
+            background: #fff;
+            border-radius: 10px; /* Smoother border radius */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            padding: 1rem;
+            transition: all 0.3s ease; /* Smooth transitions for hover effect */
+        }
+
+        .faq-header {
+            border-radius: 10px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: hsl(170, 75%, 35%);
+        }
+
+        .accordion-item {
+            border: 1px solid #ddd;
+            border-radius: 8px; /* Rounded corners for accordion item */
+            margin-bottom: 10px;
+            transition: all 0.3s ease; /* Smooth transitions on hover */
+        }
+
+        .accordion-item:hover {
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Subtle hover effect */
+        }
+
+        .accordion-header {
+            background-color: hsl(170, 75%, 41%);
+            color: #fff;
+            padding: 15px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 8px; /* Round the header corners */
+        }
+
+        .accordion-header:hover {
+            background-color: hsl(170, 75%, 35%);
+        }
+
+        .accordion-content {
+            display: none;
+            padding: 15px;
+            background-color: #f9f9f9;
+            font-size: 14px;
+            color: #333;
+            line-height: 1.6;
+            border-radius: 8px; /* Rounded corners for content */
+            margin-top: 5px; /* Space between header and content */
+        }
+
+        .accordion-content p {
+            margin: 0;
+        }
+
+        .accordion-header .icon {
+            font-size: 20px;
+            transform: rotate(0deg);
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .accordion-header.active .icon {
+            transform: rotate(45deg);
+        }
+
+        /* Media Queries for responsiveness */
+
+        /* Mobile devices (small screens) */
+        @media screen and (max-width: 600px) {
+            .faq-container {
+                padding: 1rem; /* Reduced padding on small devices */
+                width: 100%;
+                max-width: 100%;
+            }
+
+            .faq-header {
+                font-size: 22px; /* Adjust font size for mobile screens */
+            }
+
+            .accordion-header {
+                font-size: 14px; /* Smaller text on mobile */
+                padding: 12px; /* Reduced padding */
+            }
+
+            .accordion-content {
+                font-size: 12px; /* Smaller font size for mobile content */
+                padding: 12px; /* Reduced padding */
+            }
+        }
+
+        /* Tablet devices (medium screens) */
+        @media screen and (max-width: 768px) {
+            .faq-container {
+                width: 90%;
+                max-width: 700px; /* Adjust max-width for tablet devices */
+            }
+
+            .faq-header {
+                font-size: 24px; /* Keep the font size moderate */
+            }
+
+            .accordion-header {
+                font-size: 15px;
+                padding: 14px;
+            }
+
+            .accordion-content {
+                font-size: 13px;
+                padding: 14px;
+            }
+        }
+
+        /* Large Desktop Devices */
+        @media screen and (min-width: 1024px) {
+            .faq-container {
+                width: 70%;
+                max-width: 900px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="/"><img src="https://muthu-2005.github.io/SIH-Final-2024/pictures/logo.png" alt="Dopeshield Logo" height="75px"></a>
+        </div>
+    </header>
+
+    <center>
+        <h1>DopeShield FAQs</h1>
+        <div class="faq-container">
+           
+
+            <!-- FAQ 1 -->
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>What is the purpose of this website?</span>
+                    <span class="icon">+</span>
+                </div>
+                <div class="accordion-content">
+                    <p>This website is dedicated to raising awareness about anti-doping, its rules, and the consequences of doping in sports. It offers information on how athletes can avoid doping, the impact on their health, and the importance of clean sports.</p>
+                </div>
+            </div>
+
+            <!-- FAQ 2 -->
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>Who is this website designed for?</span>
+                    <span class="icon">+</span>
+                </div>
+                <div class="accordion-content">
+                    <p>This website is designed for athletes, coaches, sports organizations, and individuals interested in learning about anti-doping measures and how to keep sports fair and safe.</p>
+                </div>
+            </div>
+
+            <!-- FAQ 3 -->
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>How can I create an account or sign up?</span>
+                    <span class="icon">+</span>
+                </div>
+                <div class="accordion-content">
+                    <p>Currently, there is no need to create an account to access the information. Simply browse the website to explore resources and learn about anti-doping.</p>
+                </div>
+            </div>
+
+            <!-- FAQ 4 -->
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>Is this service free, or are there any fees?</span>
+                    <span class="icon">+</span>
+                </div>
+                <div class="accordion-content">
+                    <p>The website and its resources are completely free to access. Our goal is to provide valuable education and awareness without any charges.</p>
+                </div>
+            </div>
+
+            <!-- FAQ 5 -->
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>How do I navigate the website?</span>
+                    <span class="icon">+</span>
+                </div>
+                <div class="accordion-content">
+                    <p>The website is structured with easy-to-access sections such as Doping Awareness, Doping Tests, Anti-Doping Guidelines, and more. Use the navigation menu to quickly find the information you're looking for.</p>
+                </div>
+            </div>
+
+            <!-- FAQ 6 -->
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>What kind of information can I find here?</span>
+                    <span class="icon">+</span>
+                </div>
+                <div class="accordion-content">
+                    <p>You can find articles, FAQs, and resources related to doping, anti-doping guidelines, health consequences of doping, banned substances, and the process of anti-doping testing.</p>
+                </div>
+            </div>
+
+            <!-- FAQ 7 -->
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>How can I contact support for help?</span>
+                    <span class="icon">+</span>
+                </div>
+                <div class="accordion-content">
+                    <p>For any inquiries or assistance, please refer to the contact section of the website. You can send an email or reach out through the provided contact details for further support.</p>
+                </div>
+            </div>
+
+            <!-- FAQ 8 -->
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>Is my personal information safe on this website?</span>
+                    <span class="icon">+</span>
+                </div>
+                <div class="accordion-content">
+                    <p>Yes, your privacy is important to us. We follow standard web practices to ensure your personal information is safe and not shared with third parties. No personal data is required for general browsing of the site.</p>
+                </div>
+            </div>
+
+            <!-- FAQ 9 -->
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>Can I access this website on mobile devices?</span>
+                    <span class="icon">+</span>
+                </div>
+                <div class="accordion-content">
+                    <p>Yes, this website is fully responsive and can be accessed from both desktop and mobile devices without any issues. It is optimized for an excellent user experience on all screen sizes.</p>
+                </div>
+            </div>
+
+            <!-- FAQ 10 -->
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>Are the resources on this website updated regularly?</span>
+                    <span class="icon">+</span>
+                </div>
+                <div class="accordion-content">
+                    <p>Yes, the website’s content is regularly updated to provide the latest information on anti-doping regulations, news, and educational materials related to fair play in sports.</p>
+                </div>
+            </div>
+        </div>
+    </center>
+
+    <script>
+        const headers = document.querySelectorAll(".accordion-header");
+
+        headers.forEach(header => {
+            header.addEventListener("click", () => {
+                const content = header.nextElementSibling;
+                const icon = header.querySelector(".icon");
+
+                // Close all other open FAQs
+                document.querySelectorAll(".accordion-content").forEach(c => {
+                    if (c !== content) c.style.display = "none";
+                });
+
+                document.querySelectorAll(".accordion-header").forEach(h => {
+                    if (h !== header) h.classList.remove("active");
+                });
+
+                // Toggle the current FAQ
+                header.classList.toggle("active");
+                content.style.display = content.style.display === "block" ? "none" : "block";
+            });
+        });
+    </script>
+</body>
+</html>

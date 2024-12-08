@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Score Visualization</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h1>User Score Visualization</h1>
+    <canvas id="scoreChart" width="800" height="400"></canvas>
+
+    <script>
+        const ctx = document.getElementById('scoreChart').getContext('2d');
+        const chart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: {{ timestamps|tojson }},  // X-axis: Timestamps
+                datasets: [
+                    {
+                        label: 'Scores',
+                        data: {{ scores|tojson }},
+                        borderColor: 'blue',
+                        fill: false
+                    },
+                    {
+                        label: 'Time Taken',
+                        data: {{ time_taken|tojson }},
+                        borderColor: 'red',
+                        fill: false
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Time'
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Values'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

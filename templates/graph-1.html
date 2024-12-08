@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Performance</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h1>Quiz Performance Analytics</h1>
+
+    <!-- Create a canvas element for Chart.js -->
+    <canvas id="quizChart" width="400" height="200"></canvas>
+
+    <script>
+        // Data passed from Flask
+        var timestamps = {{ timestamps | tojson }};  // List of quiz timestamps
+        var scores = {{ scores | tojson }};  // List of quiz scores
+        var durations = {{ durations | tojson }};  // List of quiz durations
+
+        // Create the chart
+        var ctx = document.getElementById('quizChart').getContext('2d');
+        var quizChart = new Chart(ctx, {
+            type: 'line',  // Line chart
+            data: {
+                labels: timestamps,  // X-axis labels (timestamps)
+                datasets: [{
+                    label: 'Quiz Score',
+                    data: scores,  // Y-axis data (scores)
+                    borderColor: 'rgba(75, 192, 192, 1)',  // Line color for scores
+                    fill: false,
+                    tension: 0.1
+                },
+                {
+                    label: 'Duration (seconds)',
+                    data: durations,  // Y-axis data (durations)
+                    borderColor: 'rgba(255, 99, 132, 1)',  // Line color for durations
+                    fill: false,
+                    tension: 0.1
+                }]
+            },
+            options: {
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Timestamp'  // Label for the X-axis
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Score / Duration'  // Label for the Y-axis
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Analytics</title>
+    <style>
+        /* General styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f4f9;
+            color: #333;
+        }
+
+        header {
+            background: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2em;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background: #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        h2 {
+            margin-top: 0;
+            color: #444;
+        }
+
+        .btn-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            text-align: center;
+            transition: background 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #0056b3;
+        }
+
+        .btn:active {
+            background: #003d80;
+        }
+
+        footer {
+            margin-top: 40px;
+            text-align: center;
+            color: #777;
+        }
+
+        @media (max-width: 600px) {
+            .btn {
+                font-size: 0.9rem;
+                padding: 8px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>User Analytics Dashboard</h1>
+    </header>
+    <main>
+        <h2>Select an Analytics Section</h2>
+        <div class="btn-container">
+            <a href="/visualization" class="btn">Visualization</a>
+            <a href="/quiz_visualization" class="btn">Quiz Analytics</a>
+            <a href="/tf_game_visualization" class="btn">TF Game Analytics</a>
+            <a href="/game_performance_visualization" class="btn">Game Performance</a>
+            <a href="/leaderboard" class="btn">Leaderboard</a>
+            <a href="/visualize_user_scores" class="btn">User Scores</a>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 Analytics Dashboard. All rights reserved.</p>
+    </footer>
+</body>
+</html>

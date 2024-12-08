@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Anti-Doping Education Course</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+      /* Fade-in animation */
+      @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 2;
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 12s ease-in-out; /* 2 seconds fade-in effect */
+        }
+      
+      body {
+        background: linear-gradient(
+          120deg,
+          hsl(170, 75%, 41%),
+          hsl(190, 60%, 60%)
+        );
+        min-height: 100vh;
+        padding: 2rem;
+        overflow: hidden;
+      }
+      header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between; /* Ensures elements in the header are spaced properly */
+        padding: 10px 20px;
+        background-color: white; /* Light background for the header */
+        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Optional: Adds a slight shadow */
+      }
+
+      header .logo {
+        display: flex; /* Ensures proper alignment */
+        align-items: center; /* Vertically aligns the logo */
+      }
+
+      .progress-bar-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 30px;
+        background: rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+      }
+
+      .progress-bar {
+        height: 100%;
+        background: hsl(170, 75%, 41%);
+        transition: width 0.2s ease;
+      }
+
+      .progress-percentage {
+        margin-left: 10px;
+        font-size: 1rem;
+        color: #fff;
+        font-weight: 600;
+      }
+
+      .container {
+        max-width: 1000px;
+        margin: 0 auto;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        padding: 0.1rem;
+        overflow: hidden;
+        text-align: center;
+      }
+
+      h2 {
+        text-align: center;
+        font-size: 1.5rem;
+        color: hsl(170, 75%, 41%);
+        margin-bottom: 1rem;
+      }
+
+      .module {
+        padding: 1rem;
+        background: #f8f8f8;
+        margin: 2rem 0;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        opacity: 0;
+        transform: translateX(-100%);
+        transition: opacity 0.5s ease, transform 0.5s ease;
+      }
+
+      .module.active {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      .module:nth-child(even) {
+        transform: translateX(100%);
+      }
+
+      .module h3 {
+        font-size: 1.8rem;
+        color: hsl(170, 75%, 41%);
+      }
+
+      .module p,
+      .module ul {
+        margin: 1rem 0;
+        font-size: 1rem;
+        line-height: 1.6;
+        color: #555;
+      }
+
+      .module ul {
+        padding-left: 1.5rem;
+      }
+
+      
+    .start-btn {
+      background: hsl(170, 75%, 41%);
+      color: #fff;
+      border: none;
+      padding: 15px 30px;
+      border-radius: 5px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      /* margin-bottom: 1.5rem; */
+    }
+
+    .start-btn:hover {
+      background: hsl(170, 65%, 35%);
+    }
+
+    .next-btn {
+      display: inline-block;
+      background: hsl(170, 75%, 41%);
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.3s;
+      margin-top: 1.5rem;
+    }
+
+    .next-btn:hover {
+      background: hsl(170, 65%, 35%);
+    }
+
+
+
+    .video-buttons button {
+      background: hsl(170, 75%, 41%);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      margin: 0 5px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.3s ease;
+    }
+
+    .video-buttons button:hover {
+      background: hsl(170, 65%, 35%);
+    }
+
+    /* Base styles */
+    .video-buttons {
+      margin: 0.5rem 0;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      /* Allows wrapping on small screens */
+    }
+
+    .video-buttons button {
+      background: hsl(170, 75%, 41%);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      margin: 0 5px 10px;
+      /* Adjust bottom margin for better spacing on small screens */
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.3s ease;
+    }
+
+    /* Media query for smaller screens */
+    @media (max-width: 600px) {
+      .video-buttons button {
+        font-size: 0.9rem;
+        /* Slightly smaller text size */
+        padding: 8px 15px;
+        /* Reduce padding for better fit */
+        margin: 5px;
+        /* Uniform margin around buttons */
+      }
+    }
+
+    video {
+      width: 70%;
+      height: 390px;
+      border-radius: 10px;
+      /* margin-bottom: 2rem; */
+    }
+
+    /* Media query for smaller screens */
+    @media (max-width: 768px) {
+      video {
+        width: 100%;
+        /* Set video width to 100% for smaller screens */
+        height: auto;
+        /* Adjust height to maintain aspect ratio */
+      }
+    }
+
+    /* Media query for very small screens (e.g., mobile devices) */
+    @media (max-width: 480px) {
+      video {
+        width: 100%;
+        /* Set video width to 100% for very small screens */
+        height: auto;
+        /* Adjust height to maintain aspect ratio */
+      }
+    }
+
+  #top-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: none; /* Hidden by default */
+    background-color: hsl(62, 87%, 60%);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    transition: opacity 0.3s, transform 0.3s;
+  }
+
+  #top-button:hover {
+    background-color: hsl(63, 83%, 60%);
+    transform: scale(1.1);
+  }
+
+
+    .btn {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: not-allowed;
+      position: relative;
+    }
+
+    .tooltip {
+      position: relative;
+      display: inline-block;
+    }
+
+    .tooltip .tooltip-text {
+      visibility: hidden;
+      width: 150px;
+      background-color: black;
+      color: #fff;
+      text-align: center;
+      padding: 5px;
+      border-radius: 5px;
+
+      /* Position the tooltip */
+      position: absolute;
+      bottom: 130%;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+
+      /* Animation */
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .tooltip:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .btn:enabled {
+      background-color: #28a745;
+      cursor: pointer;
+    }
+
+      .next-btn {
+        display: inline-block;
+        background: hsl(170, 75%, 41%);
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+        text-decoration: none;
+        transition: background 0.3s;
+        margin-top: 1.5rem;
+      }
+
+      .next-btn:hover {
+        background: hsl(170, 65%, 35%);
+      }
+           .quiz {
+        margin-top: 20px;
+      }
+      .question {
+        margin-bottom: 10px;
+      }
+      .options {
+        margin-bottom: 20px;
+      }
+      .options button {
+      display: inline-block;
+      margin: 5px 0;
+      padding: 10px 15px;
+      font-size: 14px;
+      background: hsl(167, 89%, 38%);
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .options button:hover {
+      background: hsl(167, 89%, 38%);
+    }
+    .feedback {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+    .correct {
+      color: green;
+    }
+    .wrong {
+      color: red;
+    }
+    .image-container {
+            display: flex; /* Enables side-by-side alignment */
+            justify-content: space-around; /* Adjust spacing between images */
+            align-items: center; /* Align images vertically */
+        }
+        .image-container img {
+            max-width: 45%; /* Restrict image width */
+            height: auto; /* Maintain aspect ratio */
+            border: 2px solid #ccc; /* Optional: Add border around images */
+            border-radius: 5px; /* Optional: Rounded corners */
+        }#riddle-game {
+      background-color: rgba(255, 255, 255, 0.9);
+      border-radius: 15px;
+      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
+      padding: 30px;
+      max-width: 600px;
+      width: 100%;
+      animation: fadeIn 2s ease-out;
+    }
+  
+ 
+  
+    .riddle {
+      margin-bottom: 30px;
+      background-color: #fff;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transform: translateY(20px);
+      opacity: 0;
+      animation: riddleIn 1s forwards;
+    }
+  
+    .riddle p {
+      font-size: 1.2rem;
+      margin-bottom: 15px;
+      color: #333;
+      line-height: 1.5;
+    }
+  
+    input[type="text"] {
+      width: 75%;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      margin-right: 10px;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+  
+    input[type="text"]:focus {
+      outline: none;
+      box-shadow: 0 0 10px #ff8c00;
+      transform: scale(1.05);
+    }
+  
+    button {
+      padding: 12px 25px;
+      background-color: #ff8c00;
+      border: none;
+      border-radius: 8px;
+      color: #fff;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+  
+    button:hover {
+      background-color: #ff6f61;
+      transform: scale(1.05);
+    }
+  
+    p.result {
+      font-size: 1.1rem;
+      margin-top: 10px;
+      font-weight: bold;
+      animation: fadeInResult 1s ease-out;
+    }
+  
+    .correct {
+      color: green;
+    }
+  
+    .incorrect {
+      color: red;
+    }
+  
+    /* Animations */
+    @keyframes fadeIn {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+  
+    @keyframes slideIn {
+      0% { transform: translateY(-50px); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+  
+    @keyframes riddleIn {
+      0% { transform: translateY(20px); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+  
+    @keyframes fadeInResult {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    </style>
+  </head>
+
+  <body>
+    
+    <!-- Progress Bar -->
+    <div class="progress-bar-container">
+      <div class="progress-bar" id="progress-bar"></div>
+      <div class="progress-percentage" id="progress-percentage">0%</div>
+    </div>
+
+    <div class="container">
+      
+      
+      <center> <a href="{{ url_for('index') }}"><img src="https://muthu-2005.github.io/SIH-Final-2024/pictures/logo.png" style="height: 50px;"
+        alt="Dopeshield"></a></center>
+  <h2>Course 5: Comprehensive Education and Athlete Support</h2>
+  <!-- Video Player -->
+  <center> <video id="video-player" controls>
+      <source id="video-source" src="{{ url_for('static', filename='video/eng/en5.mp4') }}" type="video/mp4">
+      Your browser does not support the video tag.
+    </video></center>
+
+  <!-- Language Selection -->
+  <div class="video-buttons">
+    <button onclick="changeVideo('en')">English</button>
+    <button onclick="changeVideo('ka')">Kannada</button>
+    <button onclick="changeVideo('ta')">Tamil</button>
+    <button onclick="changeVideo('ml')">Malayalam</button>
+    <button onclick="changeVideo('tl')">Telgu</button>
+    <button onclick="changeVideo('hi')">Hindi</button>
+
+  </div>
+  <center><button class="start-btn" id="start-btn">Start Course</button></center>
+
+
+      <!-- Module 1 -->
+      <div
+        class="module"
+        id="module-1"
+        style="text-align: justify; font-family: Arial, sans-serif;"
+      >
+        <h3> Module 1: Education for Athletes and Coaches</h3>
+        <img src="https://isportz.co/sports/wp-content/uploads/2023/10/blog-5-1024x576.jpg.webp
+" alt="An athlete with a syringe and caution tape, symbolizing the risks of doping in sports." style="height: auto;width:100%;">
+        <p><strong>Education</strong></p>
+        <p>
+            Education is the cornerstone of clean sport. Both athletes and coaches play pivotal roles in
+            maintaining the integrity of competition. This module provides essential information to help
+            athletes and coaches understand anti-doping regulations, recognize their responsibilities, and
+            foster a culture of ethical sportsmanship
+        </p>
+        <p><strong>1. Why Education on Anti-Doping is Crucial</strong><br>
+            <strong>1.1 Protecting Integrity and Fair Play</strong><br>
+            Doping undermines fair competition, damages reputations, and erodes public trust in sports</p>
+        <ul>
+          <li>
+            <strong>1.2 Avoiding Inadvertent Doping Violations</strong><br>  
+            Many doping violations are unintentional, often resulting from
+            <ul>
+              <li>
+                <strong></strong> Consumption of contaminated supplements or medications.
+              </li>
+              <li>
+                <strong></strong>  Ignorance of prohibited substances.
+              </li>
+             </ul>
+          <li>
+            <strong>1.3 Ensuring Long-Term Health</strong>  <br>Doping can cause severe health risks, including hormonal imbalances, organ damage, and
+            psychological issues. Education helps athletes make informed choices to safeguard their
+            well-being.
+          </li>
+          
+        <p><strong> 2. Core Principles of Anti-Doping</strong><br>
+        <strong> 2.1 The World Anti-Doping Code (WADA)</strong></p>
+        <center> <img src="data:image/jpeg;base64,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"
+             alt="doping"  style="height: auto;width:100%;"></center>
+
+          <p>   Athletes and coaches should familiarize themselves with the World Anti-Doping Agency
+            (WADA) rules, which emphasize:
+        </p>
+        <p>
+          <strong>Strict Liability: </strong>  Athletes are responsible for any banned substance found in their body,
+          regardless of intent.
+        </p>
+        <ul>
+            <li>
+               <strong>Prohibited List:</strong>  A regularly updated list of banned substances and methods
+
+            </li>
+            <li>
+                <strong>Psychological:</strong>Doping can lead to psychological issues such as addiction, depression, and anxiety.
+
+            </li>
+        </ul>
+        <p>
+          <strong>2.2 The Doping Control Process</strong> 
+          <ul> Key steps include:
+            <li>
+                <strong> SampleCollection:</strong> Understanding the procedures for urine and blood testing.
+            </li>
+            <li>
+                <strong>Documentation: </strong> Accurate reporting of medications and supplements during tests.
+            </li>
+            <li>
+                <strong>Therapeutic Use Exemptions (TUEs):</strong>Applying for exemptions to use necessary
+                medications legally
+
+            </li>
+          </ul>
+          
+        </p>
+        <p><strong> 3. Educational Tools for Athletes and Coaches</strong></p>
+        <center><strong>Online Resources and E-Learning Platforms</strong></center>
+        <img
+          src="https://www.uipmworld.org/sites/default/files/styles/default_660/public/250x200.jpg?itok=P-xqGigj"alt="An athlete with a syringe and caution tape, symbolizing the risks of doping in sports."
+          style="height: auto;width:100%;"
+        />
+       
+        <p><strong> WADAe-Learning (ADEL): </strong></p>
+          <p> Provides tailored courses for athletes, coaches, and
+            medical professionals.</p>
+        <p><strong>Global Drug Reference Online (Global DRO):</strong></p>
+        <p> A tool to check the status of medications
+            and supplements.</p>
+        <p><strong>Workshops and Seminars</strong></p>
+        <p>
+            Hostregular sessions focusing on anti-doping policies, ethical decision-making, and
+            case studies.</p>
+        <ul>
+          <li>
+            <strong> Scenario-Based Learning</strong>  Interactive exercises where participants identify potential doping risks and strategize preventive
+            measures</li></ul>
+          
+            <strong> 4. Roles and Responsibilities <p> 4.1 Athletes’ Responsibilities</p></strong>
+          <li>
+            <strong> Knowledge:</strong> Stay informed about prohibited substances.</li>
+          <li>
+            <strong>Transparency: </strong>Maintain accurate records of supplement and medication use</li>
+          <li>
+            <strong>Accountability: </strong>Always verify ingredients before consumption.</li>
+        </ul>
+      </div>
+      <div
+        class="module"
+        id="module-scenario"
+        style="text-align: justify; font-family: Arial, sans-serif;"
+        <h2></h2>
+      <div class="Scenario">
+        <h4>5 Anti-Doping Advocacy: Fostering a Culture of Integrity</h4><br>
+        <h5>5.1 Building a Team Ethos</h5><br>
+        <ul>
+          <li>
+            Encourage open discussions about the importance of ethical choices in sports</li>
+          <li>
+            Rewardandcelebrate clean-sport champions.</li><br>
+          <li>
+            <strong>Consumer Trust: </strong>Loss of consumer trust, decreased sales, and negative brand image.
+          </li>
+          <li>
+            <strong>Regulatory Response: </strong>Product recall, investigations, and potential bans on the sale of the product.
+          </li>
+          <li>
+            <strong>Crisis Management: </strong>Immediate product recall, transparent communication with consumers, cooperation with regulatory agencies, and a public relations campaign to restore trust.
+          </li>
+        </ul>
+
+    <!-- Riddle -->
+    
+
+    <div id="riddle-game" style="font-family: Arial, sans-serif; max-width: 875px; margin: auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px; background-color: #f9f9f9;">
+        <h2 style="text-align: center; color: #343434;">Anti-Doping Riddle Game</h2>
+      
+        <div class="riddle" style="margin-bottom: 20px;">
+          <p><strong>Riddle 1:</strong></p>
+          <p>I make your body grow faster and strong,<br>
+             But using me in sports will only go wrong.<br>
+             My side effects could last for life,<br>
+             I bring more trouble, more pain, and strife.<br>
+             <strong>What am I?</strong></p>
+          <input type="text" id="answer1" placeholder="Your answer here" style="width: 80%; padding: 8px;">
+          <button onclick="checkAnswer(1, 'Human Growth Hormone (hGH)')">Submit</button>
+          <p id="result1" style="margin-top: 10px;"></p>
+        </div>
+      
+        <div class="riddle" style="margin-bottom: 20px;">
+          <p><strong>Riddle 2:</strong></p>
+          <p>I help you run faster, jump higher, and play,<br>
+             But using me can cause health risks that stay.<br>
+             I might seem like a quick fix for the win,<br>
+             But in the end, you’ll regret where I’ve been.<br>
+             <strong>What am I?</strong></p>
+          <input type="text" id="answer2" placeholder="Your answer here" style="width: 80%; padding: 8px;">
+          <button onclick="checkAnswer(2, 'Stimulants')">Submit</button>
+          <p id="result2" style="margin-top: 10px;"></p>
+        </div>
+      
+        <div class="riddle" style="margin-bottom: 20px;">
+          <p><strong>Riddle 3:</strong></p>
+          <p>I make you feel light, like you’ve lost some weight,<br>
+             But using me the wrong way will seal your fate.<br>
+             I can hide drugs you’ve taken in the past,<br>
+             But soon enough, you’ll be caught at last.<br>
+             <strong>What am I?</strong></p>
+          <input type="text" id="answer3" placeholder="Your answer here" style="width: 80%; padding: 8px;">
+          <button onclick="checkAnswer(3, 'Diuretics')">Submit</button>
+          <p id="result3" style="margin-top: 10px;"></p>
+        </div>
+      
+        <div class="riddle" style="margin-bottom: 20px;">
+          <p><strong>Riddle 4:</strong></p>
+          <p>I help you recover, but at a huge cost,<br>
+             I improve performance, but I can make you lost.<br>
+             I’m banned in most games, a serious crime,<br>
+             What am I that causes trouble every time?<br>
+             <strong>What am I?</strong></p>
+          <input type="text" id="answer4" placeholder="Your answer here" style="width: 80%; padding: 8px;">
+          <button onclick="checkAnswer(4, 'Peptide Hormones (like EPO)')">Submit</button>
+          <p id="result4" style="margin-top: 10px;"></p>
+        </div>
+    </div>  
+    </div>  
+    </div>
+
+      
+      <!-- Module 2 -->
+      <div
+        class="module"
+        id="module-2"
+        style="text-align: justify; font-family: Arial, sans-serif;"
+      >
+        <h3>Module 2: Nutrition and Safe Supplements</h3>
+        <center> <img src="https://elitenutritionandperformance.com/wp-content/uploads/2018/05/How-to-Evaluate-Your-Supplements-for-Safety-and-Efficacy-1.png" alt="Nutrition"  style="height: auto;width:100%;"></center>
+        <p>
+            Athletic success is built on a foundation of hard work, dedication, and a well-planned nutrition
+            strategy. Proper nutrition fuels the body, supports recovery, and enhances performance.
+            However, the misuse or inadvertent consumption of unsafe supplements can lead to doping
+            violations, jeopardizing an athlete's career. This module aims to educate on the principles of
+            balanced nutrition and the safe use of supplements while identifying potential risks of
+            contamination
+        </p>
+        <p><strong> 1. The Importance of Balanced Nutrition</strong><br> A well-balanced diet provides the energy and nutrients required for peak performance and
+            recovery.</p>
+        <strong> 1.1 Macronutrients</strong><ul>
+          <li>
+            <strong>Carbohydrates</strong> 
+            <ul>
+              <li>
+                <strong></strong> Mainenergy source for high-intensity and endurance activities</li>
+              <li>
+                <strong></strong>  Sources: Whole grains, fruits, vegetables, and legumes</li>
+            </ul>
+          </li>
+          <li>
+            <strong>Proteins</strong>
+          </li>
+          <ul>
+            <li>
+              <strong></strong>Crucial for muscle repair and growth post-exercise.</li>
+            <li>
+                <strong></strong>Sources: Lean meats, eggs, dairy, legumes, tofu, and nuts.</li>
+          </ul> 
+          <li>
+            <strong>Fats</strong> 
+            <ul>
+              <li>
+                <strong></strong>  Provide sustained energy, particularly for low- to moderate-intensity activities.</li>
+              <li>
+                <strong> Sources:</strong> Nuts, seeds, avocados, and healthy oils (olive, flaxseed).
+            </li>
+            </ul>
+          </li>
+        </ul>
+        <p><strong>1.2 Micronutrients</strong></p>
+          <p>   Essential vitamins and minerals maintain bodily functions, prevent deficiencies, and support
+            recovery.</p>
+        <p>
+          <strong></strong>
+        </p>
+        <ul>
+            <p><strong>Key examples:</strong> </p>
+            <li>
+              <strong> Calcium and Vitamin D: </strong> Bone health.</li>
+            <li>
+              <strong>Iron:</strong> Educate athletes, coaches, and support staff about the dangers of doping and the importance of clean sport.
+              Prevents fatigue by supporting oxygen transport in the blood.            <li>
+              <strong>Implement Stricter Penalties:</strong> Impose severe penalties on athletes who are found guilty of doping, including bans, fines, and forfeiture of medals.
+
+            </li><li>
+                <strong>  Magnesium and Potassium:</strong>  Muscle contraction and hydration balance.</li>
+        </ul>
+        <p>By working together, we can create a future where athletes compete fairly and honorably, inspiring future generations and upholding the true spirit of sport.
+        </p>
+
+        <p><strong> 1.3 Hydration</strong></p>
+          <p>Essential vitamins and minerals maintain bodily functions, prevent deficiencies, and support
+            recovery.</p>
+        <p>
+          <strong></strong>
+        </p>
+        <ul>
+            <li>
+                Maintaining hydration is vital for preventing fatigue, regulating body temperature, and
+                optimizing focus. </li>
+            
+              <strong> Tips: </strong>
+            <li>
+              <strong></strong>  Drink water before, during, and after physical activity<li>
+              <strong></strong>  Use electrolyte-enhanced drinks for prolonged or intense exercise.</li>
+                
+        </ul>
+        <p><h4> 2. Safe Use of Supplements</h4></p>
+        <p>    Supplements are not a substitute for a healthy diet but may be necessary for certain athletes
+            who cannot meet their nutritional needs through food alone. However, unregulated supplements
+            pose risks of contamination with banned substances</p>
+      <p>
+        <strong>2.1 Common Scenarios Requiring Supplements</strong>
+      </p>
+      <ul><li> Restricted dietary intake (e.g., vegan athletes needing B12 or iron)</li>
+        <li> Intensive training requiring additional protein or electrolytes.</li>
+        <li>Specific health concerns, such as joint support with omega-3s.</li>
+          <p><strong>Safe Supplement Practices</strong><br> To avoid unintentional doping violations:</p>
+          <li>
+            <strong> Verify Certifications:  </strong>Choose products certified by organizations like: NSFCertified for Sport®,
+                Informed-Sport
+            </li>
+          <li>
+            <strong>ChecktheLabels:</strong> Avoid supplements with vague ingredients like "proprietary blends."</li>
+            <li><strong>  Magnesium and Potassium:</strong>  Muscle contraction and hydration balance.</li>
+      </li></ul>
+      <p> <strong>High-Risk Supplements</strong> 
+        <ul><li>Weight-loss products.
+        <li>Muscle-building or pre-workout powders.
+        <li>Unverified herbal supplements.<br></li></ul>
+       </p><img class="fade-in" src="https://inside.fei.org/sites/default/files/Icons%20%26%20Pictograms/supplement-use-image_1000.jpg" alt="Image"  style="height: auto;width:100%;">
+       <h4>3. Risks of Contamination and Doping</h4>
+        
+        <h5>3.1 How Contamination Happens</h5>
+        <ul>
+            <li><strong>Poor manufacturing standards:</strong> Cross-contamination in factories.</li>
+            <li><strong>Mislabeling:</strong> Some supplements don’t fully disclose their ingredients.</li>
+            <li><strong>Online and unverified sources:</strong> High likelihood of banned substances in cheap or imported products.</li>
+        </ul>
+        
+        <h5>3.2 Tips to Avoid Contamination</h5>
+        <ul>
+            <li>Purchase supplements only from trusted sources and brands.</li>
+            <li>Maintain a detailed log of all supplements used, including brand names and dosages.</li>
+            <li>Beware of claims like "fast results" or "natural anabolic boosters."</li>
+        </ul>
+        
+        <h4>4. The Role of Education and Responsibility</h4>
+        <p>Athletes are solely responsible for what they consume (“Strict Liability” principle under WADA rules). This emphasizes the need for proactive education on doping risks and safe practices.</p>
+
+        <h5>Action Plan:</h5>
+        <ul>
+            <li>Prioritize natural nutrition from whole foods.</li>
+            <li>Educate yourself and team members on anti-doping rules.</li>
+            <li>Use resources like the Global DRO (Drug Reference Online) to check the status of substances.</li>
+        </ul>
+        
+        <h4>Conclusion</h4>
+        <p>Balanced nutrition and safe supplementation are key to ethical and high-performance sports. By staying informed and making responsible choices, athletes can maintain their competitive edge without compromising integrity or health.</p>
+     <div class="image-container">
+          <img src="data:image/png;base64,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" alt="Image 1">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyjvuh2hE-ELv14kpNo_pTeq42fEehaNeSqQ&s" alt="Image 2">
+      </div>
+      </div>
+      
+      <!-- Module 3 -->
+
+
+      <div
+        class="module"
+        id="module-3"
+        style="text-align: justify; font-family: Arial, sans-serif;"
+      >
+        <h3>Module 3: Psychological and Career Support</h3>
+        <p>Athletes navigate an intensely competitive environment, where the drive for success often coexists with pressures to enhance performance. These pressures can manifest as psychological challenges and ethical dilemmas, particularly regarding anti-doping compliance. This module addresses the psychological hurdles athletes face, offers strategies for mental well-being, and outlines career support mechanisms to help athletes maintain integrity and plan for a fulfilling future.</p>
+        
+        <h4>1. Psychological Challenges Associated with Anti-Doping</h4>
+        <h5>1.1 Stress from Anti-Doping Compliance</h5>
+        <ul>
+            <li><strong>Constant Monitoring:</strong> Frequent drug tests, surprise checks, and meticulous documentation create ongoing stress.</li>
+            <li><strong>Fear of Accidental Violations:</strong> Concerns over unknowingly consuming contaminated supplements or prescribed medications.</li>
+        </ul>
+        
+        <h5>1.2 Performance Anxiety and Pressure</h5>
+        <ul>
+            <li><strong>External Expectations:</strong> Pressure from coaches, sponsors, or even family to achieve results.</li>
+            <li><strong>Internal Doubts:</strong> Fears of underperformance without artificial enhancements.</li>
+        </ul>
+        
+        <h5>1.3 Social and Peer Pressure</h5>
+        <ul>
+            <li><strong>Team Dynamics:</strong> Pressure to conform to team norms, even if unethical.</li>
+            <li><strong>Comparisons:</strong> Constantly measuring oneself against competitors who may be using illicit methods.</li>
+        </ul>
+        
+        <h5>1.4 Emotional Fallout from Accusations</h5>
+        <ul>
+            <li>Athletes accused of doping—rightly or wrongly—often face stigma, guilt, and reputational damage.</li>
+            <li>The isolation and public scrutiny can lead to depression, anxiety, and withdrawal.</li>
+        </ul>
+
+        <h4>2. Coping Mechanisms for Mental Well-being</h4>
+        <p>To excel in sports and life, athletes need tools to build emotional resilience and handle stress effectively.</p>
+        <h5>2.1 Mindfulness and Stress Management Techniques</h5>
+        <ul>
+            <li><strong>Meditation and Relaxation Practices:</strong> Help athletes stay calm and focused.</li>
+            <li><strong>Visualization:</strong> Positive mental imagery of success and ethical choices can reinforce confidence.</li>
+            <li><strong>Breathing Exercises:</strong> Quick techniques for stress relief during high-pressure situations.</li>
+        </ul>
+        
+        <h5>2.2 Professional Mental Health Support</h5>
+        <ul>
+            <li><strong>Sports Psychologists:</strong> Help athletes address performance anxieties and ethical dilemmas.</li>
+            <li><strong>Counselors or Therapists:</strong> Provide a safe space for athletes to process emotions and stress.</li>
+        </ul>
+
+        <h5>2.3 Building a Support System</h5>
+        <ul>
+            <li><strong>Team and Family Involvement:</strong> Encouragement and understanding from loved ones and teammates.</li>
+            <li><strong>Peer Networks:</strong> Fellow athletes who champion clean sport can act as positive role models.</li>
+        </ul>
+
+        <h4>3. Anti-Doping Education for Psychological Strength</h4>
+        <p>Proactive education builds confidence and minimizes stress related to anti-doping compliance.</p>
+        <h5>3.1 Understanding Anti-Doping Rules</h5>
+        <ul>
+            <li><strong>Athlete Responsibility:</strong> Awareness of the "Strict Liability" rule, which holds athletes accountable for substances in their bodies.</li>
+            <li><strong>Therapeutic Use Exemptions (TUEs):</strong> Navigating the process to use necessary medications legally.</li>
+        </ul>
+        
+        <h5>3.2 Scenario-Based Training</h5>
+        <ul>
+            <li>Real-life examples help athletes understand the importance of vigilance.</li>
+            <li>Training in ethical decision-making builds resilience against doping pressures.</li>
+        </ul>
+
+        <h4>4. Career Support for Athletes in Anti-Doping</h4>
+        <p>An athlete’s career is finite, and preparation for transitions—whether due to injury, retirement, or personal choice—is essential.</p>
+        <h5>4.1 Career Planning Within Sports</h5>
+        <ul>
+            <li><strong>Building Credibility:</strong> Maintaining a clean record enhances reputation, leading to opportunities as coaches, mentors, or sports ambassadors.</li>
+            <li><strong>Networking:</strong> Partnering with clean-sport advocacy groups and organizations can open doors for roles in administration or education.</li>
+        </ul>
+
+        <h4>4.2 Developing Skills Beyond Sports</h4>
+        <ul>
+            <li><strong>Education and Certifications:</strong> Encourage athletes to pursue academic qualifications or vocational training.</li>
+            <li><strong>Entrepreneurship:</strong> Skills gained from sports—discipline, teamwork, and resilience—can be translated into successful business ventures.</li>
+        </ul>
+
+        <h4>4.3 Handling Career Setbacks</h4>
+        <ul>
+            <li><strong>Managing Reputational Damage:</strong> Athletes wrongly accused of doping can seek legal and PR assistance to rebuild their careers.</li>
+            <li><strong>Career Counseling:</strong> Providing specialized services to explore new paths and manage transitions.</li>
+        </ul>
+
+        <h4>5. Anti-Doping Advocacy and Leadership Roles</h4>
+        <p>Athletes have the power to influence their peers and the next generation by promoting the values of clean sport.</p>
+        <h5>5.1 Becoming Role Models</h5>
+        <ul>
+            <li>Sharing personal stories of integrity and resilience inspires others to resist doping temptations.</li>
+            <li>Engaging in clean-sport campaigns amplifies the message of ethical competition.</li>
+        </ul>
+        
+        <h5>5.2 Community Outreach</h5>
+        <ul>
+            <li>Organizing educational events in schools, clubs, and local sports communities.</li>
+            <li>Partnering with anti-doping organizations to mentor young athletes.</li>
+        </ul>
+
+        <h5>5.3 Mentorship Programs</h5>
+        <ul>
+            <li>Senior athletes mentoring juniors can create a ripple effect of positive values.</li>
+            <li>Encouraging ethical behavior through storytelling and sharing real-world examples.</li>
+        </ul>
+
+        <h4>6. Long-Term Impact of Psychological and Career Support</h4>
+        <ul>
+            <li>Compete with confidence and integrity.</li>
+            <li>Transition smoothly to life after competitive sports.</li>
+            <li>Act as ambassadors for clean sport, influencing a wider audience.</li>
+        </ul>
+
+        <h3>Conclusion</h3>
+        <p>The challenges of anti-doping extend beyond physical performance and compliance. By addressing psychological well-being and career aspirations, we create a holistic support system for athletes. Empowered and informed, they can focus on ethical, sustainable success both on and off the field.</p>
+        <h4> For Trusted Support :</h4>
+        <ul><div class="image-container">
+            <img src="https://telemanas-preprod.iiitb.ac.in/assets/img/header/WebP/image2.webp" alt="Tele Mental Health Initiative" style="height: 220px ;width: 450px;">
+        </div>
+            <li> Tele MANAS (Tele Mental Health Assistance and Networking Across States) was introduced as
+                <li>a toll-free helpline (14416) available nationwide, offering a wide range of mental health services.</li>
+        </ul>
+
+
+    </div><br>
+    <center>
+      <div class="tooltip">
+        <a href="/certificate5"><button class="btn" id="btn" disabled>Complete the course</button></a>
+        <span class="tooltip-text" id="tooltip-text">Time Remaining : 15:00</span>
+      </div>
+    </center>
+    <button id="top-button" title="Go to Top">↑ Top</button>
+
+    <script>
+      // Get button references
+      // Ensure scrolling is disabled on page load
+      document.body.style.overflow = "hidden";
+
+      // Get button references
+      const startBtn = document.getElementById("start-btn");
+      const completeBtn = document.getElementById("btn");
+
+      // Event listener for the start button
+      startBtn.addEventListener("click", () => {
+        // Enable scrolling
+        document.body.style.overflow = "auto"; // Enable scrolling when the start button is clicked
+
+        // Show the "Complete Course" button
+        completeBtn.style.display = "inline-block";
+
+        // Hide the "Start Course" button
+        startBtn.style.display = "none";
+      });
+
+      const btn = document.getElementById("btn");
+      const tooltipText = document.getElementById("tooltip-text");
+
+      let remainingTime = 6; // 15 minutes in seconds
+
+      // Format time into MM:SS
+      const formatTime = (time) => {
+        const minutes = Math.floor(time / 60);
+        const seconds = time % 60;
+        return `${minutes.toString().padStart(2, "0")}:${seconds
+          .toString()
+          .padStart(2, "0")}`;
+      };
+
+      // Update the tooltip text and enable the button when time is up
+      const updateTimer = () => {
+        if (remainingTime > 0) {
+          remainingTime--;
+          tooltipText.textContent = `Time Remaining to complete the course: ${formatTime(remainingTime)}`;
+        } else {
+          clearInterval(timerInterval);
+          btn.disabled = false;
+          btn.textContent = "✅ Course Completed";
+          btn.style.cursor = "pointer";
+          tooltipText.textContent = "Course is now complete!";
+        }
+      };
+      const topButton = document.getElementById("top-button");
+
+// Show the button when the user scrolls down 100px
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 100) {
+    topButton.style.display = "block";
+  } else {
+    topButton.style.display = "none";
+  }
+});
+
+// Scroll to the top when the button is clicked
+topButton.addEventListener("click", () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth", // Smooth scroll effect
+  });
+});
+      // Start the timer
+      const timerInterval = setInterval(updateTimer, 1000);
+
+
+      const videoPlayer = document.getElementById('video-player');
+      const videoSource = document.getElementById('video-source');
+      const modules = document.querySelectorAll('.module');
+      const progressBar = document.getElementById('progress-bar');
+      const progressPercentage = document.getElementById('progress-percentage');
+      const startButton = document.getElementById('start-btn');
+      let courseStarted = false; // Flag to check if the course has started
+
+      // Start course
+      startButton.addEventListener('click', () => {
+        startButton.style.display = 'none'; // Hide start button
+        modules[0].classList.add('active'); // Show the first module
+        courseStarted = true; // Set the flag to true
+      });
+
+      // Update progress bar and module animation on scroll
+      window.addEventListener('scroll', () => {
+        if (!courseStarted) return; // Do nothing if the course hasn't started
+
+        let totalHeight = document.body.scrollHeight - window.innerHeight;
+        let scrollPosition = window.scrollY;
+        let scrollPercentage = (scrollPosition / totalHeight) * 100;
+
+        // Update progress bar width and percentage text
+        progressBar.style.width = scrollPercentage + '%';
+        progressPercentage.textContent = Math.min(Math.round(scrollPercentage), 100) + '%';
+
+        modules.forEach((module, index) => {
+          const rect = module.getBoundingClientRect();
+          if (rect.top >= 0 && rect.top <= window.innerHeight / 2) {
+            if (index % 2 === 0) {
+              // Modules with even index (Module 1, Module 3): Slide from the left
+              module.style.transform = "translateX(0)";
+            } else {
+              // Modules with odd index (Module 2): Slide from the right
+              module.style.transform = "translateX(0)";
+            }
+            module.classList.add('active');
+          }
+        });
+      });
+
+      // Change Video based on Language Button
+      function changeVideo(language) {
+        const videoMap = {
+          'en': '{{ url_for('static', filename='video/eng/en5.mp4') }}',
+          'ta': '{{ url_for('static', filename='video/tam/ta5.mp4') }}',
+          'ka': '{{ url_for('static', filename='video/ka/ka5.mp4') }}',
+          'ml': '{{ url_for('static', filename='video/ml/ml5.mp4') }}',
+           'hi': '{{ url_for('static', filename='video/hi/hi5.mp4') }}',
+            'tl': '{{ url_for('static', filename='video/tl/tl5.mp4') }}'
+        };
+        videoSource.src = videoMap[language];
+        videoPlayer.load(); // Reload the video player
+        videoPlayer.play(); // Start playing the new video
+      }
+
+      function checkAnswer(riddleNumber, correctAnswer) {
+      const userAnswer = document.getElementById(`answer${riddleNumber}`).value.trim().toLowerCase();
+      const resultElement = document.getElementById(`result${riddleNumber}`);
+      const correctAnswerFormatted = correctAnswer.toLowerCase();
+  
+      if (userAnswer === correctAnswerFormatted) {
+        resultElement.textContent = "Correct! 🎉";
+        resultElement.classList.add("correct");
+        resultElement.classList.remove("incorrect");
+      } else {
+        resultElement.textContent = "Incorrect. Try again! ❌";
+        resultElement.classList.add("incorrect");
+        resultElement.classList.remove("correct");
+      }
+    }
+    </script>
+    <style>
+      #myid {
+          position: absolute;
+          top: 10px;
+          right: 10px;
+          z-index: 1000;
+          padding: 8px 15px;
+          font-family: 'Poppins', sans-serif;
+          font-size: 14px;
+          background-color: #3498db;
+          color: white;
+          border-radius: 20px;
+          text-align: center;
+          cursor: pointer;
+          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+          transition: background-color 0.3s ease, transform 0.2s ease;
+      }
+  
+      #language-options {
+          display: none;
+          position: absolute;
+          top: 50px;
+          right: 10px;
+          z-index: 999;
+          background-color: white;
+          border-radius: 10px;
+          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+          padding: 10px;
+      }
+  
+      #language-options.active {
+          display: block;
+      }
+  
+      .goog-te-combo {
+          width: 100%;
+          padding: 8px;
+          font-family: 'Poppins', sans-serif;
+          font-size: 14px;
+          border-radius: 5px;
+          border: 1px solid #ddd;
+      }
+  
+      @media (max-width: 768px) {
+          #myid {
+              font-size: 12px;
+              padding: 6px 12px;
+          }
+  
+          #language-options {
+              top: 40px;
+          }
+      }
+  
+      @media (max-width: 480px) {
+          #myid {
+              font-size: 10px;
+              padding: 4px 10px;
+          }
+  
+          #language-options {
+              top: 30px;
+          }
+      }
+  </style>
+  
+  <script>
+      function loadGoogleTranslate() {
+          new google.translate.TranslateElement({
+              pageLanguage: 'en',
+              includedLanguages: 'en,hi,ta,ml,kn,te',
+              layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+          }, 'language-options');
+      }
+  
+      function toggleLanguageOptions() {
+          const options = document.getElementById('language-options');
+          options.classList.toggle('active');
+      }
+  
+      document.addEventListener('DOMContentLoaded', () => {
+          const observer = new MutationObserver(() => {
+              const translateDropdown = document.querySelector('.goog-te-combo');
+              if (translateDropdown && translateDropdown.value !== '') {
+                  document.getElementById('language-options').classList.remove('active');
+              }
+          });
+  
+          observer.observe(document.body, { childList: true, subtree: true });
+      });
+  </script>
+  
+  <div id="myid" onclick="toggleLanguageOptions()">Choose Language</div>
+  <div id="language-options"></div>
+  <script src="https://translate.google.com/translate_a/element.js?cb=loadGoogleTranslate"></script>
+  
+  </body>
+</html>

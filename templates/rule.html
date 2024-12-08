@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anti-Doping Awareness 2024</title>
+  <!-- <link rel="stylesheet" href="styles.css"> -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+  href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;500;600;700;800&family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<style>
+ /* General Styles */
+ html, body {
+           height: 100%;
+           margin: 0;
+           padding: 0;
+           font-family: "Poppins", sans-serif;
+           background-color: white;
+           color: #333;
+       }
+
+       header {
+   display: flex;
+   align-items: center;
+   justify-content: space-between; /* Ensures elements in the header are spaced properly */
+   padding: 10px 20px;
+   background-color: white; /* Light background for the header */
+   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Optional: Adds a slight shadow */
+}
+
+header .logo {
+   display: flex; /* Ensures proper alignment */
+   align-items: center; /* Vertically aligns the logo */
+}
+
+
+/* Flexbox Layout */
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: stretch; /* Ensures all children are stretched to the same height */
+  gap: 20px;
+  padding: 20px;
+}
+
+.container {
+  flex: 1;
+  min-width: 280px;
+  max-width: 400px;
+  height: 450px; /* Set a fixed height for uniformity */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+  display: flex; /* Ensure inner content aligns properly */
+  flex-direction: column;
+  justify-content: space-between; /* Align content vertically */
+  align-items: center; /* Center align items */
+}
+
+.container:hover {
+  transform: scale(1.05);
+}
+
+.green-container {
+  background: #DFFFD6;
+  border: 2px solid #3CB371;
+}
+
+.red-container {
+  background: #FFD6D6;
+  border: 2px solid #FF6F61;
+}
+
+.title {
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+ul li {
+  font-size: 1.2rem;
+  margin: 10px 0;
+  position: relative;
+  padding-left: 25px;
+}
+
+ul li::before {
+  content: '✔';
+  color: #3CB371;
+  position: absolute;
+  left: 0;
+}
+
+.red-container ul li::before {
+  content: '✖';
+  color: #FF6F61;
+}
+
+.image-container {
+  text-align: center;
+  margin: 30px 0;
+}
+
+.process-image {
+  max-width: 100%;
+  height: auto;
+  border: 3px solid #ccc;
+  border-radius: 10px;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  background-color: #333;
+  color: #fff;
+  padding: 10px 0;
+  margin-top: 20px;
+}
+
+/* Responsive Design */
+
+/* Mobile (phones) */
+@media (max-width: 576px) {
+  .header h1 {
+    font-size: 1.8rem;
+  }
+  .header p {
+    font-size: 1rem;
+  }
+  .container {
+    width: 100%;
+    max-width: 95%; /* Ensure margin for small screens */
+    padding: 15px;
+  }
+  ul li {
+    font-size: 1rem;
+  }
+  .process-image {
+    width: 90%; /* Image takes full width */
+    margin: 10px 0;
+  }
+}
+
+/* Tablets (portrait and landscape) */
+@media (min-width: 577px) and (max-width: 1024px) {
+  .header h1 {
+    font-size: 2.2rem;
+  }
+  .container {
+    max-width: 90%;
+    margin: 10px auto; /* Center the containers */
+  }
+  .process-image {
+    width: 90%;
+    margin: 20px 0;
+  }
+}
+
+/* Laptops */
+@media (min-width: 1025px) and (max-width: 1440px) {
+  .header h1 {
+    font-size: 2.5rem;
+  }
+  .process-image {
+    width: 80%; /* Constrain size on larger screens */
+    margin: 20px auto;
+  }
+}
+
+/* Large Screens */
+@media (min-width: 1441px) {
+  .header h1 {
+    font-size: 2.8rem;
+  }
+  .process-image {
+    width: 80%;
+  }
+}
+
+
+
+</style>
+<body>
+  
+    <header>
+        <div class="logo">
+            <a href="/"><img src="https://muthu-2005.github.io/SIH-Final-2024/pictures/logo.png"
+                    alt="Dopeshield Logo" height="75px"></a>
+        </div>
+    </header>
+    <div style="text-align: center;">
+        <h1>Rules and Regulations</h1>
+        <h2>2024</h2>
+      </div>
+      
+
+  <main class="main-content" style="text-align: justify;">
+    <div class="flex-container">
+      <div class="container green-container">
+        <h2 class="title">Do's</h2>
+        <ul>
+          <li>Educate yourself on anti-doping rules and regulations.</li>
+          <li>Consult a healthcare professional before using any medications.</li>
+          <li>Report any suspicious activities related to doping.</li>
+          <li>Maintain integrity and fairness in sports.</li>
+          <li>Check the prohibited list on the WADA or NADA website regularly.</li>
+        </ul>
+      </div>
+
+      <div class="container red-container">
+        <h2 class="title">Don'ts</h2>
+        <ul>
+          <li>Do not use performance-enhancing drugs or supplements without verification.</li>
+          <li>Do not ignore the rules set by WADA and NADA.</li>
+          <li>Do not share or use substances from unverified sources.</li>
+          <li>Do not avoid drug testing or attempt to tamper with results.</li>
+          <li>Do not promote or encourage the use of banned substances.</li>
+        </ul>
+      </div>
+    </div>
+    <div style="text-align: center;">
+        <h1>Anti-Doping Journey: Key Steps and Awareness</h1>
+      </div>
+      
+    <div class="image-container">
+      <img src="{{ url_for('static', filename='pictures/flow-chart.png') }}" alt="NADA/WADA Process" class="process-image">
+    </div>
+  </main>
+  <div style="text-align: center;">
+    <h6>Powered by:</h6>
+  </div>
+
+  <marquee scrollamount="40">
+    <div style="display: inline-block; white-space: nowrap;">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/World_Anti-Doping_Agency_Logo_2024.svg/1920px-World_Anti-Doping_Agency_Logo_2024.svg.png" 
+           alt="WADA Logo" 
+           style="height: 100px; margin-right: 20px;">
+           
+      <img src="https://static.toiimg.com/thumb/msid-81466960,width-400,resizemode-4/81466960.jpg" 
+           alt="NADA Logo" 
+           style="height: 100px; margin-right: 20px;">
+           <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/World_Anti-Doping_Agency_Logo_2024.svg/1920px-World_Anti-Doping_Agency_Logo_2024.svg.png" 
+           alt="WADA Logo" 
+           style="height: 100px; margin-right: 20px;">
+           
+      <img src="https://static.toiimg.com/thumb/msid-81466960,width-400,resizemode-4/81466960.jpg" 
+           alt="NADA Logo" 
+           style="height: 100px; margin-right: 20px;">
+           <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/World_Anti-Doping_Agency_Logo_2024.svg/1920px-World_Anti-Doping_Agency_Logo_2024.svg.png" 
+           alt="WADA Logo" 
+           style="height: 100px; margin-right: 20px;">
+           
+      <img src="https://static.toiimg.com/thumb/msid-81466960,width-400,resizemode-4/81466960.jpg" 
+           alt="NADA Logo" 
+           style="height: 100px; margin-right: 20px;">
+           <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/World_Anti-Doping_Agency_Logo_2024.svg/1920px-World_Anti-Doping_Agency_Logo_2024.svg.png" 
+           alt="WADA Logo" 
+           style="height: 100px; margin-right: 20px;">
+           
+      <img src="https://static.toiimg.com/thumb/msid-81466960,width-400,resizemode-4/81466960.jpg" 
+           alt="NADA Logo" 
+           style="height: 100px; margin-right: 20px;">
+           <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/World_Anti-Doping_Agency_Logo_2024.svg/1920px-World_Anti-Doping_Agency_Logo_2024.svg.png" 
+           alt="WADA Logo" 
+           style="height: 100px; margin-right: 20px;">
+           
+      <img src="https://static.toiimg.com/thumb/msid-81466960,width-400,resizemode-4/81466960.jpg" 
+           alt="NADA Logo" 
+           style="height: 100px; margin-right: 20px;">
+    </div>
+  </marquee>
+  
+</body>
+</html>

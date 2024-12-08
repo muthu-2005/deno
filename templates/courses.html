@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>News</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;500;600;700;800&family=Poppins:wght@400;500&display=swap"
+    rel="stylesheet">
+</head>
+<style>
+  html,
+  body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+    background-color: hsl(168, 56%, 89%);
+    color: #333;
+  }
+
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* Ensures elements in the header are spaced properly */
+    padding: 10px 20px;
+    background-color: white;
+    /* Light background for the header */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    /* Optional: Adds a slight shadow */
+  }
+
+  header .logo {
+    display: flex;
+    /* Ensures proper alignment */
+    align-items: center;
+    /* Vertically aligns the logo */
+  }
+
+  header .logo img {
+    height: 100px;
+    /* Ensures the logo height is consistent */
+  }
+</style>
+
+<body>
+  <header>
+    <div class="logo">
+      <a href="{{ url_for('index')}}"><img src="{{ url_for('static', filename='pictures/logo.png') }}" style="height: 75px;"
+          alt="Coconut Company Logo"></a>
+    </div>
+
+  </header>
+  <section class="section course" id="courses" aria-label="course" style="padding: 1rem;">
+    <div class="container">
+
+      <p class="section-subtitle">Popular Courses</p>
+
+      <h2 class="h2 section-title">Pick A Course To Get Started</h2>
+
+      <ul class="grid-list">
+
+        <li>
+          <a href="/course1">
+            <div class="course-card">
+
+              <figure class="card-banner img-holder" style="--width: 370; --height: 220;">
+                <img src="{{ url_for('static', filename='pictures/Course1.png') }}" width="370" height="220"
+                  loading="lazy" alt="Course-1" class="img-cover">
+              </figure>
+
+
+              <div class="card-content">
+
+                <span class="badge">Beginner</span>
+
+                <h3 class="h3">
+                  <a href="/course1" class="card-title">Introduction to Anti-Doping Education </a>
+                </h3>
+
+
+              </div>
+
+            </div>
+        </li>
+
+
+
+        <li>
+          <a href="/course2">
+            <div class="course-card">
+
+              <figure class="card-banner img-holder" style="--width: 370; --height: 220;">
+                <img src="{{ url_for('static', filename='pictures/Course2.png') }}" width="370" height="220"
+                  loading="lazy" alt="Course-3" class="img-cover">
+              </figure>
+
+
+              <div class="card-content">
+
+                <span class="badge">Beginner</span>
+
+                <h3 class="h3">
+                  <a href="/course2" class="card-title">Understanding Doping and Its Consequences </a>
+                </h3>
+
+
+              </div>
+
+            </div>
+          </a>
+        </li>
+
+        <li>
+          <a href="/course3">
+            <div class="course-card">
+
+              <figure class="card-banner img-holder" style="--width: 370; --height: 220;">
+                <img src="{{ url_for('static', filename='pictures/Course3.png') }}" width="370" height="220"
+                  loading="lazy" alt="Course-3" class="img-cover">
+              </figure>
+
+
+              <div class="card-content">
+
+                <span class="badge">Intermediate</span>
+
+                <h3 class="h3">
+                  <a href="/course3" class="card-title">Anti-Doping Rules, Regulations, and Legalities</a>
+                </h3>
+
+
+              </div>
+
+            </div>
+        </li>
+
+        <li>
+          <a href="/course4">
+            <div class="course-card">
+
+              <figure class="card-banner img-holder" style="--width: 370; --height: 220;">
+                <img src="{{ url_for('static', filename='pictures/Course4.png') }}" width="370" height="220"
+                  loading="lazy" alt="Course-3" class="img-cover">
+              </figure>
+
+
+
+              <div class="card-content">
+
+                <span class="badge">Intermediate</span>
+
+                <h3 class="h3">
+                  <a href="/course4" class="card-title">Testing, Detection, and Athlete Rights</a>
+                </h3>
+
+
+              </div>
+
+            </div>
+          </a>
+        </li>
+
+
+        <li>
+          <a href="/course5">
+            <div class="course-card">
+
+              <figure class="card-banner img-holder" style="--width: 370; --height: 220;">
+                <img src="{{ url_for('static', filename='pictures/Course5.png') }}" width="370" height="220"
+                  loading="lazy" alt="Course-5" class="img-cover">
+              </figure>
+
+
+
+              <div class="card-content">
+
+                <span class="badge">Advanced</span>
+
+                <h3 class="h3">
+                  <a href="/course5" class="card-title">Comprehensive Education and Athlete Support</a>
+                </h3>
+
+
+
+              </div>
+
+            </div>
+          </a>
+        </li>
+        <li>
+          <a href="/course6">
+            <div class="course-card">
+
+              <figure class="card-banner img-holder" style="--width: 370; --height: 220;">
+                <img src="{{ url_for('static', filename='pictures/Course6.png') }}" width="370" height="220"
+                  loading="lazy" alt="Course-3" class="img-cover">
+              </figure>
+
+
+
+              <div class="card-content">
+
+                <span class="badge">Advanced</span>
+
+                <h3 class="h3">
+                  <a href="/course6" class="card-title">Innovations and Future Developments in Anti-Doping</a>
+                </h3>
+
+
+              </div>
+
+            </div>
+          </a>
+        </li>
+
+
+
+      </ul>
+
+
+
+    </div>
+  </section>
+
+
+
+</body>
+
+</html>

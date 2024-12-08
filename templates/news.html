@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>News</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;500;600;700;800&family=Poppins:wght@400;500&display=swap"
+    rel="stylesheet">
+</head>
+<style>
+  html,
+  body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+    background-color: hsl(168, 56%, 89%);
+    color: #333;
+  }
+
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* Ensures elements in the header are spaced properly */
+    padding: 10px 20px;
+    background-color: #f8f9fa;
+    /* Light background for the header */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    /* Optional: Adds a slight shadow */
+  }
+
+  header .logo {
+    display: flex;
+    /* Ensures proper alignment */
+    align-items: center;
+    /* Vertically aligns the logo */
+  }
+
+  header .logo img {
+    height: 100px;
+    /* Ensures the logo height is consistent */
+  }
+</style>
+
+<body>
+  <header>
+    <div class="logo">
+      <a href="index.html"><img src="pictures/logo.png" alt="Coconut Company Logo"></a>
+    </div>
+
+  </header>
+
+  <section class="section blog has-bg-image" id="blog" aria-label="blog">
+    <div class="container">
+
+      <p class="section-subtitle">Latest Articles</p>
+
+      <h2 class="h2 section-title">Get News With DopeShield</h2>
+
+      <ul class="grid-list">
+
+
+        <li>
+          <div class="blog-card">
+
+            <figure class="card-banner img-holder has-after" style="--width: 370; --height: 370;">
+              <img src="https://shabiba.eu-central-1.linodeobjects.com/2024/11/1730805281-1730805281-iu9vqhpeatww.jpg"
+                width="370" height="370" loading="lazy" alt="Become A Better Blogger: Content Planning"
+                class="img-cover">
+            </figure>
+
+            <div class="card-content">
+
+              <a href="https://timesofoman.com/article/151738-oman-anti-doping-committee-participates-in-oman-science-festival-to-promote-awareness-of-clean-sports"
+                class="card-btn" aria-label="read more">
+                <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
+              </a>
+
+              <a href="https://timesofoman.com/article/151738-oman-anti-doping-committee-participates-in-oman-science-festival-to-promote-awareness-of-clean-sports"
+                class="card-subtitle">Clean Sport Awareness</a>
+
+              <h3 class="h3">
+                <a href="https://timesofoman.com/article/151738-oman-anti-doping-committee-participates-in-oman-science-festival-to-promote-awareness-of-clean-sports"
+                  class="card-title">Oman Anti-Doping Committee participates in Science Festival promoting Clean
+                  Sports</a>
+              </h3>
+
+              <ul class="card-meta-list">
+
+                <li class="card-meta-item">
+                  <ion-icon name="calendar-outline" aria-hidden="true"></ion-icon>
+
+                  <span class="span">Tuesday , 5 November 2024</span>
+                </li>
+
+                <li class="card-meta-item">
+
+
+
+                </li>
+
+              </ul>
+
+              <p class="card-text">
+                The Oman Anti-Doping Committee joins the Oman Science Festival (Nov 4–11) to promote clean sports,
+                highlighting doping's harmful effects on health and athletic performance.
+              </p>
+
+            </div>
+
+          </div>
+        </li>
+
+
+
+        <li>
+          <div class="blog-card">
+
+            <figure class="card-banner img-holder has-after" style="--width: 370; --height: 370;">
+              <img
+                src="https://ss-i.thgim.com/public/incoming/u4it41/article68742397.ece/alternates/LANDSCAPE_1200/IMG_TH06HIMA_2_1_71BN96TG.jpg"
+                width="370" height="370" loading="lazy" alt="Become A Better Blogger: Content Planning"
+                class="img-cover">
+            </figure>
+
+            <div class="card-content">
+
+              <a href="https://sportstar.thehindu.com/athletics/hima-das-receives-clean-chit-from-nada-anti-doping-appeal-panel-whereabout-failures-provisionally-suspended-news/article68742377.ece"
+                class="card-btn" aria-label="read more">
+                <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
+              </a>
+
+              <a href="https://sportstar.thehindu.com/athletics/hima-das-receives-clean-chit-from-nada-anti-doping-appeal-panel-whereabout-failures-provisionally-suspended-news/article68742377.ece"
+                class="card-subtitle">Athletics</a>
+
+              <h3 class="h3">
+                <a href="https://sportstar.thehindu.com/athletics/hima-das-receives-clean-chit-from-nada-anti-doping-appeal-panel-whereabout-failures-provisionally-suspended-news/article68742377.ece"
+                  class="card-title">Hima Das receives clean chit from NADA’s Anti-Doping Appeal Panel</a>
+              </h3>
+
+              <ul class="card-meta-list">
+
+                <li class="card-meta-item">
+                  <ion-icon name="calendar-outline" aria-hidden="true"></ion-icon>
+
+                  <span class="span">Thursday , 10 October 2024</span>
+                </li>
+
+                <li class="card-meta-item">
+
+
+
+                </li>
+
+              </ul>
+
+              <p class="card-text">
+                Hima Das, 24, was provisionally suspended last year by NADA for three whereabouts failures within 12
+                months, violating anti-doping rules under strict testing regulations.
+              </p>
+
+            </div>
+
+          </div>
+        </li>
+
+        <li>
+          <div class="blog-card">
+
+            <figure class="card-banner img-holder has-after" style="--width: 370; --height: 370;">
+              <img
+                src="https://www.aljazeera.com/wp-content/uploads/2024/10/GettyImages-1643280189-1728307038.jpg?w=770&resize=770%2C513&quality=80"
+                width="370" height="370" loading="lazy" alt="Become A Better Blogger: Content Planning"
+                class="img-cover">
+            </figure>
+
+            <div class="card-content">
+
+              <a href="https://www.aljazeera.com/sports/2024/10/7/paul-pogba-drug-ban-reduced-to-18-months-can-play-football-from-march"
+                class="card-btn" aria-label="read more">
+                <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
+              </a>
+
+              <a href="https://www.aljazeera.com/sports/2024/10/7/paul-pogba-drug-ban-reduced-to-18-months-can-play-football-from-march"
+                class="card-subtitle">Football</a>
+
+              <h3 class="h3">
+                <a href="https://www.aljazeera.com/sports/2024/10/7/paul-pogba-drug-ban-reduced-to-18-months-can-play-football-from-march"
+                  class="card-title">Paul Pogba drug ban reduced to 18 months, can play football from March</a>
+              </h3>
+
+              <ul class="card-meta-list">
+
+                <li class="card-meta-item">
+                  <ion-icon name="calendar-outline" aria-hidden="true"></ion-icon>
+
+                  <span class="span">Monday , 7 October 2024</span>
+                </li>
+
+                <li class="card-meta-item">
+
+
+
+                </li>
+
+              </ul>
+
+              <p class="card-text">
+                Paul Pogba’s doping ban was reduced to 18 months by CAS after experts supported his claim of
+                unintentionally ingesting a banned substance, enabling him to resume his career.
+              </p>
+
+            </div>
+
+          </div>
+        </li>
+        <li>
+          <div class="blog-card">
+
+            <figure class="card-banner img-holder has-after" style="--width: 370; --height: 370;">
+              <img
+                src="https://th-i.thgim.com/public/news/national/fzv1fj/article68694262.ece/alternates/LANDSCAPE_1200/000_36HC3EJ.jpg"
+                width="370" height="370" loading="lazy" alt="Become A Better Blogger: Content Planning"
+                class="img-cover">
+            </figure>
+
+            <div class="card-content">
+
+              <a href="https://www.thehindu.com/sport/tennis/jannik-sinner-disappointed-and-surprised-by-wada-appeal-over-doping-case/article68694252.ece"
+                class="card-btn" aria-label="read more">
+                <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
+              </a>
+
+              <a href="https://www.thehindu.com/sport/tennis/jannik-sinner-disappointed-and-surprised-by-wada-appeal-over-doping-case/article68694252.ece"
+                class="card-subtitle">Tennis</a>
+
+              <h3 class="h3">
+                <a href="https://www.thehindu.com/sport/tennis/jannik-sinner-disappointed-and-surprised-by-wada-appeal-over-doping-case/article68694252.ece"
+                  class="card-title">Jannik Sinner ‘disappointed and surprised’ by WADA appeal over doping case</a>
+              </h3>
+
+              <ul class="card-meta-list">
+
+                <li class="card-meta-item">
+                  <ion-icon name="calendar-outline" aria-hidden="true"></ion-icon>
+
+                  <span class="span"> Saturday , September 28 2024</span>
+                </li>
+
+                <li class="card-meta-item">
+
+
+                </li>
+
+              </ul>
+
+              <p class="card-text">
+                WADA announced its appeal during the China Open, where Jannik Sinner, defending champion, overcame Roman
+                Safiullin 3-6, 6-2, 6-3 in a thrilling Beijing match. </p>
+
+            </div>
+
+          </div>
+        </li>
+
+        <li>
+          <div class="blog-card">
+
+            <figure class="card-banner img-holder has-after" style="--width: 370; --height: 370;">
+              <img src="https://media.insidethegames.biz/media/image/289858/c/Doping.jpg" width="370" height="370"
+                loading="lazy" alt="Become A Better Blogger: Content Planning" class="img-cover">
+            </figure>
+
+            <div class="card-content">
+
+              <a href="https://www.insidethegames.biz/articles/1148785/ita-conclude-paris-anti-doping-programme"
+                class="card-btn" aria-label="read more">
+                <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
+              </a>
+
+              <a href="https://www.insidethegames.biz/articles/1148785/ita-conclude-paris-anti-doping-programme"
+                class="card-subtitle">Paris Doping Scandal</a>
+
+              <h3 class="h3">
+                <a href="https://www.insidethegames.biz/articles/1148785/ita-conclude-paris-anti-doping-programme"
+                  class="card-title">ITA concludes Paris anti-doping programme with five positive cases</a>
+              </h3>
+
+              <ul class="card-meta-list">
+
+                <li class="card-meta-item">
+                  <ion-icon name="calendar-outline" aria-hidden="true"></ion-icon>
+
+                  <span class="span"> Friday , 20 September 2024</span>
+                </li>
+
+                <li class="card-meta-item">
+
+
+                </li>
+
+              </ul>
+
+              <p class="card-text">
+                Five athletes failed drug tests at the 2024 Paris Olympics, with the ITA reporting 40 violations from
+                6,130 samples, affecting nearly 39% of participants.
+              </p>
+
+            </div>
+
+          </div>
+        </li>
+
+
+        <li>
+          <div class="blog-card">
+
+            <figure class="card-banner img-holder has-after" style="--width: 370; --height: 370;">
+              <img
+                src="https://ss-i.thgim.com/public/other-sports/54f45e/article68660432.ece/alternates/LANDSCAPE_1200/2169273954.jpg"
+                width="370" height="370" loading="lazy" alt="Become A Better Blogger: Content Planning"
+                class="img-cover">
+            </figure>
+
+            <div class="card-content">
+
+              <a href="https://sportstar.thehindu.com/other-sports/paris-2024-olympics-anti-doping-program-50-cases-retests-10-years/article68660461.ece"
+                class="card-btn" aria-label="read more">
+                <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
+              </a>
+
+              <a href="https://sportstar.thehindu.com/other-sports/paris-2024-olympics-anti-doping-program-50-cases-retests-10-years/article68660461.ece"
+                class="card-subtitle">Paris Doping Revelations</a>
+
+              <h3 class="h3">
+                <a href="https://sportstar.thehindu.com/other-sports/paris-2024-olympics-anti-doping-program-50-cases-retests-10-years/article68660461.ece"
+                  class="card-title">Paris Olympics anti-doping program finds 50 cases; re-tests pending</a>
+              </h3>
+
+              <ul class="card-meta-list">
+
+                <li class="card-meta-item">
+                  <ion-icon name="calendar-outline" aria-hidden="true"></ion-icon>
+
+                  <span class="span">Thursday , 19 September 2024</span>
+                </li>
+
+                <li class="card-meta-item">
+
+
+
+                </li>
+
+              </ul>
+
+              <p class="card-text">
+                The International Testing Agency reported collecting 6,130 samples from 4,150 athletes during the
+                July-August Paris Olympics, as part of its comprehensive anti-doping program.
+              </p>
+
+            </div>
+
+          </div>
+        </li>
+
+        <li>
+          <div class="blog-card">
+
+            <figure class="card-banner img-holder has-after" style="--width: 370; --height: 370;">
+              <img
+                src="https://akm-img-a-in.tosshub.com/indiatoday/images/story/202408/jannik-sinner-200526848-16x9_1.jpg?VersionId=Wv8moANkvFjjQdaYOmlyYzPyYxNit.3o&size=690:388"
+                width="370" height="370" loading="lazy" alt="Become A Better Blogger: Content Planning"
+                class="img-cover">
+            </figure>
+
+            <div class="card-content">
+
+              <a href="https://www.indiatoday.in/sports/tennis/story/i-havent-done-anything-wrong-jannik-sinner-hits-back-at-anti-doping-case-2587252-2024-08-24"
+                class="card-btn" aria-label="read more">
+                <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
+              </a>
+
+              <a href="https://www.indiatoday.in/sports/tennis/story/i-havent-done-anything-wrong-jannik-sinner-hits-back-at-anti-doping-case-2587252-2024-08-24"
+                class="card-subtitle">Tennis</a>
+
+              <h3 class="h3">
+                <a href="https://www.indiatoday.in/sports/tennis/story/i-havent-done-anything-wrong-jannik-sinner-hits-back-at-anti-doping-case-2587252-2024-08-24"
+                  class="card-title">Jannik Sinner's first reaction to anti-doping case: I haven't done anything
+                  wrong</a>
+              </h3>
+
+              <ul class="card-meta-list">
+
+                <li class="card-meta-item">
+                  <ion-icon name="calendar-outline" aria-hidden="true"></ion-icon>
+
+                  <span class="span">Aug 24, 2024</span>
+                </li>
+
+                <li class="card-meta-item">
+                  <ion-icon name="chatbubbles-outline" aria-hidden="true"></ion-icon>
+
+                  <span class="span">Com 09</span>
+                </li>
+
+              </ul>
+
+              <p class="card-text">
+                Jannik Sinner made his first statement after being cleared of any fault in two positive clostebol tests
+                by an independent panel.
+              </p>
+
+            </div>
+
+          </div>
+        </li>
+
+        <li>
+          <div class="blog-card">
+
+            <figure class="card-banner img-holder has-after" style="--width: 370; --height: 370;">
+              <img
+                src="https://images.thequint.com/thequint%2F2024-08-06%2Frvk8r2ut%2Fhero-image-ol.jpg?auto=format%2Ccompress&fmt=webp&width=720"
+                width="370" height="370" loading="lazy" alt="Become A Better Blogger: Content Planning"
+                class="img-cover">
+            </figure>
+
+            <div class="card-content">
+
+              <a href="https://www.thequint.com/sports/wrestling/vinesh-phogat-emotional-message-wrestling-paris-olympics-2024"
+                class="card-btn" aria-label="read more">
+                <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
+              </a>
+
+              <a href="#" class="card-subtitle">Wrestling</a>
+
+              <h3 class="h3">
+                <a href="https://www.thequint.com/sports/wrestling/vinesh-phogat-emotional-message-wrestling-paris-olympics-2024"
+                  class="card-title">'I Will Continue to Fight For....': Vinesh Phogat's Emotional Message to India</a>
+              </h3>
+
+              <ul class="card-meta-list">
+
+                <li class="card-meta-item">
+                  <ion-icon name="calendar-outline" aria-hidden="true"></ion-icon>
+
+                  <span class="span">Aug 16, 2024</span>
+                </li>
+
+                <li class="card-meta-item">
+                  <ion-icon name="chatbubbles-outline" aria-hidden="true"></ion-icon>
+
+                  <span class="span">Com 09</span>
+                </li>
+
+              </ul>
+
+              <p class="card-text">
+                Vinesh Phogat's detailed statement follows her Paris Olympics disqualification, highlighting her ongoing
+                fight for justice.
+              </p>
+
+            </div>
+
+          </div>
+        </li>
+
+        <li>
+          <div class="blog-card">
+
+            <figure class="card-banner img-holder has-after" style="--width: 370; --height: 370;">
+              <img
+                src="https://ichef.bbci.co.uk/news/976/cpsprodpb/2CF6/production/_132501511_gettyimages-1335685941.jpg.webp"
+                width="370" height="370" loading="lazy" alt="Become A Better Blogger: Content Planning"
+                class="img-cover">
+            </figure>
+
+            <div class="card-content">
+
+              <a href="https://www.bbc.com/sport/tennis/68141134" class="card-btn" aria-label="read more">
+                <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
+              </a>
+
+              <a href="https://www.bbc.com/sport/tennis/68141134" class="card-subtitle">Tennis</a>
+
+              <h3 class="h3">
+                <a href="https://www.bbc.com/sport/tennis/68141134" class="card-title">Tara Moore doping clearance
+                  decision to be challenged by Tennis Integrity Agency</a>
+              </h3>
+
+              <ul class="card-meta-list">
+
+                <li class="card-meta-item">
+                  <ion-icon name="calendar-outline" aria-hidden="true"></ion-icon>
+
+                  <span class="span">Jan 30, 2024</span>
+                </li>
+
+                <li class="card-meta-item">
+                  <ion-icon name="chatbubbles-outline" aria-hidden="true"></ion-icon>
+
+                  <span class="span">Com 09</span>
+                </li>
+
+              </ul>
+
+              <p class="card-text">
+                The International Tennis Integrity Agency (ITIA) is to appeal against the decision that Briton Tara
+                Moore was not to blame for a positive doping test.
+              </p>
+
+            </div>
+
+          </div>
+        </li>
+
+
+
+      </ul>
+
+
+
+    </div>
+  </section>
+
+
+</body>
+
+</html>

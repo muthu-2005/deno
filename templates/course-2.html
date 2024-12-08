@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Anti-Doping Education Course</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+
+      body {
+        background: linear-gradient(
+          120deg,
+          hsl(170, 75%, 41%),
+          hsl(190, 60%, 60%)
+        );
+        min-height: 100vh;
+        padding: 2rem;
+        overflow: hidden;
+      }
+      header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between; /* Ensures elements in the header are spaced properly */
+        padding: 10px 20px;
+        background-color: white; /* Light background for the header */
+        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Optional: Adds a slight shadow */
+      }
+
+      header .logo {
+        display: flex; /* Ensures proper alignment */
+        align-items: center; /* Vertically aligns the logo */
+      }
+
+      .progress-bar-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 30px;
+        background: rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+      }
+
+      .progress-bar {
+        height: 100%;
+        background: hsl(170, 75%, 41%);
+        transition: width 0.2s ease;
+      }
+
+      .progress-percentage {
+        margin-left: 10px;
+        font-size: 1rem;
+        color: #fff;
+        font-weight: 600;
+      }
+
+      .container {
+        max-width: 1000px;
+        margin: 0 auto;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        padding: 0.5rem;
+        overflow: hidden;
+        text-align: center;
+      }
+
+      h2 {
+        text-align: center;
+        font-size: 1.5rem;
+        color: hsl(170, 75%, 41%);
+        margin-bottom: 1rem;
+      }
+
+      .module {
+        padding: 2rem;
+        background: #f8f8f8;
+        margin: 2rem 0;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        opacity: 0;
+        transform: translateX(-100%);
+        transition: opacity 0.5s ease, transform 0.5s ease;
+      }
+
+      .module.active {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      .module:nth-child(even) {
+        transform: translateX(100%);
+      }
+
+      .module h3 {
+        font-size: 1.8rem;
+        color: hsl(170, 75%, 41%);
+      }
+
+      .module p,
+      .module ul {
+        margin: 1rem 0;
+        font-size: 1rem;
+        line-height: 1.6;
+        color: #555;
+      }
+
+      .module ul {
+        padding-left: 1.5rem;
+      }
+
+      .start-btn {
+        background: hsl(170, 75%, 41%);
+        color: #fff;
+        border: none;
+        padding: 15px 30px;
+        border-radius: 5px;
+        font-size: 1.2rem;
+        cursor: pointer;
+        transition: background 0.3s ease;
+        /* margin-bottom: 1.5rem; */
+      }
+
+      .start-btn:hover {
+        background: hsl(170, 65%, 35%);
+      }
+
+      .next-btn {
+        display: inline-block;
+        background: hsl(170, 75%, 41%);
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+        text-decoration: none;
+        transition: background 0.3s;
+        margin-top: 1.5rem;
+      }
+
+      .next-btn:hover {
+        background: hsl(170, 65%, 35%);
+      }
+           .quiz {
+        margin-top: 20px;
+      }
+      .question {
+        margin-bottom: 10px;
+      }
+      .options {
+        margin-bottom: 20px;
+      }
+      .options button {
+      display: inline-block;
+      margin: 5px 0;
+      padding: 10px 15px;
+      font-size: 14px;
+      background: hsl(167, 89%, 38%);
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .options button:hover {
+      background: hsl(167, 89%, 38%);
+    }
+    .feedback {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+    .correct {
+      color: green;
+    }
+    .wrong {
+      color: red;
+    }
+    .image-container {
+            display: flex; /* Enables side-by-side alignment */
+            justify-content: space-around; /* Adjust spacing between images */
+            align-items: center; /* Align images vertically */
+        }
+        .image-container img {
+            max-width: 45%; /* Restrict image width */
+            height: auto; /* Maintain aspect ratio */
+            border: 2px solid #ccc; /* Optional: Add border around images */
+            border-radius: 5px; /* Optional: Rounded corners */
+        }
+
+        
+
+    .video-buttons button {
+      background: hsl(170, 75%, 41%);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      margin: 0 5px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.3s ease;
+    }
+
+    .video-buttons button:hover {
+      background: hsl(170, 65%, 35%);
+    }
+
+    /* Base styles */
+    .video-buttons {
+      margin: 0.5rem 0;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      /* Allows wrapping on small screens */
+    }
+
+    .video-buttons button {
+      background: hsl(170, 75%, 41%);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      margin: 0 5px 10px;
+      /* Adjust bottom margin for better spacing on small screens */
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.3s ease;
+    }
+
+    /* Media query for smaller screens */
+    @media (max-width: 600px) {
+      .video-buttons button {
+        font-size: 0.9rem;
+        /* Slightly smaller text size */
+        padding: 8px 15px;
+        /* Reduce padding for better fit */
+        margin: 5px;
+        /* Uniform margin around buttons */
+      }
+    }
+
+    video {
+      width: 70%;
+      height: 390px;
+      border-radius: 10px;
+      /* margin-bottom: 2rem; */
+    }
+
+    /* Media query for smaller screens */
+    @media (max-width: 768px) {
+      video {
+        width: 100%;
+        /* Set video width to 100% for smaller screens */
+        height: auto;
+        /* Adjust height to maintain aspect ratio */
+      }
+    }
+
+    /* Media query for very small screens (e.g., mobile devices) */
+    @media (max-width: 480px) {
+      video {
+        width: 100%;
+        /* Set video width to 100% for very small screens */
+        height: auto;
+        /* Adjust height to maintain aspect ratio */
+      }
+    }
+
+  #top-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: none; /* Hidden by default */
+    background-color: hsl(62, 87%, 60%);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    transition: opacity 0.3s, transform 0.3s;
+  }
+
+  #top-button:hover {
+    background-color: hsl(63, 83%, 60%);
+    transform: scale(1.1);
+  }
+
+
+    .btn {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: not-allowed;
+      position: relative;
+    }
+
+    .tooltip {
+      position: relative;
+      display: inline-block;
+    }
+
+    .tooltip .tooltip-text {
+      visibility: hidden;
+      width: 150px;
+      background-color: black;
+      color: #fff;
+      text-align: center;
+      padding: 5px;
+      border-radius: 5px;
+
+      /* Position the tooltip */
+      position: absolute;
+      bottom: 130%;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+
+      /* Animation */
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .tooltip:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .btn:enabled {
+      background-color: #28a745;
+      cursor: pointer;
+    }
+    </style>
+  </head>
+
+  <body>
+   
+    <!-- Progress Bar -->
+    <div class="progress-bar-container">
+      <div class="progress-bar" id="progress-bar"></div>
+      <div class="progress-percentage" id="progress-percentage">0%</div>
+    </div>
+
+    <div class="container">
+      <center> <a href="{{ url_for('index') }}"><img src="https://muthu-2005.github.io/SIH-Final-2024/pictures/logo.png" style="height: 50px;"
+        alt="Dopeshield"></a></center>
+        <h2>Course 2: Understanding Doping and Its Consequences</h2>
+  <!-- Video Player -->
+  <center> <video id="video-player" controls>
+      <source id="video-source" src="{{ url_for('static', filename='video/eng/en2.mp4') }}" type="video/mp4">
+      Your browser does not support the video tag.
+    </video></center>
+
+  <!-- Language Selection -->
+  <div class="video-buttons">
+    <button onclick="changeVideo('en')">English</button>
+    <button onclick="changeVideo('ka')">Kannada</button>
+    <button onclick="changeVideo('ta')">Tamil</button>
+    <button onclick="changeVideo('ml')">Malayalam</button>
+    <button onclick="changeVideo('tl')">Telgu</button>
+    <button onclick="changeVideo('hi')">Hindi</button>
+
+  </div>
+  <center><button class="start-btn" id="start-btn">Start Course</button></center>
+
+     
+      
+      <!-- Module 1 -->
+      <div
+      class="module"
+      id="module-1"
+      style="text-align: justify; font-family: Arial, sans-serif;"
+    >
+      <h3 style="font-size: 24px; color: #30C0A3;">Module 1: Types of Doping Substances</h3>
+      <p><strong>Categories of Doping Substances:</strong></p>
+      <p>
+        Doping substances are categorized based on their effects and usage. The
+        major types include:
+      </p>
+      <center>
+        <img
+          src="https://d2av8kbir6lh9m.cloudfront.net/uploads/ScJet7AwAZEKQBPy86kub6su5WkDH74GQ2n1OwSN.jpg"
+          alt="Types of Doping Substances"
+          style="display: block; margin: 10px auto; max-width: 100%; height: auto;"
+        />
+      </center>
+      <ul>
+        <li>Stimulants: Enhance alertness and focus.</li>
+        <li>Anabolic Steroids: Promote muscle growth and strength.</li>
+        <li>Peptide Hormones and Growth Factors: Boost recovery and endurance.</li>
+        <li>Beta-2 Agonists: Increase oxygen delivery to muscles.</li>
+        <li>Narcotics and Painkillers: Suppress pain, allowing athletes to push through injuries.</li>
+        <li>Diuretics and Masking Agents: Help hide the use of other prohibited substances.</li>
+      </ul>
+    
+      <h4 style="font-size: 20px; color: #30C0A3;">Major Categories of Doping Substances</h4>
+    
+      <h5 style="font-size: 18px; color: #30C0A3;">1. Stimulants:</h5>
+      <center>
+        <img
+          src="https://www.sandstonecare.com/wp-content/uploads/2023/09/Stimulants-Graphics_02-Examples-of-Stimulants-Inline-Image.png"
+          alt="Examples of Stimulants"
+          style="display: block; margin: 10px auto; max-width: 100%; height: auto;"
+        />
+      </center>
+      <p>
+        Stimulants, such as amphetamines and caffeine in high doses, are used to
+        improve focus, energy, and reaction times. While they can momentarily
+        enhance performance, they may cause severe side effects like heart
+        palpitations, nervousness, or even heart failure.
+      </p>
+      <p><strong>Examples:</strong></p>
+      <ul>
+        <li>Amphetamine</li>
+        <li>Cocaine</li>
+        <li>Methamphetamine</li>
+        <li>Ephedrine</li>
+        <li>Methylphenidate</li>
+      </ul>
+    
+      <h5 style="font-size: 18px; color: #30C0A3;">2. Anabolic Steroids:</h5>
+      <center>
+        <img
+          src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQ4eCOOEyv_jlmzwEJVyDdbmIRK-i3wzV_zVDa3hFEcxIozi1by"
+          alt="Anabolic Steroids"
+          style="display: block; margin: 10px auto; max-width: 100%; height: auto;"
+        />
+      </center>
+      <p>
+        These synthetic drugs mimic testosterone to increase muscle mass and
+        strength. While they may seem beneficial, anabolic steroids come with dire
+        consequences such as liver damage, hormonal imbalances, and aggression.
+        They are one of the most commonly misused substances in sports.
+      </p>
+      <p><strong>Examples:</strong></p>
+      <ul>
+        <li>Testosterone (when taken exogenously)</li>
+        <li>Nandrolone</li>
+        <li>Stanozolol</li>
+        <li>Boldenone</li>
+        <li>Oxandrolone</li>
+      </ul>
+    
+      <h5 style="font-size: 18px; color: #30C0A3;">3. Peptide Hormones (e.g., Erythropoietin - EPO):</h5>
+      <center>
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ501rwyBOlVWBzxudrkXhtZpasUlKLzJ63Iw&s"
+          alt="Peptide Hormones"
+          style="height: auto;width:100%;"
+        />
+      </center>
+      <p>
+        EPO is used to boost the production of red blood cells, enhancing oxygen
+        delivery and improving stamina. It is particularly popular in endurance
+        sports like cycling. However, its misuse can lead to thickened blood,
+        increasing the risk of strokes and heart attacks.
+      </p>
+      <p><strong>Examples:</strong></p>
+      <ul>
+        <li>Erythropoietin (EPO)</li>
+        <li>Human Growth Hormone (hGH)</li>
+        <li>Insulin-like Growth Factor-1 (IGF-1)</li>
+        <li>Corticotropins (ACTH)</li>
+        <li>Thyroid-stimulating Hormone (TSH)</li>
+      </ul>
+    
+      <h5 style="font-size: 18px; color: #30C0A3;">4. Beta-2 Agonists:</h5>
+      <p>
+        These substances, often used to treat asthma, open up the airways and
+        enhance breathing efficiency. Misuse can improve oxygen delivery, but it
+        can also lead to heart complications and muscle cramps.
+      </p>
+      <p><strong>Examples:</strong></p>
+      <ul>
+        <li>Clenbuterol</li>
+        <li>Salmeterol (above specified limits)</li>
+        <li>Formoterol (above specified limits)</li>
+        <li>Terbutaline</li>
+        <li>Vilanterol</li>
+      </ul>
+    </div>
+    
+    
+  
+
+      
+      <!-- Module 2 -->
+      <div
+  class="module"
+  id="module-2"
+  style="
+    text-align: justify;
+    font-family: Arial, sans-serif;
+    margin-bottom: 20px;
+  "
+>
+  <h3 style="font-size: 28px; color: #30C0A3; font-weight: bold;">
+    Module 2: Health Risks of Doping
+  </h3>
+  <style>
+      /* Media Query for Mobile Devices */
+  @media (max-width: 768px) {
+    table {
+      width: 100%;
+      font-size: 12px; /* Reduce font size for mobile */
+    }
+
+    th, td {
+      padding: 6px; /* Reduce padding for mobile */
+    }
+
+    /* Stack table columns vertically on smaller screens */
+    tbody, thead, tr, td, th {
+      display: block;
+    }
+
+    tr {
+      margin-bottom: 10px;
+      border: none; /* Remove border on rows for better mobile view */
+    }
+
+    td {
+      text-align: right;
+      padding-left: 50%; /* Create space for the label */
+      position: relative;
+    }
+
+    td::before {
+      content: attr(data-label); /* Add the label before content */
+      position: absolute;
+      left: 10px;
+      font-weight: bold;
+    }
+  }
+  </style>
+  <table
+    style="
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 14px;
+    "
+  style="height: auto;width:100%;">
+    <thead>
+      <tr style="background-color: #f2f2f2;">
+        <th style="padding: 8px; border: 1px solid #ddd;">Drug Type</th>
+        <th style="padding: 8px; border: 1px solid #ddd;">Examples</th>
+        <th style="padding: 8px; border: 1px solid #ddd;">Effects</th>
+        <th style="padding: 8px; border: 1px solid #ddd;">Associated Sports</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="padding: 8px; border: 1px solid #ddd;">Stimulant</td>
+        <td style="padding: 8px; border: 1px solid #ddd;">Amphetamine, Caffeine</td>
+        <td style="padding: 8px; border: 1px solid #ddd;">
+          Increase in heart rate, blood pressure, alertness, and mask fatigue
+        </td>
+        <td style="padding: 8px; border: 1px solid #ddd;">Cycling, Running</td>
+      </tr>
+      <tr>
+        <td style="padding: 8px; border: 1px solid #ddd;">
+          Depressants / Tranquilizer
+        </td>
+        <td style="padding: 8px; border: 1px solid #ddd;">
+          Beta Blockers, Benzodiazepine
+        </td>
+        <td style="padding: 8px; border: 1px solid #ddd;">
+          Reduce anxiety, heart rate, and blood pressure. Improve concentration and control.
+        </td>
+        <td style="padding: 8px; border: 1px solid #ddd;">
+          Snooker, Archery, Motor Racing
+        </td>
+      </tr>
+      <tr>
+        <td style="padding: 8px; border: 1px solid #ddd;">
+          Narcotic Analgesics (Painkillers)
+        </td>
+        <td style="padding: 8px; border: 1px solid #ddd;">Codeine, Morphine, Heroin</td>
+        <td style="padding: 8px; border: 1px solid #ddd;">Drowsiness and deadened pain</td>
+        <td style="padding: 8px; border: 1px solid #ddd;">Football, Hockey</td>
+      </tr>
+      <tr>
+        <td style="padding: 8px; border: 1px solid #ddd;">Anabolic Agents</td>
+        <td style="padding: 8px; border: 1px solid #ddd;">Testosterone, Nandrolone</td>
+        <td style="padding: 8px; border: 1px solid #ddd;">
+          Increase strength, power, and aggression
+        </td>
+        <td style="padding: 8px; border: 1px solid #ddd;">
+          Boxing, Weightlifting, Athletics
+        </td>
+      </tr>
+      <tr>
+        <td style="padding: 8px; border: 1px solid #ddd;">Diuretics</td>
+        <td style="padding: 8px; border: 1px solid #ddd;">
+          Hydrochlorothiazide, Acetazolamide
+        </td>
+        <td style="padding: 8px; border: 1px solid #ddd;">
+          Helps reduce body weight
+        </td>
+        <td style="padding: 8px; border: 1px solid #ddd;">
+          Horse Racing, Judo, Wrestling
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h4 style="font-size: 22px; color: #30C0A3; font-weight: bold;">
+    Case Study: The Health Risks of Doping - The Story of a Promising Athlete
+  </h4>
+
+  <h5 style="font-size: 20px; color: #30C0A3; font-weight: bold;">Background</h5>
+  <p>
+    Mark (fictional name), a 22-year-old aspiring sprinter, was on track to
+    qualify for international championships. Under pressure to perform, he
+    turned to anabolic steroids, believing they would enhance his strength and
+    speed. With limited knowledge about doping's health risks and no guidance
+    on anti-doping education, Mark began self-administering the substance.
+  </p>
+
+  <img
+    src="https://media.istockphoto.com/id/1134843401/photo/athlete-walking-towards-stadium-silhouette.jpg?s=612x612&w=0&k=20&c=nnMKVU2nsYH9aRLC3LqFmRg8aldxRMRX9XdIozwstqc="
+    alt="Athlete walking towards the stadium"
+    style="display: block; margin: 20px auto; width: 80%; max-width: 600px;"
+  />
+
+  <h5 style="font-size: 20px; color: #30C0A3; font-weight: bold;">Short-Term Effects</h5>
+  <p>Within weeks, Mark experienced significant muscle growth and improved sprint times. However, he also noticed alarming side effects:</p>
+  <ul style="font-size: 14px; text-align: left;">
+    <li><strong>Physical Issues:</strong> Severe acne and rapid weight gain.</li>
+    <li>
+      <strong>Emotional Instability:</strong> Frequent mood swings and
+      irritability, affecting his relationships with teammates.
+    </li>
+    <li>
+      <strong>Cardiovascular Strain:</strong> Episodes of elevated blood
+      pressure and palpitations.
+    </li>
+  </ul>
+  <p>
+    Despite these signs, Mark continued using steroids, attributing the side
+    effects to stress and overtraining.
+  </p>
+
+  <h5 style="font-size: 20px; color: #30C0A3; font-weight: bold;">The Downward Spiral</h5>
+  <p>After six months, Mark started facing serious health complications:</p>
+  <ul style="font-size: 14px; text-align: left;">
+    <li>
+      <strong>Hormonal Imbalances:</strong> Mark developed gynecomastia
+      (enlarged breast tissue in males) due to hormonal disruption caused by
+      steroid use.
+    </li>
+    <li>
+      <strong>Liver Damage:</strong> Routine blood tests revealed abnormal liver
+      enzyme levels, indicating early signs of liver toxicity.
+    </li>
+    <li>
+      <strong>Mental Health Decline:</strong> Mark began experiencing anxiety
+      and depression, along with withdrawal symptoms when attempting to reduce
+      steroid use.
+    </li>
+  </ul>
+  <p>
+    At this point, Mark’s performance also plateaued, and he found himself
+    unable to compete at his previous levels.
+  </p>
+
+  <h5 style="font-size: 20px; color: #30C0A3; font-weight: bold;">Discovery and Consequences</h5>
+  <p>
+    During a routine anti-doping test at a regional competition, Mark tested
+    positive for anabolic steroids. The consequences were severe:
+  </p>
+  <ul style="font-size: 14px; text-align: left;">
+    <li><strong>Immediate Ban:</strong> A 4-year suspension from all competitive events.</li>
+    <li>
+      <strong>Reputation Damage:</strong> Loss of sponsorships and public
+      criticism tarnished his athletic career.
+    </li>
+    <li>
+      <strong>Long-Term Health Risks:</strong> Mark was diagnosed with
+      hypertension and early-stage kidney damage, likely stemming from
+      prolonged steroid use.
+    </li>
+  </ul>
+
+  <img
+    src="https://media.istockphoto.com/id/2162491710/photo/table-with-pills-bottles-syringe-and-sybill.jpg?s=612x612&w=0&k=20&c=sM3PHp8oIx7NOsUqH1XSGCaQWsBiEg3bXRiNi9Ayxk0="
+    alt="Pills, bottles, syringe, and a medical table"
+    style="display: block; margin: 20px auto; width: 80%; max-width: 600px;"
+  />
+
+  <h5 style="font-size: 20px; color: #30C0A3; font-weight: bold;">Recovery and Reflection</h5>
+  <p>
+    Following his suspension, Mark enrolled in a rehabilitation program and
+    underwent therapy to address his physical and psychological health. He also
+    participated in anti-doping education workshops, becoming an advocate for
+    clean sport.
+  </p>
+  <p>In interviews, Mark emphasized:</p>
+  <ul style="font-size: 14px; text-align: left;">
+    <li>The importance of anti-doping education to avoid such mistakes.</li>
+    <li>
+      The long-term health risks of doping, far outweighing any short-term
+      gains.
+    </li>
+    <li>
+      The value of clean competition and ethical practices in preserving the
+      true spirit of sports.
+    </li>
+  </ul>
+
+  <h5 style="font-size: 20px; color: #30C0A3; font-weight: bold;">Lessons Learned</h5>
+  <p>
+    Mark’s story highlights the devastating health risks of doping, including:
+  </p>
+  <ol style="font-size: 14px; text-align: left;">
+    <li><strong>Physical Health:</strong> Hormonal imbalances, organ damage, and cardiovascular risks.</li>
+    <li><strong>Mental Health:</strong> Addiction, depression, and emotional instability.</li>
+    <li><strong>Career Impact:</strong> Disqualification, bans, and loss of reputation.</li>
+  </ol>
+  <p>
+    This case underscores the need for robust anti-doping education, strict
+    enforcement of regulations, and accessible resources for athletes to choose
+    safe and ethical paths to success.
+  </p>
+</div>
+  
+        
+      <!-- Module 3 -->
+      <div class="module" id="module-3" style="text-align: justify; font-family: Arial, sans-serif; padding: 20px; border-radius: 8px; background-color: #f9f9f9; margin-bottom: 20px;">
+        <h3 style="font-size: 24px; color: #30C0A3;">Module 3: Ethical and Social Impact</h3>
+        <p><strong>Ethical and Social Impact of Doping</strong></p>
+        <p>Doping transcends being a mere rule violation and delves into the realm of ethics and societal values. It disrupts the core principles of sportsmanship, impacting individuals, communities, and the broader sports ecosystem. This module explores the multi-faceted consequences of doping in sports and its ripple effects on society.</p>
+        
+        <p><strong>Ethical Violations</strong></p>
+        
+        <p><strong>Unfair Advantage:</strong><br>
+        At its core, doping represents an ethical breach by granting athletes an artificial edge over their competitors. Sports are grounded in the principles of fair competition, where success should stem from natural talent, effort, and dedication. Doping disrupts this balance, casting doubts on the legitimacy of victories and records.</p>
+        
+        <p><strong>Dishonesty and Integrity Issues:</strong><br>
+        The use of prohibited substances is fundamentally dishonest. Athletes who dope not only betray their competitors but also deceive fans, sponsors, and the organizations that support them. Their actions erode the integrity of sports and tarnish their legacies.</p>
+        
+        <p><strong>Contradiction to Sportsmanship Values:</strong><br>
+        Sportsmanship emphasizes respect, fairness, and ethical behavior. Doping contradicts these ideals, prioritizing personal gain over the spirit of competition. It also undermines the respect athletes should have for their peers and the game itself.</p>
+        
+        <p><strong>Case Study Example:</strong><br>
+        Consider high-profile doping scandals like Lance Armstrong's in cycling. His doping not only discredited his individual achievements but also cast a shadow over the sport for years, affecting countless clean athletes and tarnishing its reputation globally.</p>
+        
+        <img src="https://media.gettyimages.com/id/911657766/photo/worgl-austria-anabolic-steroids-and-performance-enhancing-drugs-such-as-super-susto-deca.jpg?s=612x612&w=0&k=20&c=LkHzltn6-E-Oj0wDRSsuuy1Yw61WziLL24Hg93lIBK4=" alt="Anabolic Steroids" style="width: 50%; margin-top: 20px; margin-bottom: 20px; display: block; margin-left: auto; margin-right: auto;">
+        
+        <p><strong>Page 2: Impact on Sports Integrity</strong></p>
+        
+        <p><strong>Loss of Public Trust:</strong><br>
+        Doping scandals create a sense of disillusionment among fans. When athletes are exposed for using banned substances, spectators begin to question whether victories are earned or manipulated. This skepticism can reduce audience engagement and loyalty, harming the sport's appeal.</p>
+        
+        <p><strong>Damage to Organizational Reputation:</strong><br>
+        Sports organizations, leagues, and event organizers suffer when doping incidents emerge. Repeated scandals can tarnish their credibility, leading to decreased sponsorships, reduced viewership, and challenges in attracting new talent.</p>
+        
+        <p><strong>Challenges in Recognizing Talent:</strong><br>
+        Athletes who compete fairly may lose recognition and opportunities due to the deceptive practices of their competitors. Clean athletes are often overshadowed, leading to feelings of injustice and discouragement within the sporting community.</p>
+        
+        <p><strong>Financial Consequences:</strong><br>
+        Sponsorship deals, which are vital for athletes and organizations, may be jeopardized by doping scandals. Sponsors are often hesitant to associate their brand with tainted reputations, leading to a decline in financial support for the sport.</p>
+        
+        <img src="https://media.gettyimages.com/id/641641620/vector/laboratory-samples-of-urine-and-blood.jpg?s=612x612&w=0&k=20&c=HZhzRYp0V1SVlgynSzjV_0g21szPSfigzW7DRHVcHtU=" alt="Urine and Blood Samples" style="width: 50%; margin-top: 20px; margin-bottom: 20px; display: block; margin-left: auto; margin-right: auto;">
+        
+        <p><strong>Case Study: The Russian Doping Scandal at the Sochi Winter Olympics</strong><br>
+        The Russian doping scandal, which came to light after the 2014 Sochi Winter Olympics, is one of the most significant and far-reaching doping cases in sports history. It revealed a state-sponsored doping program designed to enhance Russia's medal count on the global stage. This case not only exposed systemic corruption in sports but also raised concerns about the integrity of international competitions.</p>
+        
+        <p><strong>Background:</strong><br>
+        The Sochi Winter Olympics was a high-profile event for Russia, meant to showcase the nation's strength and sporting prowess. With an investment of over $50 billion, the event symbolized national pride and global dominance. However, behind the scenes, a massive doping program was orchestrated by Russian officials and scientists to ensure the success of its athletes.</p>
+        
+        <p><strong>The Doping Mechanism:</strong></p>
+        <ul>
+          <li><strong>State Involvement:</strong><br>
+            The Russian Ministry of Sport, in collaboration with the Russian Anti-Doping Agency (RUSADA) and the Federal Security Service (FSB), executed a systematic doping plan. Athletes were provided with performance-enhancing drugs like anabolic steroids and were instructed on how to use them to avoid detection.
+          </li>
+          <li><strong>Sample Tampering:</strong><br>
+            During the Sochi Olympics, the Russian anti-doping laboratory used a secret method to swap dirty urine samples with clean ones. This was done through a hole in the wall, where FSB agents discreetly replaced the contaminated samples.
+          </li>
+          <li><strong>Cocktail of Drugs:</strong><br>
+            Russian scientists developed a "cocktail" of anabolic steroids mixed with alcohol to increase absorption and reduce detection windows. Athletes consumed this mixture to enhance performance while minimizing the chances of testing positive.
+          </li>
+        </ul>
+        
+        <p><strong>Whistleblower Revelations:</strong><br>
+        The scandal came to light in 2016 when Dr. Grigory Rodchenkov, the former head of the Moscow Anti-Doping Laboratory, turned whistleblower. Rodchenkov provided detailed accounts of the doping program, including how he was instructed by Russian officials to falsify test results and cover up positive cases. He shared spreadsheets, emails, and physical evidence that implicated high-ranking officials, including those within the International Olympic Committee (IOC). Rodchenkov’s testimony was corroborated by independent investigations, including the McLaren Report, commissioned by the World Anti-Doping Agency (WADA).</p>
+        
+        <p><strong>Consequences of the Scandal:</strong></p>
+        <ul>
+          <li><strong>Athlete Sanctions:</strong><br>
+            Over 1,000 Russian athletes across 30 sports were implicated in the doping program. Several athletes were stripped of their medals from the Sochi Games, and lifetime bans were issued to key individuals.
+          </li>
+          <li><strong>Nationwide Penalties:</strong><br>
+            The International Olympic Committee (IOC) banned Russia from the 2018 PyeongChang Winter Olympics. Russian athletes who were cleared of doping could only compete under the neutral flag as "Olympic Athletes from Russia." Further restrictions were imposed at subsequent events, including the 2020 Tokyo Olympics and 2022 Beijing Winter Olympics.
+          </li>
+          <li><strong>Global Backlash:</strong><br>
+            The scandal damaged Russia's credibility in international sports and led to widespread condemnation from the global sporting community. It also sparked diplomatic tensions, with Russia denying state involvement and accusing the West of politicizing sports.
+          </li>
+          <li><strong>Reforms and Oversight:</strong><br>
+            WADA introduced stricter anti-doping measures and increased scrutiny of national anti-doping organizations. The scandal also prompted reforms within the IOC to prevent similar incidents in the future.
+          </li>
+        </ul>
+        
+        <p><strong>Impact on Sports and Society</strong></p>
+        <ul>
+          <li><strong>Sports Integrity:</strong><br>
+            The scandal highlighted the vulnerabilities in anti-doping systems and the potential for state interference. It raised questions about the fairness of past competitions and the credibility of results in events involving Russian athletes.
+          </li>
+          <li><strong>Athlete Disillusionment:</strong><br>
+            Clean athletes were deeply affected, with many feeling that their efforts were overshadowed by those who doped. The revelations undermined trust in sports as a fair and merit-based endeavor.
+          </li>
+          <li><strong>Public Trust:</strong><br>
+            Fans and sponsors became skeptical about the legitimacy of athletic performances, reducing engagement and financial investment in sports.
+          </li>
+        </ul>
+        
+        <p>The Russian doping scandal serves as a cautionary tale about the dangers of prioritizing national prestige over ethical conduct in sports. It underscores the need for robust anti-doping measures, independent oversight, and a commitment to integrity at all levels of competition. While sanctions and reforms have been implemented, the legacy of the scandal remains a stark reminder of how systemic corruption can undermine the spirit of sportsmanship. By learning from this case, the global sporting community can work toward creating a fair and transparent environment where athletes compete on a level playing field, guided by the principles of honesty, dedication, and respect for the rules.</p>
+        
+        <img src="https://media.gettyimages.com/id/945017100/vector/doping-illustration.jpg?s=612x612&w=0&k=20&c=1KTcvwaqP0hIuvB_afueJXz9L9kyMzsMcdHISs6xIoo=" alt="Doping Illustration" style="width: 40%; margin-top: 20px; margin-bottom: 20px; display: block; margin-left: auto; margin-right: auto;">
+        
+        <p><strong>Broader Social Consequences</strong></p>
+        
+        <p><strong>Negative Role Modeling:</strong><br>
+        Athletes hold a significant influence on young people, serving as role models for discipline and perseverance. When they resort to doping, it sends the wrong message, promoting unethical shortcuts over genuine hard work and dedication. This negative influence can shape a generation of aspiring athletes who may view doping as a norm.</p>
+        
+        <p><strong>Cultural and Societal Erosion:</strong><br>
+        Doping scandals don’t just affect the athletes involved—they have a ripple effect on societal values. They normalize dishonesty and undermine values of integrity and meritocracy in sports and beyond.</p>
+        
+        <p><strong>Impact on Grassroots Sports:</strong><br>
+        In developing athletes at grassroots levels, doping incidents can discourage participation. Parents and communities may lose faith in the fairness of sports, reducing support for young talents and grassroots programs.</p>
+        
+        <p><strong>Economic and Developmental Impact:</strong><br>
+        Doping scandals can have long-term economic consequences. Reduced sponsorships, viewership, and ticket sales affect funding for sports development programs, training facilities, and outreach initiatives. Honest athletes, coaches, and support staff may also face reduced opportunities due to a tarnished sporting ecosystem.</p>
+        
+        <p><strong>Restoring Integrity:</strong><br>
+        Addressing these issues requires a multi-pronged approach involving strict anti-doping measures, awareness campaigns, and comprehensive education programs. Creating a clean and fair sports culture will ensure that achievements reflect genuine effort and ability, fostering trust and admiration from society.</p>
+      </div>
+      <br>
+
+      <center>
+        <div class="tooltip">
+          <a href="/certificate2"><button class="btn" id="btn" disabled>Complete the course</button></a>
+          <span class="tooltip-text" id="tooltip-text">Time Remaining : 15:00</span>
+        </div>
+      </center>
+      <button id="top-button" title="Go to Top">↑ Top</button>
+
+
+
+      <script>
+        // Get button references
+        // Ensure scrolling is disabled on page load
+        document.body.style.overflow = "hidden";
+  
+        // Get button references
+        const startBtn = document.getElementById("start-btn");
+        const completeBtn = document.getElementById("btn");
+  
+        // Event listener for the start button
+        startBtn.addEventListener("click", () => {
+          // Enable scrolling
+          document.body.style.overflow = "auto"; // Enable scrolling when the start button is clicked
+  
+          // Show the "Complete Course" button
+          completeBtn.style.display = "inline-block";
+  
+          // Hide the "Start Course" button
+          startBtn.style.display = "none";
+        });
+  
+        const btn = document.getElementById("btn");
+        const tooltipText = document.getElementById("tooltip-text");
+  
+        let remainingTime = 15*60; // 15 minutes in seconds
+  
+        // Format time into MM:SS
+        const formatTime = (time) => {
+          const minutes = Math.floor(time / 60);
+          const seconds = time % 60;
+          return `${minutes.toString().padStart(2, "0")}:${seconds
+            .toString()
+            .padStart(2, "0")}`;
+        };
+  
+        // Update the tooltip text and enable the button when time is up
+        const updateTimer = () => {
+          if (remainingTime > 0) {
+            remainingTime--;
+            tooltipText.textContent = `Time Remaining to complete the course: ${formatTime(remainingTime)}`;
+          } else {
+            clearInterval(timerInterval);
+            btn.disabled = false;
+            btn.textContent = "✅ Course Completed";
+            btn.style.cursor = "pointer";
+            tooltipText.textContent = "Course is now complete!";
+          }
+        };
+        const topButton = document.getElementById("top-button");
+  
+  // Show the button when the user scrolls down 100px
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 100) {
+      topButton.style.display = "block";
+    } else {
+      topButton.style.display = "none";
+    }
+  });
+  
+  // Scroll to the top when the button is clicked
+  topButton.addEventListener("click", () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth", // Smooth scroll effect
+    });
+  });
+        // Start the timer
+        const timerInterval = setInterval(updateTimer, 1000);
+  
+  
+        const videoPlayer = document.getElementById('video-player');
+        const videoSource = document.getElementById('video-source');
+        const modules = document.querySelectorAll('.module');
+        const progressBar = document.getElementById('progress-bar');
+        const progressPercentage = document.getElementById('progress-percentage');
+        const startButton = document.getElementById('start-btn');
+        let courseStarted = false; // Flag to check if the course has started
+  
+        // Start course
+        startButton.addEventListener('click', () => {
+          startButton.style.display = 'none'; // Hide start button
+          modules[0].classList.add('active'); // Show the first module
+          courseStarted = true; // Set the flag to true
+        });
+  
+        // Update progress bar and module animation on scroll
+        window.addEventListener('scroll', () => {
+          if (!courseStarted) return; // Do nothing if the course hasn't started
+  
+          let totalHeight = document.body.scrollHeight - window.innerHeight;
+          let scrollPosition = window.scrollY;
+          let scrollPercentage = (scrollPosition / totalHeight) * 100;
+  
+          // Update progress bar width and percentage text
+          progressBar.style.width = scrollPercentage + '%';
+          progressPercentage.textContent = Math.min(Math.round(scrollPercentage), 100) + '%';
+  
+          modules.forEach((module, index) => {
+            const rect = module.getBoundingClientRect();
+            if (rect.top >= 0 && rect.top <= window.innerHeight / 2) {
+              if (index % 2 === 0) {
+                // Modules with even index (Module 1, Module 3): Slide from the left
+                module.style.transform = "translateX(0)";
+              } else {
+                // Modules with odd index (Module 2): Slide from the right
+                module.style.transform = "translateX(0)";
+              }
+              module.classList.add('active');
+            }
+          });
+        });
+  
+        // Change Video based on Language Button
+        function changeVideo(language) {
+          const videoMap = {
+            'en': '{{ url_for('static', filename='video/eng/en2.mp4') }}',
+            'ta': '{{ url_for('static', filename='video/tam/ta2.mp4') }}',
+            'ka': '{{ url_for('static', filename='video/ka/ka2.mp4') }}',
+            'ml': '{{ url_for('static', filename='video/ml/ml2.mp4') }}',
+             'hi': '{{ url_for('static', filename='video/hi/hi2.mp4') }}',
+              'tl': '{{ url_for('static', filename='video/tl/tl2.mp4') }}'
+          };
+          videoSource.src = videoMap[language];
+          videoPlayer.load(); // Reload the video player
+          videoPlayer.play(); // Start playing the new video
+        }
+      </script>
+  <style>
+    #myid {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        z-index: 1000;
+        padding: 8px 15px;
+        font-family: 'Poppins', sans-serif;
+        font-size: 14px;
+        background-color: #3498db;
+        color: white;
+        border-radius: 20px;
+        text-align: center;
+        cursor: pointer;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+  
+    #language-options {
+        display: none;
+        position: absolute;
+        top: 50px;
+        right: 10px;
+        z-index: 999;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        padding: 10px;
+    }
+  
+    #language-options.active {
+        display: block;
+    }
+  
+    .goog-te-combo {
+        width: 100%;
+        padding: 8px;
+        font-family: 'Poppins', sans-serif;
+        font-size: 14px;
+        border-radius: 5px;
+        border: 1px solid #ddd;
+    }
+  
+    @media (max-width: 768px) {
+        #myid {
+            font-size: 12px;
+            padding: 6px 12px;
+        }
+  
+        #language-options {
+            top: 40px;
+        }
+    }
+  
+    @media (max-width: 480px) {
+        #myid {
+            font-size: 10px;
+            padding: 4px 10px;
+        }
+  
+        #language-options {
+            top: 30px;
+        }
+    }
+  </style>
+  
+  <script>
+    function loadGoogleTranslate() {
+        new google.translate.TranslateElement({
+            pageLanguage: 'en',
+            includedLanguages: 'en,hi,ta,ml,kn,te',
+            layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+        }, 'language-options');
+    }
+  
+    function toggleLanguageOptions() {
+        const options = document.getElementById('language-options');
+        options.classList.toggle('active');
+    }
+  
+    document.addEventListener('DOMContentLoaded', () => {
+        const observer = new MutationObserver(() => {
+            const translateDropdown = document.querySelector('.goog-te-combo');
+            if (translateDropdown && translateDropdown.value !== '') {
+                document.getElementById('language-options').classList.remove('active');
+            }
+        });
+  
+        observer.observe(document.body, { childList: true, subtree: true });
+    });
+  </script>
+  
+  <div id="myid" onclick="toggleLanguageOptions()">Choose Language</div>
+  <div id="language-options"></div>
+  <script src="https://translate.google.com/translate_a/element.js?cb=loadGoogleTranslate"></script>
+  
+  </body>
+  
+  </html>

@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anti-Doping Education Course</title>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      background: linear-gradient(120deg,
+          hsl(170, 75%, 41%),
+          hsl(190, 60%, 60%));
+      min-height: 100vh;
+      padding: 2rem;
+      overflow: hidden;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      /* Ensures elements in the header are spaced properly */
+      padding: 10px 20px;
+      background-color: white;
+      /* Light background for the header */
+      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+      /* Optional: Adds a slight shadow */
+    }
+
+    header .logo {
+      display: flex;
+      /* Ensures proper alignment */
+      align-items: center;
+      /* Vertically aligns the logo */
+    }
+
+    .progress-bar-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 30px;
+      background: rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: hsl(170, 75%, 41%);
+      transition: width 0.2s ease;
+    }
+
+    .progress-percentage {
+      margin-left: 10px;
+      font-size: 1rem;
+      color: #fff;
+      font-weight: 600;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      padding: 0.5rem;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 1.5rem;
+      color: hsl(170, 75%, 41%);
+      margin-bottom: 1rem;
+    }
+
+    .module {
+      padding: 1rem;
+      background: #f8f8f8;
+      margin: 2rem 0;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      opacity: 0;
+      transform: translateX(-100%);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .module.active {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .module:nth-child(even) {
+      transform: translateX(100%);
+    }
+
+    .module h3 {
+      font-size: 1.8rem;
+      color: hsl(170, 75%, 41%);
+    }
+
+    .module p,
+    .module ul {
+      margin: 1rem 0;
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #555;
+    }
+
+    .module ul {
+      padding-left: 1.5rem;
+    }
+
+    .start-btn {
+      background: hsl(170, 75%, 41%);
+      color: #fff;
+      border: none;
+      padding: 15px 30px;
+      border-radius: 5px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      margin-bottom: 1.5rem;
+    }
+
+    .start-btn:hover {
+      background: hsl(170, 65%, 35%);
+    }
+
+    .next-btn {
+      display: inline-block;
+      background: hsl(170, 75%, 41%);
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.3s;
+      margin-top: 1.5rem;
+    }
+
+    .next-btn:hover {
+      background: hsl(170, 65%, 35%);
+    }
+
+    .quiz {
+      margin-top: 20px;
+    }
+
+    .question {
+      margin-bottom: 10px;
+    }
+
+    .options {
+      margin-bottom: 20px;
+    }
+
+    .options button {
+      display: inline-block;
+      margin: 5px 0;
+      padding: 10px 15px;
+      font-size: 14px;
+      background: hsl(167, 89%, 38%);
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .options button:hover {
+      background: hsl(167, 89%, 38%);
+    }
+
+    .feedback {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    .correct {
+      color: green;
+    }
+
+    .wrong {
+      color: red;
+    }
+
+    .image-container {
+      display: flex;
+      /* Enables side-by-side alignment */
+      justify-content: space-around;
+      /* Adjust spacing between images */
+      align-items: center;
+      /* Align images vertically */
+    }
+
+    .image-container img {
+      max-width: 45%;
+      /* Restrict image width */
+      height: auto;
+      /* Maintain aspect ratio */
+      border: 2px solid #ccc;
+      /* Optional: Add border around images */
+      border-radius: 5px;
+      /* Optional: Rounded corners */
+    }
+
+    .video-buttons button {
+      background: hsl(170, 75%, 41%);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      margin: 0 5px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.3s ease;
+    }
+
+    .video-buttons button:hover {
+      background: hsl(170, 65%, 35%);
+    }
+
+    /* Base styles */
+    .video-buttons {
+     
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      /* Allows wrapping on small screens */
+    }
+
+    .video-buttons button {
+      background: hsl(170, 75%, 41%);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      margin: 0 5px 10px;
+      /* Adjust bottom margin for better spacing on small screens */
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.3s ease;
+    }
+
+    /* Media query for smaller screens */
+    @media (max-width: 600px) {
+      .video-buttons button {
+        font-size: 0.9rem;
+        /* Slightly smaller text size */
+        padding: 8px 15px;
+        /* Reduce padding for better fit */
+        margin: 5px;
+        /* Uniform margin around buttons */
+      }
+    }
+
+    video {
+      width: 70%;
+      height: 390px;
+      border-radius: 10px;
+    
+    }
+
+    /* Media query for smaller screens */
+    @media (max-width: 768px) {
+      video {
+        width: 100%;
+        /* Set video width to 100% for smaller screens */
+        height: auto;
+        /* Adjust height to maintain aspect ratio */
+      }
+    }
+
+    /* Media query for very small screens (e.g., mobile devices) */
+    @media (max-width: 480px) {
+      video {
+        width: 100%;
+        /* Set video width to 100% for very small screens */
+        height: auto;
+        /* Adjust height to maintain aspect ratio */
+      }
+    }
+
+    #top-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      display: none;
+      /* Hidden by default */
+      background-color: hsl(62, 87%, 60%);
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 50%;
+      font-size: 1.2rem;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+      transition: opacity 0.3s, transform 0.3s;
+    }
+
+    #top-button:hover {
+      background-color: hsl(63, 83%, 60%);
+      transform: scale(1.1);
+    }
+
+
+    .btn {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: not-allowed;
+      position: relative;
+    }
+
+    .tooltip {
+      position: relative;
+      display: inline-block;
+    }
+
+    .tooltip .tooltip-text {
+      visibility: hidden;
+      width: 150px;
+      background-color: black;
+      color: #fff;
+      text-align: center;
+      padding: 5px;
+      border-radius: 5px;
+
+      /* Position the tooltip */
+      position: absolute;
+      bottom: 130%;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+
+      /* Animation */
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .tooltip:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .btn:enabled {
+      background-color: #28a745;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Progress Bar -->
+  <div class="progress-bar-container">
+    <div class="progress-bar" id="progress-bar"></div>
+    <div class="progress-percentage" id="progress-percentage">0%</div>
+  </div>
+
+  <div class="container">
+    <center> <a href="{{ url_for('index') }}"><img src="https://muthu-2005.github.io/SIH-Final-2024/pictures/logo.png"
+          style="height: 50px;" alt="Dopeshield"></a></center>
+    <h2>Course 4: Testing, Detection, and Athlete Rights</h2>
+    <!-- Video Player -->
+    <center> <video id="video-player" controls>
+        <source id="video-source" src="{{ url_for('static', filename='video/eng/en4.mp4') }}" type="video/mp4">
+        Your browser does not support the video tag.
+      </video></center>
+
+    <!-- Language Selection -->
+    <div class="video-buttons">
+      <button onclick="changeVideo('en')">English</button>
+      <button onclick="changeVideo('ka')">Kannada</button>
+      <button onclick="changeVideo('ta')">Tamil</button>
+      <button onclick="changeVideo('ml')">Malayalam</button>
+      <button onclick="changeVideo('tl')">Telgu</button>
+      <button onclick="changeVideo('hi')">Hindi</button>
+
+    </div>
+    <center><button class="start-btn" id="start-btn">Start Course</button></center>
+
+    <!-- Module 1 -->
+    <div class="module" id="module-1"
+      style="text-align: justify; font-family: Arial, sans-serif; padding: 20px; border-radius: 8px; background-color: #f9f9f9; margin-bottom: 20px;">
+      <h2 style="font-size: 28px; color: #30C0A3;">Module 1: The Testing Process</h2>
+
+      <p>
+        The anti-doping testing process is a comprehensive and standardized procedure designed to ensure fairness,
+        integrity, and accuracy in detecting prohibited substances or methods. Governed by the <strong
+          style="color: #30C0A3;">World Anti-Doping Code (WADA Code)</strong> and implemented by organizations like
+        <strong style="color: #30C0A3;">NADA</strong>, it aims to maintain a doping-free environment in sports.
+      </p>
+      <div style="text-align: center; margin: 20px 0;">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTy2DquqG5lPoHHyuBLi0VYFbEH50khrdeA5g&s"
+          alt="WADA Code Illustration" style="max-width: 50%; height: auto; border-radius: 8px;" />
+      </div>
+
+      <h3 style="font-size: 24px; color: #30C0A3;">1. Overview of the Testing Process</h3>
+      <p>The testing process is divided into several key stages:</p>
+      <ul>
+        <li><strong style="color: #30C0A3;">Test Planning:</strong> Determining which athletes to test and when.</li>
+        <li><strong style="color: #30C0A3;">Sample Collection:</strong> Gathering urine and/or blood samples under
+          strict protocols.</li>
+        <li><strong style="color: #30C0A3;">Laboratory Analysis:</strong> Testing the samples for prohibited substances
+          or methods.</li>
+        <li><strong style="color: #30C0A3;">Results Management:</strong> Interpreting results and initiating follow-up
+          procedures if necessary.</li>
+      </ul>
+
+      <h3 style="font-size: 24px; color: #30C0A3;">2. Types of Testing</h3>
+      <ul>
+        <li><strong style="color: #30C0A3;">In-Competition Testing:</strong> Conducted during or immediately after a
+          competition, focusing on substances that provide a performance advantage.</li>
+        <li><strong style="color: #30C0A3;">Out-of-Competition Testing:</strong> Conducted anytime and anywhere without
+          prior notice to detect long-term effects of banned substances.</li>
+        <li><strong style="color: #30C0A3;">Targeted Testing:</strong> Focused on specific athletes based on
+          intelligence or performance patterns.</li>
+      </ul>
+
+      <h3 style="font-size: 24px; color: #30C0A3;">3. Sample Collection Process</h3>
+      <ul>
+        <li><strong style="color: #30C0A3;">Notification:</strong> Athletes are notified by a Doping Control Officer
+          (DCO) or Chaperone and briefed on their rights.</li>
+        <li><strong style="color: #30C0A3;">Athlete Identification:</strong> Athletes must provide valid ID to confirm
+          their identity.</li>
+        <li><strong style="color: #30C0A3;">Sample Collection:</strong> Includes urine and/or blood samples collected
+          under strict observation and protocols.</li>
+        <li><strong style="color: #30C0A3;">Chain of Custody:</strong> Samples are securely sealed, labeled, and
+          documented to ensure anonymity and traceability.</li>
+      </ul>
+      <div style="text-align: center; margin: 20px 0;">
+        <img
+          src="https://media.gettyimages.com/id/641641620/vector/laboratory-samples-of-urine-and-blood.jpg?s=612x612&w=0&k=20&c=HZhzRYp0V1SVlgynSzjV_0g21szPSfigzW7DRHVcHtU="
+          alt="Sample Collection Process" style="max-width: 60%; height: auto; border-radius: 8px;" />
+      </div>
+
+      <h3 style="font-size: 24px; color: #30C0A3;">4. Laboratory Analysis</h3>
+      <p>
+        WADA-accredited labs analyze samples using advanced technologies like Mass Spectrometry and Isotope Ratio Mass
+        Spectrometry (IRMS). Results are reported to the relevant authorities for further action.
+      </p>
+      <div style="text-align: center; margin: 20px 0;">
+        <img
+          src="https://media.gettyimages.com/id/945017100/vector/doping-illustration.jpg?s=612x612&w=0&k=20&c=1KTcvwaqP0hIuvB_afueJXz9L9kyMzsMcdHISs6xIoo="
+          alt="Laboratory Analysis" style="max-width: 60%; height: auto; border-radius: 8px;" />
+      </div>
+
+      <h3 style="font-size: 24px; color: #30C0A3;">5. Results Management</h3>
+      <ul>
+        <li><strong style="color: #30C0A3;">Adverse Analytical Findings (AAF):</strong> If a prohibited substance is
+          detected, the athlete is notified and given an opportunity to explain.</li>
+        <li><strong style="color: #30C0A3;">Review and Hearing:</strong> The athlete can request a hearing to contest
+          the findings. Sanctions are imposed if the violation is confirmed.</li>
+        <li><strong style="color: #30C0A3;">Therapeutic Use Exemptions (TUEs):</strong> Athletes with a valid TUE are
+          exempted from sanctions if the detected substance is part of their approved treatment.</li>
+      </ul>
+
+      <h3 style="font-size: 24px; color: #30C0A3;">6. Athlete Responsibilities in Testing</h3>
+      <ul>
+        <li>Report promptly for sample collection when notified.</li>
+        <li>Follow the DCO’s instructions during the testing process.</li>
+        <li>Provide accurate whereabouts information for out-of-competition testing.</li>
+        <li>Cooperate fully with anti-doping authorities.</li>
+      </ul>
+
+      <h3 style="font-size: 24px; color: #30C0A3;">7. Challenges in the Testing Process</h3>
+      <ul>
+        <li>Evasion Tactics: Micro-dosing and use of masking agents can complicate detection.</li>
+        <li>Designer Drugs: Constant development of new substances poses challenges for laboratories.</li>
+        <li>Logistics: Conducting timely and accurate testing across diverse locations can be resource-intensive.</li>
+      </ul>
+
+      <h3 style="font-size: 24px; color: #30C0A3;">8. Enhancements in Testing</h3>
+      <ul>
+        <li>Use of advanced technologies such as Dried Blood Spot (DBS) Testing for non-invasive sample collection.</li>
+        <li>Integration of the Athlete Biological Passport (ABP) to monitor long-term changes in biological markers.
+        </li>
+        <li>AI-driven analytics for identifying doping trends and patterns.</li>
+      </ul>
+
+      <h3 style="font-size: 24px; color: #30C0A3;">Conclusion</h3>
+      <p>
+        The testing process is the cornerstone of anti-doping efforts, ensuring that athletes compete on a level playing
+        field. By adhering to strict protocols and leveraging cutting-edge technologies, organizations like NADA and
+        WADA aim to uphold the integrity of sports and protect athletes’ health and careers.
+      </p>
+
+      <h3 style="font-size: 24px; color: #30C0A3;">Historical Insights: NADA in India</h3>
+      <ul>
+        <li><strong style="color: #30C0A3;">2005:</strong> India establishes the National Anti-Doping Agency (NADA).
+        </li>
+        <li><strong style="color: #30C0A3;">2009:</strong> NADA begins in-competition and out-of-competition testing.
+        </li>
+        <li><strong style="color: #30C0A3;">2011:</strong> First Anti-Doping Awareness Workshops are conducted.</li>
+        <li><strong style="color: #30C0A3;">2020:</strong> Revised World Anti-Doping Code adopted in India.</li>
+        <li><strong style="color: #30C0A3;">2021:</strong> National Dope Testing Laboratory regains WADA accreditation.
+        </li>
+      </ul>
+    </div>
+
+    <!-- Module 2 -->
+    <div class="module" id="module-2"
+      style="text-align: justify; font-family: Arial, sans-serif; padding: 20px; border-radius: 8px; background-color: #f9f9f9; margin-bottom: 20px;">
+      <h2 style="font-size: 28px; color: #30C0A3;">Module 2: Advances in Detection</h2>
+      <p>
+        The field of anti-doping has made significant advancements in the detection of prohibited substances and
+        methods. These innovations enhance the ability to identify doping violations, ensuring fair play and athlete
+        integrity. This module explores the latest breakthroughs in detection techniques, their impact, and future
+        directions.
+      </p>
+      <div style="text-align: center; margin: 20px 0;">
+        <img
+          src="https://media.istockphoto.com/id/1153693916/photo/victory-podium-with-stimulants-in-the-form-of-tablet-syringe-and-pill-won-prizes-in-the.jpg?s=612x612&w=0&k=20&c=CXUE6a0DCA4ppDiUMQD5Ty1z5ooBLE0NAn2ibiCpagU="
+          alt="Laboratory Research" style="max-width: 50%; height: auto; border-radius: 8px;" />
+      </div>
+
+      <h3 style="font-size: 24px; color: #30C0A3;">1. Overview of Advances in Detection</h3>
+      <ul>
+        <li>Anti-doping detection has evolved from basic testing to highly sophisticated techniques capable of
+          identifying minute traces of banned substances.</li>
+        <li>These advancements address challenges posed by designer drugs, micro-dosing, and emerging doping methods
+          such as gene doping.</li>
+      </ul>
+
+      <h3 style="font-size: 24px; color: #30C0A3;">2. Key Advances in Detection Technologies</h3>
+      <h4 style="font-size: 20px; color: #30C0A3;">2.1. Mass Spectrometry (MS)</h4>
+      <ul>
+        <li><strong>Description:</strong> Advanced forms like high-resolution mass spectrometry (HRMS) can detect and
+          quantify substances at extremely low concentrations.</li>
+        <li><strong>Applications:</strong> Identifying anabolic steroids, stimulants, and diuretics; differentiating
+          between natural and synthetic compounds.</li>
+        <li><strong>Advantage:</strong> Highly sensitive and capable of distinguishing closely related compounds.</li>
+      </ul>
+
+      <h4 style="font-size: 20px; color: #30C0A3;">2.2. Isotope Ratio Mass Spectrometry (IRMS)</h4>
+      <ul>
+        <li><strong>Description:</strong> Analyzes the carbon isotope ratios in compounds to determine if a substance is
+          synthetic or naturally produced by the body.</li>
+        <li><strong>Applications:</strong> Detecting exogenous testosterone and other steroids.</li>
+        <li><strong>Advantage:</strong> High specificity for differentiating natural substances from synthetic doping
+          agents.</li>
+      </ul>
+      <div style="text-align: center; margin: 20px 0;">
+        <img
+          src="https://media.istockphoto.com/id/1053122022/vector/stop-doping-positive-doping-test-red-vector-illustration-on-white-background-with-text-flat.jpg?s=612x612&w=0&k=20&c=buiwSIzqvmt7mTkqJrvRdpqCc4db1Lh_vRGSdZaHBbQ="
+          alt="Lab Analyst Working" style="max-width: 50%; height: auto; border-radius: 8px;" />
+      </div>
+
+      <h4 style="font-size: 20px; color: #30C0A3;">2.3. Athlete Biological Passport (ABP)</h4>
+      <ul>
+        <li><strong>Description:</strong> Monitors an athlete’s biological markers over time to detect deviations
+          indicative of doping.</li>
+        <li><strong>Components:</strong> Hematological module (blood doping and EPO use) and steroidal module (steroid
+          misuse).</li>
+        <li><strong>Advantage:</strong> Detects indirect evidence of doping without requiring direct identification of
+          substances.</li>
+      </ul>
+
+      <h4 style="font-size: 20px; color: #30C0A3;">2.4. Liquid Chromatography-Tandem Mass Spectrometry (LC-MS/MS)</h4>
+      <ul>
+        <li><strong>Description:</strong> Combines chromatography with mass spectrometry to identify and quantify
+          substances in biological samples.</li>
+        <li><strong>Applications:</strong> Identifying peptides, growth hormones, and other challenging compounds.</li>
+        <li><strong>Advantage:</strong> Exceptional sensitivity and precision.</li>
+      </ul>
+
+      <h4 style="font-size: 20px; color: #30C0A3;">2.5. Detection of Gene Doping</h4>
+      <ul>
+        <li><strong>Description:</strong> Emerging techniques like PCR and CRISPR-based assays detect genetic
+          modifications.</li>
+        <li><strong>Applications:</strong> Identifying unauthorized alterations in DNA or RNA.</li>
+        <li><strong>Advantage:</strong> Addresses cutting-edge doping methods.</li>
+      </ul>
+
+      <h4 style="font-size: 20px; color: #30C0A3;">2.6. Dried Blood Spot (DBS) Testing</h4>
+      <ul>
+        <li><strong>Description:</strong> Collecting and analyzing small blood samples on filter paper for doping
+          analysis.</li>
+        <li><strong>Applications:</strong> Detecting prohibited substances with minimal sample volume.</li>
+        <li><strong>Advantage:</strong> Non-invasive, cost-effective, and suitable for remote testing.</li>
+      </ul>
+
+      <h3 style="font-size: 24px; color: #30C0A3;">3. Emerging Detection Methods</h3>
+      <ul>
+        <li><strong>Artificial Intelligence (AI):</strong> Models analyze complex data to identify doping patterns.</li>
+        <li><strong>Advanced Metabolomics:</strong> Studies metabolic changes caused by doping substances.</li>
+        <li><strong>Detection of Micro-Dosing:</strong> Enhanced testing protocols detect micro-dosing within narrow
+          detection windows.</li>
+        <li><strong>Enhanced Sample Storage:</strong> Long-term storage enables retrospective testing with future
+          technologies.</li>
+      </ul>
+
+      <h3 style="font-size: 24px; color: #30C0A3;">4. Challenges in Detection</h3>
+      <ul>
+        <li><strong>Designer Drugs:</strong> Constant development of new compounds to evade detection.</li>
+        <li><strong>Gene Doping:</strong> Identifying subtle genetic modifications remains complex.</li>
+        <li><strong>Budget and Resource Constraints:</strong> Advanced technologies can be expensive to implement on a
+          large scale.</li>
+      </ul>
+
+      <h3 style="font-size: 24px; color: #30C0A3;">5. Impact of Advances in Detection</h3>
+      <ul>
+        <li><strong>Deterrence:</strong> Improved detection capabilities discourage athletes from attempting to dope.
+        </li>
+        <li><strong>Fairness:</strong> Ensures a level playing field for clean athletes.</li>
+        <li><strong>Transparency:</strong> Enhances public trust in sports.</li>
+      </ul>
+
+      <h3 style="font-size: 24px; color: #30C0A3;">6. Future Directions</h3>
+      <ul>
+        <li>Continued integration of AI and machine learning for predictive analysis.</li>
+        <li>Expanding the ABP to include new biomarkers.</li>
+        <li>Development of portable, rapid-testing devices for in-competition use.</li>
+        <li>Collaboration between WADA, NADA, and research institutions to stay ahead of doping innovations.</li>
+      </ul>
+
+      <h3 style="font-size: 24px; color: #30C0A3;">Conclusion</h3>
+      <p>
+        Advances in anti-doping detection are crucial for maintaining the integrity of sports. These innovations not
+        only improve the ability to catch violators but also act as a deterrent, fostering a culture of clean and
+        ethical competition.
+      </p>
+    </div>
+
+
+
+    <!-- Module 3 -->
+    <div class="module" id="module-3"
+      style="text-align: justify; font-family: Arial, sans-serif; padding: 20px; border-radius: 8px; background-color: #f9f9f9; margin-bottom: 20px;">
+
+
+      <h2>Module 3: Athlete Rights and Appeal Mechanisms</h2>
+      <p>
+        Athletes have rights that ensure fair treatment and transparency in anti-doping processes. These rights,
+        established by the World Anti-Doping Code (WADA Code) and enforced by organizations like NADA, are vital for
+        maintaining trust and equity. Additionally, appeal mechanisms provide athletes with opportunities to challenge
+        decisions and protect their careers.
+      </p>
+
+      <img
+        src="https://media.istockphoto.com/id/587893592/photo/sports-medal-and-medicines.jpg?s=612x612&w=0&k=20&c=krNGN_FYazkcbk4vqLsBK3HuEwX0YWxCafdDDU9NxiU="
+        alt="Sports Medal and Medicines"   style="height: auto;width:100%;">
+
+      <h3>1. Athlete Rights</h3>
+      <ul>
+        <li><strong>Right to Fair Testing:</strong> Athletes have the right to undergo testing in accordance with
+          standardized procedures to ensure accuracy, fairness, and integrity.</li>
+        <li><strong>Right to Information:</strong> Athletes must be informed about the testing process, the results of
+          any analysis, and anti-doping regulations, including updates to the Prohibited List.</li>
+        <li><strong>Right to a Fair Hearing:</strong> Athletes are entitled to an impartial hearing before any sanctions
+          are imposed.</li>
+        <li><strong>Right to Legal Representation:</strong> Athletes can seek legal assistance during investigations,
+          hearings, and appeals.</li>
+        <li><strong>Right to Privacy and Data Protection:</strong> Athletes' personal data, including whereabouts and
+          testing results, are protected under WADA’s privacy standards.</li>
+        <li><strong>Right to a Therapeutic Use Exemption (TUE):</strong> Athletes with medical conditions requiring
+          prohibited substances or methods can apply for a TUE.</li>
+        <li><strong>Right to Review Evidence:</strong> Athletes have access to all evidence and documentation related to
+          their case, including laboratory reports and chain-of-custody records.</li>
+        <li><strong>Right to Appeal:</strong> Athletes can appeal decisions related to anti-doping rule violations
+          (ADRVs) through national or international bodies, including the Court of Arbitration for Sport (CAS).</li>
+        <li><strong>Right to Education:</strong> Athletes have the right to access anti-doping education programs
+          organized by NADA, WADA, and sports federations.</li>
+        <li><strong>Right to Report Unethical Practices:</strong> Athletes can report doping violations or suspicious
+          activities without fear of retaliation.</li>
+      </ul>
+
+      <h3>2. Appeal Mechanisms</h3>
+      <ul>
+        <li><strong>First-Level Appeal:</strong> Athletes can appeal sanctions or decisions through their country’s
+          sports tribunal.</li>
+        <li><strong>Second-Level Appeal:</strong> Dissatisfied athletes can escalate appeals to the Court of Arbitration
+          for Sport (CAS).</li>
+        <li><strong>CAS Appeal Process:</strong> Includes submission of the appeal, presentation of evidence, and a
+          decision to uphold, reduce, or overturn initial sanctions.</li>
+        <li><strong>Independent Observer Program:</strong> WADA monitors appeal processes to ensure compliance with
+          international standards.</li>
+      </ul>
+
+      <img
+        src="https://media.istockphoto.com/id/828695150/vector/the-silhouette-of-a-muscular-athlete-of-tablets-and-capsules-of-doping.jpg?s=612x612&w=0&k=20&c=8uakbHtWydAmZkNhoGFlfeUWfWZ3P_l_rdmT4_OGCsc="
+        alt="Prohibited Practices in Sports" style="height: auto;width:100%;">
+
+      <h3>3. Key Cases and Precedents</h3>
+      <p>
+        High-profile appeals at CAS have set important precedents in anti-doping law, emphasizing fairness and
+        consistency.
+        These cases often highlight the burden of proof for anti-doping agencies and the balance between athlete
+        responsibility and unintentional violations.
+      </p>
+
+      <div class="did-you-know">
+        <h3>Did You Know?</h3>
+        <ul>
+          <li>The World Anti-Doping Agency (WADA) bans over 300 substances and methods to ensure fair play in sports.
+          </li>
+          <li>Anti-doping tests can detect banned substances even in tiny amounts, thanks to advanced technologies like
+            mass spectrometry.</li>
+          <li>Under the strict liability principle, athletes are responsible for everything in their body, even
+            unintentional ingestion of banned substances.</li>
+          <li>The Athlete Biological Passport (ABP) tracks changes in biomarkers over time to identify doping patterns.
+          </li>
+          <li>WADA and NADA prioritize education to help athletes avoid accidental violations.</li>
+        </ul>
+      </div>
+    </div><br>
+    <center>
+      <div class="tooltip">
+        <a href="/certificate4"><button class="btn" id="btn" disabled>Complete the course</button></a>
+        <span class="tooltip-text" id="tooltip-text">Time Remaining : 15:00</span>
+      </div>
+    </center>
+    <button id="top-button" title="Go to Top">↑ Top</button>
+
+
+
+
+    <script>
+      // Get button references
+      const startBtn = document.getElementById("start-btn");
+      const completeBtn = document.getElementById("btn");
+      const modules = document.querySelectorAll(".module");
+      const progressBar = document.getElementById("progress-bar");
+      const progressPercentage = document.getElementById("progress-percentage");
+      const videoPlayer = document.getElementById('video-player');
+      const videoSource = document.getElementById('video-source');
+      const tooltipText = document.getElementById("tooltip-text");
+      const topButton = document.getElementById("top-button");
+
+      let courseStarted = false; // Flag to check if the course has started
+      let remainingTime = 15 * 60; // 15 minutes in seconds
+      let timerInterval;
+
+      // Ensure scrolling is disabled on page load
+      document.body.style.overflow = "hidden";
+
+      // Event listener for the start button
+      startBtn.addEventListener("click", () => {
+        // Enable scrolling
+        document.body.style.overflow = "auto"; // Enable scrolling when the start button is clicked
+
+        // Show the "Complete Course" button
+        completeBtn.style.display = "inline-block";
+
+        // Hide the "Start Course" button
+        startBtn.style.display = "none";
+
+        // Show the first module and mark course as started
+        modules[0].classList.add("active");
+        courseStarted = true;
+
+        // Start the timer
+        timerInterval = setInterval(updateTimer, 1000);
+      });
+
+      // Format time into MM:SS
+      const formatTime = (time) => {
+        const minutes = Math.floor(time / 60);
+        const seconds = time % 60;
+        return `${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+      };
+
+      // Update the tooltip text and enable the button when time is up
+      const updateTimer = () => {
+        if (remainingTime > 0) {
+          remainingTime--;
+          tooltipText.textContent = `Time Remaining to complete the course: ${formatTime(remainingTime)}`;
+        } else {
+          clearInterval(timerInterval);
+          completeBtn.disabled = false;
+          completeBtn.textContent = "✅ Course Completed";
+          completeBtn.style.cursor = "pointer";
+          tooltipText.textContent = "Course is now complete!";
+        }
+      };
+
+      // Update the progress bar and module animation on scroll
+      window.addEventListener("scroll", () => {
+        if (!courseStarted) return; // Do nothing if the course hasn't started
+
+        let totalHeight = document.body.scrollHeight - window.innerHeight;
+        let scrollPosition = window.scrollY;
+        let scrollPercentage = (scrollPosition / totalHeight) * 100;
+
+        // Update progress bar width and percentage text
+        progressBar.style.width = scrollPercentage + "%";
+        progressPercentage.textContent = Math.min(Math.round(scrollPercentage), 100) + "%";
+
+        modules.forEach((module, index) => {
+          const rect = module.getBoundingClientRect();
+          if (rect.top >= 0 && rect.top <= window.innerHeight / 2) {
+            if (index % 2 === 0) {
+              // Modules with even index (Module 1, Module 3): Slide from the left
+              module.style.transform = "translateX(0)";
+            } else {
+              // Modules with odd index (Module 2): Slide from the right
+              module.style.transform = "translateX(0)";
+            }
+            module.classList.add("active");
+          }
+        });
+      });
+
+      // Scroll to the top when the "back to top" button is clicked
+      topButton.addEventListener("click", () => {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth", // Smooth scroll effect
+        });
+      });
+
+      // Show the "back to top" button when the user scrolls down 100px
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 100) {
+          topButton.style.display = "block";
+        } else {
+          topButton.style.display = "none";
+        }
+      });
+
+      // Change Video based on Language Button
+      function changeVideo(language) {
+    const videoMap = {
+      'en': '{{ url_for('static', filename='video/eng/en4.mp4') }}',
+      'ta': '{{ url_for('static', filename='video/tam/ta4.mp4') }}',
+      'ka': '{{ url_for('static', filename='video/ka/ka4.mp4') }}',
+      'ml': '{{ url_for('static', filename='video/ml/ml4.mp4') }}',
+      'hi': '{{ url_for('static', filename='video/hi/hi4.mp4') }}',
+      'tl': '{{ url_for('static', filename='video/tl/tl4.mp4') }}'
+    };
+
+        videoSource.src = videoMap[language];
+        videoPlayer.load(); // Reload the video player
+        videoPlayer.play(); // Start playing the new video
+      }
+
+    </script>
+    <style>
+      #myid {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        z-index: 1000;
+        padding: 8px 15px;
+        font-family: 'Poppins', sans-serif;
+        font-size: 14px;
+        background-color: #3498db;
+        color: white;
+        border-radius: 20px;
+        text-align: center;
+        cursor: pointer;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        transition: background-color 0.3s ease, transform 0.2s ease;
+      }
+
+      #language-options {
+        display: none;
+        position: absolute;
+        top: 50px;
+        right: 10px;
+        z-index: 999;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        padding: 10px;
+      }
+
+      #language-options.active {
+        display: block;
+      }
+
+      .goog-te-combo {
+        width: 100%;
+        padding: 8px;
+        font-family: 'Poppins', sans-serif;
+        font-size: 14px;
+        border-radius: 5px;
+        border: 1px solid #ddd;
+      }
+
+      @media (max-width: 768px) {
+        #myid {
+          font-size: 12px;
+          padding: 6px 12px;
+        }
+
+        #language-options {
+          top: 40px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        #myid {
+          font-size: 10px;
+          padding: 4px 10px;
+        }
+
+        #language-options {
+          top: 30px;
+        }
+      }
+    </style>
+
+    <script>
+      function loadGoogleTranslate() {
+        new google.translate.TranslateElement({
+          pageLanguage: 'en',
+          includedLanguages: 'en,hi,ta,ml,kn,te',
+          layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+        }, 'language-options');
+      }
+
+      function toggleLanguageOptions() {
+        const options = document.getElementById('language-options');
+        options.classList.toggle('active');
+      }
+
+      document.addEventListener('DOMContentLoaded', () => {
+        const observer = new MutationObserver(() => {
+          const translateDropdown = document.querySelector('.goog-te-combo');
+          if (translateDropdown && translateDropdown.value !== '') {
+            document.getElementById('language-options').classList.remove('active');
+          }
+        });
+
+        observer.observe(document.body, { childList: true, subtree: true });
+      });
+    </script>
+
+    <div id="myid" onclick="toggleLanguageOptions()">Choose Language</div>
+    <div id="language-options"></div>
+    <script src="https://translate.google.com/translate_a/element.js?cb=loadGoogleTranslate"></script>
+
+
+
+</body>
+
+</html>

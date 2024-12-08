@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doping Dilemma</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<style>
+    html,
+    body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        font-family: "Poppins", sans-serif;
+        background-color: hsl(168, 56%, 89%);
+        color: #333;
+    }
+
+    header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 20px;
+        background-color: #f8f9fa;
+        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    header .logo {
+        display: flex;
+        align-items: center;
+    }
+
+    header .logo img {
+        height: 100px;
+    }
+    /* Quiz Container */
+    .quiz-container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            margin: 30px auto;
+            text-align: center;
+        }
+
+        .quiz-container h2 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .question-number {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .question {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+
+        .options {
+            list-style-type: none;
+            padding: 0;
+            text-align: left;
+        }
+
+        .options li {
+            margin-bottom: 10px;
+        }
+
+        .options input {
+            margin-right: 10px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        #result {
+            font-size: 18px;
+            color: #007bff;
+            margin-top: 20px;
+        }
+
+    </style>
+<body>
+    <header>
+        <div class="logo">
+            <a href="../index.html"><img src="https://dopeshield-sih24.netlify.app/pictures/logo.png" alt="Coconut Company Logo"></a>
+        </div>
+    </header>
+
+    <center>
+        <h1>Doping Dilemma</h1>
+    </center>
+
+    
+    <div class="quiz-container" id="quiz-container">
+        <h2>Quiz Time!</h2>
+        <div class="question-number" id="question-number"></div>
+        <div class="question" id="question"></div>
+        <ul class="options" id="options"></ul>
+        <button class="btn" onclick="submitAnswer()">Submit</button>
+    </div>
+
+   
+
+    <audio id="correct-sound" src="music/correct.mp3"></audio>
+    <audio id="incorrect-sound" src="music/incorrect.mp3"></audio>
+
+    <script>
+        const questions = [
+            { question: "What is a banned substance in sports?", options: ["Steroids", "Water", "Protein shakes", "Vitamins"], correctAnswer: "Steroids" },
+            { question: "What is the role of WADA?", options: ["Promote doping", "Ban healthy foods", "Set anti-doping rules", "Ignore doping"], correctAnswer: "Set anti-doping rules" },
+            { question: "What does EPO do?", options: ["Increases oxygen delivery", "Boosts immune system", "Increases muscle growth", "No effect"], correctAnswer: "Increases oxygen delivery" },
+            { question: "What is the legal drinking age in most countries?", options: ["16", "18", "21", "25"], correctAnswer: "18" },
+            { question: "What is a common method for detecting doping?", options: ["Urine test", "Vision test", "Hearing test", "Breathing test"], correctAnswer: "Urine test" },
+            { question: "What is the consequence of doping in sports?", options: ["Disqualification", "Bonus points", "Medal", "Recognition"], correctAnswer: "Disqualification" },
+            { question: "What does WADA stand for?", options: ["World Anti-Doping Agency", "World Athletics Development Association", "World Athlete Drug Alliance", "World Active Drug Association"], correctAnswer: "World Anti-Doping Agency" },
+            { question: "Which of these is a stimulant?", options: ["Caffeine", "Water", "Carbohydrates", "Vitamin D"], correctAnswer: "Caffeine" },
+            { question: "What is the primary purpose of doping?", options: ["Improve performance", "Relax muscles", "Reduce weight", "Boost immunity"], correctAnswer: "Improve performance" },
+            { question: "What does blood doping involve?", options: ["Boosting red blood cells", "Boosting white blood cells", "Increasing platelets", "Decreasing red blood cells"], correctAnswer: "Boosting red blood cells" }
+        ];
+    
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let startTime;
+    
+        // Load the first question
+        function loadQuestion() {
+            const questionNumberContainer = document.getElementById('question-number');
+            const questionContainer = document.getElementById('question');
+            const optionsContainer = document.getElementById('options');
+    
+            optionsContainer.innerHTML = '';
+    
+            const currentQuestion = questions[currentQuestionIndex];
+            questionNumberContainer.textContent = `Question ${currentQuestionIndex + 1} of ${questions.length}`;
+            questionContainer.textContent = currentQuestion.question;
+    
+            currentQuestion.options.forEach(option => {
+                const optionItem = document.createElement('li');
+                optionItem.innerHTML = `<input type="radio" name="option" value="${option}"> ${option}`;
+                optionsContainer.appendChild(optionItem);
+            });
+        }
+    
+        function submitAnswer() {
+            const selectedOption = document.querySelector('input[name="option"]:checked');
+    
+            if (!selectedOption) {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Oops!',
+                    text: 'Please select an answer!',
+                });
+                return;
+            }
+    
+            const answer = selectedOption.value;
+            const currentQuestion = questions[currentQuestionIndex];
+            const correctSound = document.getElementById('correct-sound');
+            const incorrectSound = document.getElementById('incorrect-sound');
+    
+            if (answer === currentQuestion.correctAnswer) {
+                score++;
+                correctSound.play();
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Correct!',
+                    text: 'Great job!',
+                });
+            } else {
+                incorrectSound.play();
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Wrong!',
+                    text: `The correct answer was: ${currentQuestion.correctAnswer}`,
+                });
+            }
+    
+            currentQuestionIndex++;
+            if (currentQuestionIndex < questions.length) {
+                loadQuestion();
+            } else {
+                showFinalResult();
+            }
+        }
+    
+        function showFinalResult() {
+            const duration = Math.round((Date.now() - startTime) / 1000); // Calculate time elapsed in seconds
+            Swal.fire({
+                title: 'Quiz Completed!',
+                html: `Your final score is <strong>${score}/${questions.length}</strong>`,
+                icon: 'info',
+                confirmButtonText: 'Submit Score',
+            }).then(() => {
+                recordQuizScore(score, duration);
+            });
+        }
+    
+        function resetQuiz() {
+            currentQuestionIndex = 0;
+            score = 0;
+            startTime = Date.now(); // Reset start time
+            loadQuestion();
+        }
+    
+        function recordQuizScore(quizScore, duration) {
+            fetch('/record_quiz_score', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    quiz_score: quizScore,
+                    duration: duration,
+                }),
+                credentials: 'include', // Send cookies with the request
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    Swal.fire({
+                        title: 'Score Recorded!',
+                        text: 'Your score has been successfully recorded.',
+                        icon: 'success',
+                        confirmButtonText: 'OK'
+                    }).then(() => {
+                        resetQuiz();
+                    });
+                } else {
+                    Swal.fire({
+                        title: 'Error',
+                        text: data.message,
+                        icon: 'error',
+                        confirmButtonText: 'OK'
+                    });
+                }
+            })
+            .catch(error => console.error('Fetch error:', error));
+        }
+    
+        // Initialize the quiz
+        startTime = Date.now(); // Start timer when the quiz starts
+        loadQuestion();
+    </script>
+    
+</body>
+</html>

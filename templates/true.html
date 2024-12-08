@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anti-Doping True or False Game</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+        /* CSS from the original code */
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: "Poppins", sans-serif;
+            background-color: hsl(168, 56%, 89%);
+            color: #333;
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+            background-color: #f8f9fa;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        header .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        header .logo img {
+            height: 100px;
+        }
+
+        .game-container {
+            background-color: #fff;
+            margin: 20px auto;
+            padding: 20px;
+            width: 90%;
+            max-width: 400px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .question-number {
+            font-size: 14px;
+            color: hsl(170, 75%, 41%);
+            margin-bottom: 10px;
+        }
+
+        .statement {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #444;
+            text-align: center;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .buttons button {
+            padding: 10px 20px;
+            margin: 5px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .true-button {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .false-button {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .true-button:hover {
+            background-color: #218838;
+        }
+
+        .false-button:hover {
+            background-color: #c82333;
+        }
+
+        .feedback {
+            font-size: 20px;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .correct {
+            color: #28a745;
+        }
+
+        .incorrect {
+            color: #dc3545;
+        }
+
+        .next-button,
+        .retake-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: none;
+            margin: 0 auto;
+            display: block;
+        }
+
+        .next-button:hover,
+        .retake-button:hover {
+            background-color: #0069d9;
+        }
+
+        .score-display,
+        .time-display {
+            margin-top: 10px;
+            font-size: 16px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <a href="../index.html"><img src="pictures/logo.png" alt="Coconut Company Logo"></a>
+        </div>
+    </header>
+
+    <center>
+        <h1>True or Tainted?</h1>
+    </center>
+
+    <div class="game-container">
+        <div class="question-number" id="questionNumber">Question 1 of 10</div>
+        <div class="statement" id="statement">
+            Doping is the use of banned substances to improve athletic performance.
+        </div>
+
+        <div class="buttons">
+            <button class="true-button" id="trueButton">True</button>
+            <button class="false-button" id="falseButton">False</button>
+        </div>
+
+        <div class="feedback" id="feedback"></div>
+        <div class="score-display" id="scoreDisplay">Score: 0</div>
+        <div class="time-display" id="timeDisplay"></div>
+        <button class="next-button" id="nextButton">Next</button>
+        <button class="retake-button" id="retakeButton">Retake Quiz</button>
+    </div>
+
+    <audio id="correctSound" src="music/correct.mp3"></audio>
+    <audio id="incorrectSound" src="music/incorrect.mp3"></audio>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        const statements = [
+            { statement: "Doping is the use of banned substances to improve athletic performance.", correctAnswer: "true" },
+            { statement: "Drinking water during a match can be considered doping.", correctAnswer: "false" },
+            { statement: "Blood doping is a practice used by some athletes to increase their oxygen capacity.", correctAnswer: "true" },
+            { statement: "Steroids are allowed in most professional sports.", correctAnswer: "false" },
+            { statement: "Athletes can be tested for doping before, during, and after competitions.", correctAnswer: "true" },
+            { statement: "Gene doping is a method that alters genes to improve performance.", correctAnswer: "true" },
+            { statement: "Over-the-counter painkillers are classified as doping.", correctAnswer: "false" },
+            { statement: "An athlete can be banned for life for repeated doping violations.", correctAnswer: "true" },
+            { statement: "Stimulants like caffeine in normal amounts are allowed in sports.", correctAnswer: "true" },
+            { statement: "Doping is only illegal in professional sports.", correctAnswer: "false" }
+        ];
+    
+        let currentQuestion = 0;
+        let score = 0;
+        let startTime, endTime, totalStartTime, totalEndTime;
+    
+        const statementEl = document.getElementById('statement');
+        const questionNumberEl = document.getElementById('questionNumber');
+        const trueButton = document.getElementById('trueButton');
+        const falseButton = document.getElementById('falseButton');
+        const scoreDisplay = document.getElementById('scoreDisplay');
+        const timeDisplay = document.getElementById('timeDisplay');
+        const nextButton = document.getElementById('nextButton');
+        const retakeButton = document.getElementById('retakeButton');
+        const correctSound = document.getElementById('correctSound');
+        const incorrectSound = document.getElementById('incorrectSound');
+    
+        function loadQuestion() {
+            if (currentQuestion === 0) {
+                totalStartTime = new Date(); // Record the start time for the quiz
+            }
+    
+            startTime = new Date();
+            questionNumberEl.textContent = `Question ${currentQuestion + 1} of 10`;
+            statementEl.textContent = statements[currentQuestion].statement;
+            scoreDisplay.textContent = `Score: ${score}`;
+            timeDisplay.textContent = '';
+            nextButton.style.display = 'none';
+            retakeButton.style.display = 'none';
+            trueButton.disabled = false;
+            falseButton.disabled = false;
+        }
+    
+        function checkAnswer(answer) {
+            endTime = new Date();
+            const timeTaken = ((endTime - startTime) / 1000).toFixed(2);
+            const correctAnswer = statements[currentQuestion].correctAnswer;
+    
+            if (answer === correctAnswer) {
+                score++;
+                correctSound.play();
+                Swal.fire({
+                    title: 'Correct!',
+                    text: `Great job! You answered correctly in ${timeTaken} seconds.`,
+                    icon: 'success',
+                    confirmButtonText: 'Next'
+                }).then(() => nextQuestion());
+            } else {
+                incorrectSound.play();
+                Swal.fire({
+                    title: 'Incorrect!',
+                    text: `Oops! The correct answer was "${correctAnswer.toUpperCase()}".`,
+                    icon: 'error',
+                    confirmButtonText: 'Next'
+                }).then(() => nextQuestion());
+            }
+    
+            trueButton.disabled = true;
+            falseButton.disabled = true;
+        }
+    
+        function nextQuestion() {
+            currentQuestion++;
+            if (currentQuestion < statements.length) {
+                loadQuestion();
+            } else {
+                totalEndTime = new Date();
+                const totalTimeTaken = ((totalEndTime - totalStartTime) / 1000).toFixed(2);
+                showFinalScore(totalTimeTaken);
+            }
+        }
+    
+        function showFinalScore(totalTimeTaken) {
+            Swal.fire({
+                title: 'Quiz Complete!',
+                text: `Your final score is ${score} out of 10. Time taken: ${totalTimeTaken} seconds.`,
+                icon: 'info',
+                confirmButtonText: 'Submit Result'
+            }).then(() => {
+                submitTFGameResult(score, totalTimeTaken);
+            });
+        }
+    
+        function resetQuiz() {
+            currentQuestion = 0;
+            score = 0;
+            loadQuestion();
+        }
+    
+        trueButton.addEventListener('click', function () {
+            checkAnswer('true');
+        });
+    
+        falseButton.addEventListener('click', function () {
+            checkAnswer('false');
+        });
+    
+        retakeButton.addEventListener('click', resetQuiz);
+    
+        function submitTFGameResult(gameScore, timeElapsed) {
+            fetch('/submit_tf_game_result', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    game_score: gameScore,
+                    time_elapsed: timeElapsed,
+                }),
+                credentials: 'include', // Send cookies with the request
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    Swal.fire({
+                        title: 'Result Submitted!',
+                        text: 'Your game result has been successfully submitted.',
+                        icon: 'success',
+                        confirmButtonText: 'OK'
+                    });
+                } else {
+                    Swal.fire({
+                        title: 'Error',
+                        text: data.message,
+                        icon: 'error',
+                        confirmButtonText: 'OK'
+                    });
+                }
+            })
+            .catch(error => console.error('Fetch error:', error));
+        }
+    
+        loadQuestion();
+    </script>
+    
+    
+    
+</body>
+
+</html>

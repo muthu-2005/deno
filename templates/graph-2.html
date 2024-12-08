@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Statistics</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h1>User Game Analytics</h1>
+
+    <!-- Create a canvas element for Chart.js -->
+    <canvas id="gameStatsChart" width="400" height="200"></canvas>
+
+    <script>
+        // Retrieve data passed from Flask (from the route '/visualization')
+        var dates = {{ dates | tojson }};  // List of dates
+        var scores = {{ scores | tojson }};  // List of scores
+        var timeElapsed = {{ time_elapsed | tojson }};  // List of time elapsed
+
+        // Create the chart
+        var ctx = document.getElementById('gameStatsChart').getContext('2d');
+        var gameStatsChart = new Chart(ctx, {
+            type: 'line',  // Type of chart (line chart)
+            data: {
+                labels: dates,  // X-axis labels (dates)
+                datasets: [{
+                    label: 'Game Score',
+                    data: scores,  // Y-axis data (scores)
+                    borderColor: 'rgba(75, 192, 192, 1)',  // Line color for scores
+                    fill: false,  // Do not fill the area under the line
+                    tension: 0.1
+                },
+                {
+                    label: 'Time Elapsed (s)',
+                    data: timeElapsed,  // Y-axis data (time elapsed)
+                    borderColor: 'rgba(255, 99, 132, 1)',  // Line color for time elapsed
+                    fill: false,  // Do not fill the area under the line
+                    tension: 0.1
+                }]
+            },
+            options: {
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Date'  // Label for the X-axis
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Score / Time Elapsed'  // Label for the Y-axis
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

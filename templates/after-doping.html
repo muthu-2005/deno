@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Life After Doping</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, hsl(170, 37%, 74%), hsl(170, 75%, 41%));
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: #fff;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            animation: fadeInUp 1s ease-in-out;
+        }
+
+        section {
+            margin-bottom: 2rem;
+            animation: slideIn 0.8s ease-in-out;
+        }
+
+        h3 {
+            font-size: 1.8rem;
+            color: #fff;
+            background: hsl(170, 75%, 41%);
+            padding: 0.5rem;
+            border-radius: 5px;
+            text-align: center;
+            margin-bottom: 1rem;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        ul li {
+            background: #e6f7f1;
+            margin-bottom: 1rem;
+            padding: 1.2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, background-color 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        ul li:hover {
+            transform: translateY(-5px);
+            background: #ccf0e5;
+        }
+
+        ul li span {
+            font-weight: bold;
+            color: hsl(170, 75%, 41%);
+        }
+
+        a {
+            color: hsl(170, 75%, 41%);
+            text-decoration: none;
+            font-weight: bold;
+            border: 2px solid hsl(170, 75%, 41%);
+            padding: 0.2rem 0.5rem;
+            border-radius: 5px;
+            background: #e6f7f1;
+            transition: all 0.3s ease;
+        }
+
+        a:hover {
+            background: hsl(170, 75%, 41%);
+            color: white;
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideIn {
+            0% {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Life After Doping</h1>
+        <h2>Rebuilding a Future</h2>
+    </header>
+
+    <div class="container">
+        <!-- Career Options Section -->
+        <section>
+            <h3>Career Options</h3>
+            <ul>
+                <li><span>Sports Coaching:</span> Guide and train athletes while promoting clean sports.</li>
+                <li><span>Fitness Trainer:</span> Help individuals achieve their fitness goals naturally.</li>
+                <li><span>Anti-Doping Advocacy:</span> Educate young athletes about ethical sports practices in NADA or WADA.</li>
+                <li>
+                    <span>NADA or WADA:</span> Explore career options or volunteer opportunities. 
+                    <a href="https://nadaindia.yas.gov.in/career-opportunities/" target="_blank">Visit NADA</a>.
+                </li>
+                <li>
+                    <span>Sports Authority of India (SAI):</span> Apply for support staff or other job roles. 
+                    <a href="https://sportsauthorityofindia.nic.in/saijobs/" target="_blank">Visit SAI Jobs</a>.
+                </li>
+                <li><span>Police Force:</span> Roles as constables, sub-inspectors, or trainers in police academies.</li>
+            </ul>
+        </section>
+
+        <!-- Support and Rehabilitation Section -->
+        <section>
+            <h3>Support and Rehabilitation</h3>
+            <ul>
+                <li><span>Rehabilitation Programs:</span> Join counseling or rehabilitation initiatives.</li>
+                <li><span>Community Service:</span> Engage in programs to give back to society and rebuild trust.</li>
+                <li><span>Mentorship:</span> Share personal experiences to inspire and educate others.</li>
+                <li><span>Personal Trainer:</span> Help others achieve fitness goals in gyms or private settings.</li>
+                <li><span>Sports Rehabilitation Specialist:</span> Assist athletes recovering from injuries or doping impacts.</li>
+            </ul>
+        </section>
+
+        <!-- Educational Opportunities Section -->
+        <section>
+            <h3>Educational Opportunities</h3>
+            <ul>
+                <li><span>Professional Certifications:</span> Obtain credentials in fitness, sports science, or coaching.</li>
+                <li><span>Higher Education:</span> Pursue advanced degrees in sports management or health sciences.</li>
+                <li><span>Workshops and Seminars:</span> Attend events focused on ethical practices in sports.</li>
+            </ul>
+        </section>
+
+        <!-- Entrepreneurship Opportunities Section -->
+        <section>
+            <h3>Entrepreneurship Opportunities</h3>
+            <ul>
+                <li><span>Start a Sports Academy:</span> Focus on clean training for athletes.</li>
+                <li><span>Start an EdTech Company:</span> Provide certifications and education about anti-doping.</li>
+            </ul>
+        </section>
+    </div>
+</body>
+</html>

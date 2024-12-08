@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anti-Doping Education Course</title>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      background: linear-gradient(120deg,
+          hsl(170, 75%, 41%),
+          hsl(190, 60%, 60%));
+      min-height: 100vh;
+      padding: 2rem;
+
+      overflow: hidden;
+    }
+
+
+    .progress-bar-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 30px;
+      background: rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: hsl(170, 75%, 41%);
+      transition: width 0.2s ease;
+    }
+
+    .progress-percentage {
+      margin-left: 10px;
+      font-size: 1rem;
+      color: #fff;
+      font-weight: 600;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      padding: 0.5rem;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 1.5rem;
+      color: hsl(170, 75%, 41%);
+      margin-bottom: 1rem;
+    }
+
+    .module {
+      padding: 1rem;
+      background: #f8f8f8;
+      margin: 2rem 0;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      opacity: 0;
+      transform: translateX(-100%);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .module.active {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .module:nth-child(even) {
+      transform: translateX(100%);
+    }
+
+    .module h3 {
+      font-size: 1.3rem;
+      color: hsl(170, 75%, 41%);
+    }
+
+    .module p,
+    .module ul {
+      margin: 1rem 0;
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #555;
+    }
+
+    .module ul {
+      padding-left: 1.5rem;
+    }
+
+    .start-btn {
+      background: hsl(170, 75%, 41%);
+      color: #fff;
+      border: none;
+      padding: 15px 20px;
+      border-radius: 5px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      /* margin-bottom: 1.5rem; */
+    }
+
+    .start-btn:hover {
+      background: hsl(170, 65%, 35%);
+    }
+
+    .next-btn {
+      display: inline-block;
+      background: hsl(170, 75%, 41%);
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.3s;
+      margin-top: 1.5rem;
+    }
+
+    .next-btn:hover {
+      background: hsl(170, 65%, 35%);
+    }
+
+    .quiz {
+      margin-top: 20px;
+    }
+
+    .question {
+      margin-bottom: 10px;
+    }
+
+    .options {
+      margin-bottom: 20px;
+    }
+
+    .options button {
+      display: inline-block;
+      margin: 5px 0;
+      padding: 10px 15px;
+      font-size: 14px;
+      background: hsl(167, 89%, 38%);
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .options button:hover {
+      background: hsl(167, 89%, 38%);
+    }
+
+    .feedback {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    .correct {
+      color: green;
+    }
+
+    .wrong {
+      color: red;
+    }
+
+    .image-container {
+      display: flex;
+      /* Enables side-by-side alignment */
+      justify-content: space-around;
+      /* Adjust spacing between images */
+      align-items: center;
+      /* Align images vertically */
+    }
+
+    .image-container img {
+      max-width: 45%;
+      /* Restrict image width */
+      height: auto;
+      /* Maintain aspect ratio */
+      border: 2px solid #ccc;
+      /* Optional: Add border around images */
+      border-radius: 5px;
+      /* Optional: Rounded corners */
+    }
+
+
+    .start-btn {
+      background: hsl(170, 75%, 41%);
+      color: #fff;
+      border: none;
+      padding: 15px 30px;
+      border-radius: 5px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      margin-bottom: 1.5rem;
+    }
+
+    .start-btn:hover {
+      background: hsl(170, 65%, 35%);
+    }
+
+    .next-btn {
+      display: inline-block;
+      background: hsl(170, 75%, 41%);
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.3s;
+      margin-top: 1.5rem;
+    }
+
+    .next-btn:hover {
+      background: hsl(170, 65%, 35%);
+    }
+
+
+
+    .video-buttons button {
+      background: hsl(170, 75%, 41%);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      margin: 0 5px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.3s ease;
+    }
+
+    .video-buttons button:hover {
+      background: hsl(170, 65%, 35%);
+    }
+
+    /* Base styles */
+    .video-buttons {
+      margin: 0.5rem 0;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      /* Allows wrapping on small screens */
+    }
+
+    .video-buttons button {
+      background: hsl(170, 75%, 41%);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      margin: 0 5px 10px;
+      /* Adjust bottom margin for better spacing on small screens */
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.3s ease;
+    }
+
+    /* Media query for smaller screens */
+    @media (max-width: 600px) {
+      .video-buttons button {
+        font-size: 0.9rem;
+        /* Slightly smaller text size */
+        padding: 8px 15px;
+        /* Reduce padding for better fit */
+        margin: 5px;
+        /* Uniform margin around buttons */
+      }
+    }
+
+    video {
+      width: 70%;
+      height: 390px;
+      border-radius: 10px;
+      /* margin-bottom: 2rem; */
+    }
+
+    /* Media query for smaller screens */
+    @media (max-width: 768px) {
+      video {
+        width: 100%;
+        /* Set video width to 100% for smaller screens */
+        height: auto;
+        /* Adjust height to maintain aspect ratio */
+      }
+    }
+
+    /* Media query for very small screens (e.g., mobile devices) */
+    @media (max-width: 480px) {
+      video {
+        width: 100%;
+        /* Set video width to 100% for very small screens */
+        height: auto;
+        /* Adjust height to maintain aspect ratio */
+      }
+    }
+
+  #top-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: none; /* Hidden by default */
+    background-color: hsl(62, 87%, 60%);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    transition: opacity 0.3s, transform 0.3s;
+  }
+
+  #top-button:hover {
+    background-color: hsl(63, 83%, 60%);
+    transform: scale(1.1);
+  }
+
+
+    .btn {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: not-allowed;
+      position: relative;
+    }
+
+    .tooltip {
+      position: relative;
+      display: inline-block;
+    }
+
+    .tooltip .tooltip-text {
+      visibility: hidden;
+      width: 150px;
+      background-color: black;
+      color: #fff;
+      text-align: center;
+      padding: 5px;
+      border-radius: 5px;
+
+      /* Position the tooltip */
+      position: absolute;
+      bottom: 130%;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+
+      /* Animation */
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .tooltip:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .btn:enabled {
+      background-color: #28a745;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+
+
+<body style="text-align: justify;">
+
+
+
+  <!-- Progress Bar -->
+  <div class="progress-bar-container">
+    <div class="progress-bar" id="progress-bar"></div>
+    <div class="progress-percentage" id="progress-percentage">0%</div>
+  </div>
+
+  <div class="container" style="text-align: justify;">
+    <center> <a href="{{ url_for('index') }}"><img src="https://muthu-2005.github.io/SIH-Final-2024/pictures/logo.png" style="height: 50px;"
+          alt="Dopeshield"></a></center>
+    <h2>Course 1: Introduction to Anti-Doping Education</h2>
+    <!-- Video Player -->
+    <center> <video id="video-player" controls>
+        <source id="video-source" src="https://youtu.be/IjuSj6mlCJo?list=RDy3ZwlSBTd6I" type="video/mp4">
+        Your browser does not support the video tag.
+      </video></center>
+
+    <!-- Language Selection -->
+    <div class="video-buttons">
+      <button onclick="changeVideo('en')">English</button>
+      <button onclick="changeVideo('ka')">Kannada</button>
+      <button onclick="changeVideo('ta')">Tamil</button>
+      <button onclick="changeVideo('ml')">Malayalam</button>
+      <button onclick="changeVideo('tl')">Telgu</button>
+      <button onclick="changeVideo('hi')">Hindi</button>
+
+    </div>
+    <center><button class="start-btn" id="start-btn">Start Course</button></center>
+
+    <!-- Module 1 -->
+    <div class="module" id="module-1" style="text-align: justify;">
+      <h3>Module 1: What is Doping?</h3>
+      <!-- <img src="image-placeholder.jpg" alt="An athlete with a syringe and caution tape, symbolizing the risks of doping in sports." style="display: block; margin: 10px auto; max-width: 100%; height: auto;"> -->
+      <p><strong>Doping: A Threat to Fair Play</strong></p>
+      <p>
+        Doping, the use of performance-enhancing substances or methods, is a
+        serious issue in sports that undermines the integrity of competition.
+        It's a complex problem with far-reaching consequences.
+      </p>
+      <p><strong>Types of Doping:</strong></p>
+      <ul>
+        <li>
+          <strong>Substance Doping:</strong> This involves the use of banned
+          substances to enhance performance. Common substances include:
+          <ul>
+            <li>
+              <strong>Anabolic steroids:</strong> These synthetic hormones mimic the effects of testosterone, promoting
+              muscle growth and strength.
+            </li>
+            <li>
+              <strong>Stimulants:</strong> These substances increase alertness and reduce fatigue, such as amphetamines
+              and cocaine.
+            </li>
+            <li>
+              <strong>Diuretics:</strong>These drugs increase urine production, which can mask the presence of other
+              banned substances
+            </li>
+            <li>
+              <strong>Hormones:</strong> This includes substances like human growth hormone (HGH), which can increase
+              muscle mass and recovery time.
+            </li>
+          </ul>
+        </li>
+        <li>
+          <strong>Method Doping:</strong> Includes blood doping and gene
+          doping.Common methods include:
+        </li>
+        <ul>
+          <li>
+            <strong>Blood doping:</strong> This involves increasing the number of red blood cells in the body, which can
+            improve oxygen delivery to muscles.
+          </li>
+          <li>
+            <strong>Gene doping:</strong>This involves the genetic modification of cells to enhance athletic
+            performance.
+          </li>
+        </ul>
+        <center> <img src="https://github.com/dope-2024/sih/blob/main/Screenshot%202024-12-05%20234007.png?raw=true"
+            alt="doping" style="height: auto;width:100%;"></center>
+        <p><strong>Impact of Doping:</strong></p>
+        <p> Doping has serious consequences for both athletes and the sport itself:
+        </p>
+        <p>
+          <strong>Health Risks:</strong> Physical and psychological issues like
+          heart disease and anxiety.
+        </p>
+        <ul>
+          <li>
+            <strong>Physical:</strong> Doping can lead to a variety of health problems, including heart disease, liver
+            damage, kidney damage, and increased risk of cancer.
+
+          </li>
+          <li>
+            <strong>Psychological:</strong>Doping can lead to psychological issues such as addiction, depression, and
+            anxiety.
+
+          </li>
+        </ul>
+        <p>
+          <strong>Career Implications:</strong>
+        <ul>
+          <li>
+            <strong>Bans and Penalties:</strong>Athletes who are caught doping face severe penalties, including bans
+            from competition and forfeiture of medals and records.
+          </li>
+          <li>
+            <strong>Damaged Reputation:</strong>Doping scandals can tarnish an athlete's reputation and lead to loss of
+            sponsorships and endorsements.
+          </li>
+          <li>
+            <strong>Public Disgrace:</strong>Doping scandals can damage the reputation of the sport and erode public
+            trust.
+
+          </li>
+        </ul>
+        <p>To combat doping, international organizations like the World Anti-Doping Agency (WADA) have implemented
+          strict anti-doping rules and testing procedures. However, the fight against doping remains ongoing as new
+          substances and methods continue to emerge.
+        </p>
+        </p>
+        <p><strong>Case Study:</strong></p>
+        <center><strong>Ben Johnson(1988 Olympics)</strong></center>
+        <img
+          src="data:image/jpeg;base64,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"
+          alt="An athlete with a syringe and caution tape, symbolizing the risks of doping in sports." style="
+            display: block;
+            margin: 10px auto;
+            max-width: 100%;
+            height: auto;
+          " />
+        <p>
+          Ben Johnson's doping scandal at the 1988 Olympics highlights the
+          severe consequences of doping in sports.
+        </p>
+        <p><strong>The rise and fall:</strong></p>
+        <p>Ben Johnson's rise to fame came in the late 1980s as he shattered 100-meter sprint records, culminating in a
+          stunning gold medal at the 1988 Seoul Olympics with a world-record time of 9.79 seconds. However, his fall was
+          swift and dramatic; just days later, a doping scandal led to his disqualification, loss of the gold medal, and
+          a ban from competition.</p>
+        <p><strong>The role of pressure:</strong></p>
+        <p>The intense pressure Ben Johnson faced played a crucial role in his decision to use performance-enhancing
+          drugs. Competing in an era of fierce track and field rivalries, the expectations to succeed for his country,
+          combined with the lure of financial rewards, created immense stress. This pressure, both external and
+          internal, likely led him to seek shortcuts to stay competitive.</p>
+        <p><strong>Scenario Challenge: Energy Drink Dilemma</strong></p>
+        <p><strong>Scenario:</strong>
+          A popular energy drink brand has been accused of using a banned stimulant in their product. This stimulant has
+          been linked to serious health risks, including heart attacks and seizures.
+          Analyze this scenario and identify the potential risks associated with consuming this energy drink. Consider
+          the following questions:
+        </p>
+        <ul>
+          <li>
+            <strong>Health Risks:</strong> What are the potential health consequences of consuming this energy drink,
+            both short-term and long-term?
+          </li>
+          <li>
+            <strong>Legal Implications: </strong>What are the legal implications for the company if they are found to be
+            using a banned substance?
+          </li>
+          <li>
+            <strong>Consumer Trust:</strong>How could this scandal impact the company's reputation and consumer trust?
+          </li>
+          <li>
+            <strong>Regulatory Response: </strong>What actions might regulatory agencies take in response to this
+            situation?
+          </li>
+          <li>
+            <strong>Crisis Management: </strong>How should the company respond to this crisis to minimize damage to
+            their brand and reputation?
+          </li>
+        </ul>
+    </div>
+    <div class="module" id="module-scenario" style="text-align: justify; font-family: Arial, sans-serif;" <h2>Answers
+      for Scenario:</h2>
+      <div class="Scenario">
+        <ul>
+          <li>
+            <strong>Health Risks:</strong> Increased heart rate, blood pressure, anxiety, insomnia, and in severe cases,
+            heart attack, stroke, and seizures.
+          </li>
+          <li>
+            <strong>Legal Implications: </strong>Significant fines, product recalls, and potential lawsuits from
+            consumers who have suffered adverse health effects.
+          </li>
+          <li>
+            <strong>Consumer Trust: </strong>Loss of consumer trust, decreased sales, and negative brand image.
+          </li>
+          <li>
+            <strong>Regulatory Response: </strong>Product recall, investigations, and potential bans on the sale of the
+            product.
+          </li>
+          <li>
+            <strong>Crisis Management: </strong>Immediate product recall, transparent communication with consumers,
+            cooperation with regulatory agencies, and a public relations campaign to restore trust.
+          </li>
+        </ul>
+      </div>
+    </div>
+
+
+    <!-- Module 2 -->
+    <div class="module" id="module-2" style="text-align: justify; font-family: Arial, sans-serif;">
+      <h3>Module 2: Why is Anti-Doping Important?</h3>
+      <!-- <img src="image-placeholder.jpg" alt="An athlete with a syringe and caution tape, symbolizing the risks of doping in sports." style="display: block; margin: 10px auto; max-width: 100%; height: auto;"> -->
+      <p><strong>The Pervasive Threat of Doping in Sports</strong></p>
+      <p>
+        Doping, the use of performance-enhancing substances or methods, is a persistent issue that continues to plague
+        the world of sports. It not only undermines the very essence of fair play but also poses significant health
+        risks to athletes. Anti-doping measures are crucial to safeguard the integrity of sports, protect the health of
+        athletes, and ensure a level playing field for all competitors.
+
+      </p>
+      <p><strong>The Devastating Impact of Doping</strong></p>
+      <ul>
+        <li>
+          <strong>Compromising Athlete Health</strong>
+          <ul>
+            <li>
+              <strong>Physical Toll:</strong> Doping can lead to a range of serious health issues, including heart
+              problems, liver damage, kidney dysfunction, and increased cancer risk.
+            </li>
+            <li>
+              <strong>Psychological Distress:</strong> The immense pressure to perform, coupled with the potential for
+              addiction, can take a significant toll on an athlete's mental health, leading to depression, anxiety, and
+              substance abuse.
+            </li>
+          </ul>
+        </li>
+        <li>
+          <strong>Undermining Fair Competition</strong>
+        </li>
+        <ul>
+          <li>
+            <strong>Leveling the Playing Field:</strong>Anti-doping measures ensure that athletes compete based on their
+            natural abilities, hard work, and dedication, rather than resorting to artificial means.
+          </li>
+          <li>
+            <strong>Preserving the Spirit of Sport:</strong>Doping tarnishes the spirit of sportsmanship, which
+            emphasizes fair play, respect, and integrity.
+          </li>
+        </ul>
+        <li>
+          <strong> Damaging the Reputation of Sports</strong>
+          <ul>
+            <li>
+              <strong>Eroding Public Trust:</strong> Doping scandals can erode public trust in athletes, sports
+              organizations, and the integrity of the sport itself.
+            </li>
+            <li>
+              <strong>Financial Implications: </strong> Doping can have severe financial consequences, as sponsors and
+              fans may withdraw their support, leading to decreased revenue and potential economic losses.
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <p><strong>The Role of Anti-Doping Agencies</strong></p>
+      <p> To combat doping, various anti-doping agencies have been established worldwide, including the World
+        Anti-Doping Agency (WADA). These agencies work tirelessly to develop and enforce anti-doping rules, conduct drug
+        tests, and educate athletes about the dangers of doping.
+      </p>
+      <p>
+        <strong>The Future of Anti-Doping</strong>
+      </p>
+      <ul>
+        <li>
+          <strong>Enhance Technological Advancements:</strong> Develop advanced testing methods to detect new and
+          emerging doping substances and methods.
+        </li>
+        <li>
+          <strong>Strengthen International Cooperation:</strong> Foster collaboration among countries to share
+          information and coordinate anti-doping efforts.
+        </li>
+        <li>
+          <strong>Promote Education and Awareness:</strong> Educate athletes, coaches, and support staff about the
+          dangers of doping and the importance of clean sport.
+        </li>
+        <li>
+          <strong>Implement Stricter Penalties:</strong> Impose severe penalties on athletes who are found guilty of
+          doping, including bans, fines, and forfeiture of medals.
+
+        </li>
+      </ul>
+      <p>By working together, we can create a future where athletes compete fairly and honorably, inspiring future
+        generations and upholding the true spirit of sport.
+      </p>
+      <div class="image-container">
+        <img
+          src="data:image/png;base64,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"
+          alt="Image 1">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyjvuh2hE-ELv14kpNo_pTeq42fEehaNeSqQ&s"
+          alt="Image 2">
+      </div>
+    </div>
+    <div class="module" id="module-quiz" style="text-align: justify; "><h2>Quiz: why is
+      Anti-Doping Important?</h2>
+      <div class="quiz">
+        <div class="question" id="q1">
+          <p><strong>1. What is the primary goal of anti-doping measures?</strong></p>
+          <div class="options">
+            <button onclick="checkAnswer(1, 'A')">A. To increase the excitement of sporting events</button>
+            <button onclick="checkAnswer(1, 'B')">B. To protect the health of athletes and ensure fair
+              competition</button>
+            <button onclick="checkAnswer(1, 'C')">C. To boost the popularity of specific sports</button>
+            <button onclick="checkAnswer(1, 'D')">D. To generate more revenue for sports organizations</button>
+          </div>
+          <div id="feedback1" class="feedback"></div>
+        </div>
+
+        <div class="question" id="q2">
+          <p><strong>2. Which of the following is NOT a potential health risk associated with doping?</strong></p>
+          <div class="options">
+            <button onclick="checkAnswer(2, 'A')">A. Increased muscle mass</button>
+            <button onclick="checkAnswer(2, 'B')">B. Heart problems</button>
+            <button onclick="checkAnswer(2, 'C')">C. Liver damage</button>
+            <button onclick="checkAnswer(2, 'D')">D. Increased risk of infection</button>
+          </div>
+          <div id="feedback2" class="feedback"></div>
+        </div>
+
+        <div class="question" id="q3">
+          <p><strong>3. What international organization is responsible for coordinating the global fight against
+              doping?</strong></p>
+          <div class="options">
+            <button onclick="checkAnswer(3, 'A')">A. International Olympic Committee (IOC)</button>
+            <button onclick="checkAnswer(3, 'B')">B. World Anti-Doping Agency (WADA)</button>
+            <button onclick="checkAnswer(3, 'C')">C. FIFA</button>
+            <button onclick="checkAnswer(3, 'D')">D. UEFA</button>
+          </div>
+          <div id="feedback3" class="feedback"></div>
+        </div>
+
+        <div class="question" id="q4">
+          <p><strong>4. Which of the following is a method of doping?</strong></p>
+          <div class="options">
+            <button onclick="checkAnswer(4, 'A')">A. Blood doping</button>
+            <button onclick="checkAnswer(4, 'B')">B. Gene doping</button>
+            <button onclick="checkAnswer(4, 'C')">C. Both A and B</button>
+            <button onclick="checkAnswer(4, 'D')">D. None of the above</button>
+          </div>
+          <div id="feedback4" class="feedback"></div>
+        </div>
+
+        <div class="question" id="q5">
+          <p><strong>5. What is the term used to describe the practice of using banned substances or methods to enhance
+              athletic performance?</strong></p>
+          <div class="options">
+            <button onclick="checkAnswer(5, 'A')">A. Cheating</button>
+            <button onclick="checkAnswer(5, 'B')">B. Doping</button>
+            <button onclick="checkAnswer(5, 'C')">C. Fraud</button>
+            <button onclick="checkAnswer(5, 'D')">D. Deception</button>
+          </div>
+          <div id="feedback5" class="feedback"></div>
+        </div>
+      </div>
+    </div>
+    <script>
+      const answers = {
+        1: 'B',
+        2: 'A',
+        3: 'B',
+        4: 'C',
+        5: 'B'
+      };
+
+      function checkAnswer(questionNumber, selectedOption) {
+        const feedback = document.getElementById(`feedback${questionNumber}`);
+        if (selectedOption === answers[questionNumber]) {
+          feedback.textContent = "Correct!";
+          feedback.className = "feedback correct";
+        } else {
+          feedback.textContent = "Wrong!";
+          feedback.className = "feedback wrong";
+        }
+      }
+    </script>
+    <!-- Module 3 -->
+    <div class="module" id="module-3" style="text-align: justify; font-family: Arial, sans-serif;">
+      <h3>Module 3: Global Anti-Doping Efforts</h3>
+      <h3>The Fight Against Doping</h3>
+      <p>The fight against doping is a complex and ongoing battle that requires a global, coordinated approach. Various
+        international organizations, governments, and sports governing bodies have joined forces to combat this menace
+        and ensure the integrity of sports.</p>
+
+      <h3>Key Organizations in the Fight Against Doping</h3>
+      <ul>
+        <li>
+          <h3>World Anti-Doping Agency (WADA):</h3>
+          <ul>
+            <li>WADA is a foundation initiated by the International Olympic Committee (IOC) and international sports
+              federations.</li>
+            <li>It is responsible for:
+              <ul>
+                <li><strong>Developing the World Anti-Doping Code:</strong> This code sets the international standard
+                  for anti-doping policies and procedures.</li>
+                <li><strong>Coordinating Anti-Doping Activities:</strong> WADA oversees global anti-doping efforts,
+                  including research, education, and testing.</li>
+                <li><strong>Managing the World Anti-Doping Laboratory Accreditation Scheme (WADA LAAS):</strong> This
+                  scheme accredits laboratories worldwide to conduct anti-doping tests.</li>
+              </ul>
+            </li>
+          </ul>
+          <img
+            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAw1BMVEX///8lshYAAADH6sTg890ztiUXsABvzGU4uirz8/P6+vrt7e1NTU0hISE3Nzfx8fESEhK5ubnn5+dSUlLMzMwMDAza2tqNjY1ra2vT09M/Pz+x36yfn5/CwsKCgoK7u7tjY2MwMDAZGRlsxmWEhISsrKyXl5daWloqKiqUlJSenp4cHBxFRUVycnJ6enpgYGD0+/Pq9+lLvz+F0n95zXGR1Yqo36WO1olUwUmj3p3U7tFFujhcw1W/6bvZ8dcAqgB9zXZIN52oAAANWklEQVR4nO2ca2OiOhCGKW1tCV4QEcSCihUv1Vp7c7vtdrv//1edZCZAUDyiq611837YpSEEeZwkk8mgokhJSUlJSUlJSUlJSUlJSUlJSUlJSUlJSUlJSUlJSUlJSUlJSUlJSUlJSUlJSUlJ7U9tLww9PVVUpUUh+aLPc9AqqlRWqihgRdoXfZ6DVm0ZVlnCWiEJawNJWBvooGDdn+1YGfcgNpWeHNr4pBo7hFmt4t+MRv2qqSTlFUVn/4mwzHA0urHIF8J6Ojnfqd4y7qEN64Z6B4dt1TAM1YFjhx7XKUOtD/ObqpamZlRH9bwxPRuQGJbmdKHSwJx8GayLwskuVbjMukmDPZ4eH6lNKG2yR1cUe6LGGvu0vApMEF8MS6tFdYLhscA6yYQFj884kCE+MLMgkx14illSRVm8troAq6GmdbywgMuUHtj8UUN6HCI1NKGJM7pD26qIsOoRLB9PTm8iaMcLC/zwgI7lN/xROwraSqBY8LfDnh0hjeiYBb0tdC3LjQZ4QBrYtJZVP3ZYI973ooFnSBStS/9vYfcaYC0HTnFYfGpEWESNOrKieMcOy8bxSWdWAd3NVVx8/FJCAXurWmkL/DgssL8ylmjHDouMGSXscwCuj2akoclEUQWYF22AdcuLAJYbivy+zs/6HFjKLYzWPfpvCcafCQxjA6WSMhMIMfj+ClgdXtQ8dlgweLtNGKZuYvu6URSAZfNa4JyaGZYFRTVeND52WGBBHfaYbRytphxSmUNjghMqWYZlwWhWrwi1jhkW9jD+lF1+WKLlfXZggGmRIo5MGbAUg/3Xg5LB8cMacUBFBQcwFXpkNAMO2xViIQUfu+wCrB6cc0xiN9RvBqsQKzcslwNiPS7kx212gvupQ76YbiiZsHRui4GhHiSsQrY+CoWH68fn+Xz+/OPpZQnXKlgKOt4QQNBTDzxVBdW0bFjiGujAYDEolxfXop4emX7+nL+/ns3iq2dn87dCPljY9+pwjFYUzW5eN0bQipc9DX4y3rCIzFF1DsrPKpz8evr14z5nA7OnQi5YVqfRaHRw3gvZ8V07OmX2a0PDGE96Lvzp0rMdj58bsT9g/Len5box7PhKj17c+JKtsEVY1KZesqKdq0VStFbC+n/ptm2ufX4tird+lVKw6Ij0/Hqa16Yi3eeyrGOQCKtw8fi+TRuiaf0rsAqF2fr6WTr792AV5qdbwlJ+Ff45WBfbsto5LNgv2/Ls31ReJ7Eb/joQy9LqsUeWJebEl3I2BeHG+q78jNQA/7LV+L57WOB8rjxdPwhYdIh/+L1FG6LvsD0s2xmNHHBLvwcsqtMt2nj/2AUsWOWwPbKdwoKm9gTrfL55E7PLnVhWAotUmVZW3AQWadOW2uvr5dOiZX1sTivnckd3LcsyhQL2fduW5WIANIa12gxYZZKGRWiZZceXkFRFUSS5n7AGX/hznZYW0ufXP65Of5/dz2b393lmx9l1roW0CzFlVW2C7SiDMpXShr2HUo8+xghTGIbNcuApNXqyudhCG/Z+gr4wG1ZGEIFQgxZ+CY2AXkiqWNGLbzQhSoe1yM+UHCK2OOxjpRzQlqMOGLQ6uXw7KVw+zV8Zttn92etrJrrZVb4QTT+JRE2YJUGQJi4sEjGq5eBm4kILcYVON4LlJ7Ed7L8snlOP4rDqgEQ3IrAjZDjx/aDFVvRng1XiEf4NYaXBUWxvD28nHx8fhbdf13/+/Hn8+QxBrXtqee8/3vIF/0JVEPuoZTWlnghrlAWrl76AwUrHA28UIdDPIfAb1RGWICf9/TEZfw1ryeQEnWfGlTNhEcyUGXTQFNoJrCEPE5M1lmXx6tH+fylOMhkPeBqOlcCqcTbVJVhDHrAlPPivDgf1vcDKpUxY8KglNq7AdkMnglXToy+4bfrQSXqW75sZsDDFxqfcpxGsDhyw7ofJEc0IVoO26hq8KAXrTo92TnzcEWffG/EOC5Z/12h0IKEB9g/HGsIKYKCFTZ2R6DrEsEg0pVWiJ4t4l7gHVU2+DNVFWBMowg0SOwUrgDNgnB4OZjgJ9A8KFhOxqp5zi91IR1hIBiA5WbCiodpF2xliQzbCChMw3MpGfPsfiwbYnAgLG4cLHUyywEmUHBisdmrs5bAwGmDlgAU9JdrDQNcBey0v4rkQRWwcNMJmRVh4PwDfI4mp4ZR5OLA6akoclpkbVsjrgMoAa5p0Iw6riLD4Q98gXxEWelLVBFYE9qAsK3Zw1O4msKYstdkwsi2rJ/LjKUkirD5angirIsDChADssu1DgoXDc7Pvu6a5CSxNR/HH4cls4phV5HeAQX+UeisqY8xKwYJLAmZa9viQYMHj4fLF2QRWIpz6/ARMiftJfnIDSglg1YQidxWsFp9B660R7+x7hbXiupWwmBEQ7jWvhtU0TTMDFmKoU6Mh6CeVomwaRgudqmHkZ02pw2HDSjMgq2Fx1y3W38HCzIYMMb/9/OHl5eX8ZNmFz4KFRjDotSK/PROWH33sSgYsfnLQiF7GiFNNJtwdYV4Yn3JLDT6hhMrqbqho8RII3PqtYbHFzMPFxfPz8/xqSe+nv++5szh7nb8U1sMS12z1lbAq/wcrnhnVGBZPW47UU5bWhqxDrrYshfCVdNFklmnk2OzOynUoXL/m37o4vVwfonHjzz8drIQVJ8lnwkpeseg0OazUSrqvcFhG/N5KkbkKQtRhARaBV6danoWuwzhHODUNC7rehtsW9w/rg382DjBGP/Ibs2Ap7doYz2bBUjwYhrp9ePAxFJmtLrRbv0V/E12HvsErKqth9RS/WSxORlACfTxYvF+G0hsWT7SLbbwflivXwWxXqywoqaEvUMH/mAg75F+rcHZ5CCFutWpp6bOaXcVCEPezNCsp45W15Bq4n8anS/ZiugvEpzmeNA1rm+0KRbnayYbFDiQ6pWuFL6OVBnycd3Nckk4M2e4zijsW3wdW9NIVqrf+gvSO9MfDllvSQhj++8BS2saGrMRch6fTbffXHr8lLMV0mmy4qpdv8/RBJWVZmyX8iXo6EFi2S7XRFSa9wM5tIzGswvPGny3Wy4HA2rcSy7p82jY/aze5Dt9Aqcy/h59btbGbXIdvoLSf9XC1TRaNuD78d2Cx5c4j24GebdIh54Jh/UuwGK+Th7eHk7en+VlOYKf5XhqgSw4qslCwOBGRjDJWSNZW+gytimdRG3t7vMoBbJ7vdRQt7AT1erfoxAmefqNU7048Yk9brSnGgm2nOK4bzakPKEiLylPcKb0wmMbXWb1Jt26Upyzs12bX8uQknVXvb8shl/4vUloonLxd/PlJhWGt09NXSK9Jrp6dLl6/ApY1jJ1l3GTQog2fIoQ+WaaCFmdqqDWGBnLainGaBDLRk1/DGNgYL+DpR2He5fD2WhdWLggBU4iLXr49/Lp+/Hn1/v4+//OQ862wJKDFlxakpqbkUTYD4W/D5bC6SRkDqAdCpbGJrwCjHwr0/S+FtYIfh7d8MhsWrvCH3LzcONBXilh4cXSvhCs2Q+fZkiqPrqrw0z+cMW+oJmyIwe9E7PllsU/ZN+SxI9OEV8ppX8EnC3zTDuscFu623Fm0CHDdRrCKvu1j8F7nsdGGa9qYH+JCy7CvD9d39srqk364pxQEw36MLeD7D2b8kBRWJzKeqEhDWBM22JvcImsJkQZiB4xsegAbC48AFqloWsW0bSscgSFpHtoO6BZhAY6+36ayYGBq4w67laDxcU8D50W7OBjUHExpYNsPQYz/m8Ni71/eJfOhqk0FM4BZLEyH4qAIYHVxFIIxzgcDC1IuFlw3JuJG7v70ObD4yBTDaqE14Tkgk5ovsWeKiS5gij70z0G66QmaH7SyXy/rM39sTITlJWMP7gwjrPqkGavsAyyezYCwXKEkEpyZ4v70ZrGszfUZsPD32LqdXj+s4piFQzg4RQgyhB5W0kBEN3Xd5E6pCAt/OIS7By6+78UvhN64Z1aflxhSshM0FQUHMM/3eTaShz9lwH3Ku3K5GdjLloWJvEJqJNtzBpuCZm4z7v09YcFQY3UBjb7UMT3MSh/aMRnuOqRgYQbbmPU2/MFENg3CaCWiPgJY6o3fjvK3dfGnL7oIC10poxWGuGqcZnRD3pLRC29wt49hi3MkNtiqOGBYRFzQcVjE4RNkw0NYC3keXT0L1kKmPy6bo6V1LePW3w+W0OmKSY6sPbqb1G597EbMjRBBBJaSCUvIuKSc0ePyDXz1YM/uO8DarU4y7xJyj/RO47BGjuOMMM29Ez+oFcUdSi2GE2Dx5G1wSiEPPs57bsY/oG+aYLo7exV6pX6f7ljZtzGrvVbrhpqL5VMRdCVhGxhfj8AHJW7YarUcn6ens6o8Q9Rs+36b/zyz5dG2+r4QYADjLO+J0NcLQ3o1p48DzmT9FStkdjoNNEhnfeVvKiL8oLK6+BvmmyhZU+6/F36ZTPElutWv+K5VDOt4DYtK73GHYnz7NzbBYXX3vYb+aum+R1X9uxhUhbXhhUfcB6WkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKRy6T9kjS7BWzN+hAAAAABJRU5ErkJggg=="
+            alt="WADA logo or image" style="width:100%; max-width:300px;">
+        </li>
+
+        <li>
+          <h3>National Anti-Doping Agencies (NADAs):</h3>
+          <ul>
+            <li>NADAs are national organizations responsible for implementing and enforcing anti-doping rules within
+              their respective countries.</li>
+            <li>They work closely with WADA to ensure compliance with the World Anti-Doping Code.</li>
+            <li><strong>Example: National Anti-Doping Agency of India (NADA):</strong>
+              <ul>
+                <li><strong>Conducting Anti-Doping Tests:</strong> NADA conducts out-of-competition and in-competition
+                  tests on Indian athletes.</li>
+                <li><strong>Educating Athletes:</strong> NADA organizes educational programs to raise awareness about
+                  the dangers of doping.</li>
+                <li><strong>Investigating Doping Cases:</strong> NADA investigates suspected doping cases and imposes
+                  sanctions on athletes found guilty.</li>
+              </ul>
+            </li>
+          </ul>
+          <img
+            src="data:image/jpeg;base64,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"
+            alt="NADA logo or image" style="width:100%; max-width:300px;">
+        </li>
+      </ul>
+
+      <h3>Challenges in Anti-Doping Efforts</h3>
+      <ul>
+        <li><strong>Evolving Doping Methods:</strong> Doping techniques are constantly evolving, making it challenging
+          to detect new substances and methods.</li>
+        <li><strong>Financial Constraints:</strong> Anti-doping programs require significant financial resources for
+          research, testing, and education.</li>
+        <li><strong>Legal and Ethical Issues:</strong> Balancing the rights of athletes with the need to protect the
+          integrity of sport can be complex.</li>
+        <li><strong>Cultural Differences:</strong> Different countries have varying attitudes towards doping, making it
+          difficult to enforce uniform standards.</li>
+      </ul>
+
+      <h3>The Future of Anti-Doping</h3>
+      <ul>
+        <li><strong>Advancement in Technology:</strong> Continued development of advanced testing methods to detect new
+          doping substances and methods.</li>
+        <li><strong>Strengthened International Cooperation:</strong> Enhanced collaboration among countries to share
+          information and coordinate anti-doping efforts.</li>
+        <li><strong>Education and Awareness:</strong> Increased education and awareness campaigns to educate athletes,
+          coaches, and support staff about the dangers of doping.</li>
+        <li><strong>Stricter Enforcement:</strong> Stricter penalties for doping offenses to deter athletes from using
+          performance-enhancing substances.</li>
+      </ul>
+
+      <p>By working together, we can create a future where athletes compete fairly and honorably, inspiring future
+        generations and upholding the true spirit of sport.</p>
+
+    </div>
+    <br>
+
+    <center>
+      <div class="tooltip">
+        <a href="/certificate"><button class="btn" id="btn" disabled>Complete the course</button></a>
+        <span class="tooltip-text" id="tooltip-text">Time Remaining : 15:00</span>
+      </div>
+    </center>
+    <button id="top-button" title="Go to Top">↑ Top</button>
+
+    <script>
+      // Get button references
+      // Ensure scrolling is disabled on page load
+      document.body.style.overflow = "hidden";
+
+      // Get button references
+      const startBtn = document.getElementById("start-btn");
+      const completeBtn = document.getElementById("btn");
+
+      // Event listener for the start button
+      startBtn.addEventListener("click", () => {
+        // Enable scrolling
+        document.body.style.overflow = "auto"; // Enable scrolling when the start button is clicked
+
+        // Show the "Complete Course" button
+        completeBtn.style.display = "inline-block";
+
+        // Hide the "Start Course" button
+        startBtn.style.display = "none";
+      });
+
+      const btn = document.getElementById("btn");
+      const tooltipText = document.getElementById("tooltip-text");
+
+      let remainingTime = 15*60; // 15 minutes in seconds
+
+      // Format time into MM:SS
+      const formatTime = (time) => {
+        const minutes = Math.floor(time / 60);
+        const seconds = time % 60;
+        return `${minutes.toString().padStart(2, "0")}:${seconds
+          .toString()
+          .padStart(2, "0")}`;
+      };
+
+      // Update the tooltip text and enable the button when time is up
+      const updateTimer = () => {
+        if (remainingTime > 0) {
+          remainingTime--;
+          tooltipText.textContent = `Time Remaining to complete the course: ${formatTime(remainingTime)}`;
+        } else {
+          clearInterval(timerInterval);
+          btn.disabled = false;
+          btn.textContent = "✅ Course Completed";
+          btn.style.cursor = "pointer";
+          tooltipText.textContent = "Course is now complete!";
+        }
+      };
+      const topButton = document.getElementById("top-button");
+
+// Show the button when the user scrolls down 100px
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 100) {
+    topButton.style.display = "block";
+  } else {
+    topButton.style.display = "none";
+  }
+});
+
+// Scroll to the top when the button is clicked
+topButton.addEventListener("click", () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth", // Smooth scroll effect
+  });
+});
+      // Start the timer
+      const timerInterval = setInterval(updateTimer, 1000);
+
+
+      const videoPlayer = document.getElementById('video-player');
+      const videoSource = document.getElementById('video-source');
+      const modules = document.querySelectorAll('.module');
+      const progressBar = document.getElementById('progress-bar');
+      const progressPercentage = document.getElementById('progress-percentage');
+      const startButton = document.getElementById('start-btn');
+      let courseStarted = false; // Flag to check if the course has started
+
+      // Start course
+      startButton.addEventListener('click', () => {
+        startButton.style.display = 'none'; // Hide start button
+        modules[0].classList.add('active'); // Show the first module
+        courseStarted = true; // Set the flag to true
+      });
+
+      // Update progress bar and module animation on scroll
+      window.addEventListener('scroll', () => {
+        if (!courseStarted) return; // Do nothing if the course hasn't started
+
+        let totalHeight = document.body.scrollHeight - window.innerHeight;
+        let scrollPosition = window.scrollY;
+        let scrollPercentage = (scrollPosition / totalHeight) * 100;
+
+        // Update progress bar width and percentage text
+        progressBar.style.width = scrollPercentage + '%';
+        progressPercentage.textContent = Math.min(Math.round(scrollPercentage), 100) + '%';
+
+        modules.forEach((module, index) => {
+          const rect = module.getBoundingClientRect();
+          if (rect.top >= 0 && rect.top <= window.innerHeight / 2) {
+            if (index % 2 === 0) {
+              // Modules with even index (Module 1, Module 3): Slide from the left
+              module.style.transform = "translateX(0)";
+            } else {
+              // Modules with odd index (Module 2): Slide from the right
+              module.style.transform = "translateX(0)";
+            }
+            module.classList.add('active');
+          }
+        });
+      });
+
+      // Change Video based on Language Button
+      function changeVideo(language) {
+        const videoMap = {
+          'en': '{{ url_for('static', filename='video/eng/en1.mp4') }}',
+          'ta': '{{ url_for('static', filename='video/tam/ta1.mp4') }}',
+          'ka': '{{ url_for('static', filename='video/ka/ka1.mp4') }}',
+          'ml': '{{ url_for('static', filename='video/ml/ml1.mp4') }}',
+           'hi': '{{ url_for('static', filename='video/hi/hi1.mp4') }}',
+            'tl': '{{ url_for('static', filename='video/tl/tl1.mp4') }}'
+        };
+        videoSource.src = videoMap[language];
+        videoPlayer.load(); // Reload the video player
+        videoPlayer.play(); // Start playing the new video
+      }
+    </script>
+<style>
+  #myid {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      z-index: 1000;
+      padding: 8px 15px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 14px;
+      background-color: #3498db;
+      color: white;
+      border-radius: 20px;
+      text-align: center;
+      cursor: pointer;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+
+  #language-options {
+      display: none;
+      position: absolute;
+      top: 50px;
+      right: 10px;
+      z-index: 999;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      padding: 10px;
+  }
+
+  #language-options.active {
+      display: block;
+  }
+
+  .goog-te-combo {
+      width: 100%;
+      padding: 8px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 14px;
+      border-radius: 5px;
+      border: 1px solid #ddd;
+  }
+
+  @media (max-width: 768px) {
+      #myid {
+          font-size: 12px;
+          padding: 6px 12px;
+      }
+
+      #language-options {
+          top: 40px;
+      }
+  }
+
+  @media (max-width: 480px) {
+      #myid {
+          font-size: 10px;
+          padding: 4px 10px;
+      }
+
+      #language-options {
+          top: 30px;
+      }
+  }
+</style>
+
+<script>
+  function loadGoogleTranslate() {
+      new google.translate.TranslateElement({
+          pageLanguage: 'en',
+          includedLanguages: 'en,hi,ta,ml,kn,te',
+          layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+      }, 'language-options');
+  }
+
+  function toggleLanguageOptions() {
+      const options = document.getElementById('language-options');
+      options.classList.toggle('active');
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+      const observer = new MutationObserver(() => {
+          const translateDropdown = document.querySelector('.goog-te-combo');
+          if (translateDropdown && translateDropdown.value !== '') {
+              document.getElementById('language-options').classList.remove('active');
+          }
+      });
+
+      observer.observe(document.body, { childList: true, subtree: true });
+  });
+</script>
+
+<div id="myid" onclick="toggleLanguageOptions()">Choose Language</div>
+<div id="language-options"></div>
+<script src="https://translate.google.com/translate_a/element.js?cb=loadGoogleTranslate"></script>
+
+</body>
+
+</html>

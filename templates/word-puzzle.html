@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ethics Enigma</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<style>
+    html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        font-family: "Poppins", sans-serif;
+        background-color: hsl(168, 56%, 89%);
+        color: #333;
+    }
+
+    header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 20px;
+        background-color: #f8f9fa;
+        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    header .logo {
+        display: flex;
+        align-items: center;
+    }
+
+    header .logo img {
+        height: 100px;
+    }
+
+    .puzzle-container {
+        display: grid;
+        grid-template-columns: repeat(4, 100px);
+        grid-gap: 5px;
+        margin: 20px auto;
+        width: 420px;
+    }
+
+    .puzzle-piece, .puzzle-slot {
+        width: 100px;
+        height: 100px;
+        border: 2px solid #333;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #fff;
+        font-size: 20px;
+        cursor: pointer;
+        user-select: none;
+    }
+
+    .puzzle-piece {
+        background-color: #007bff;
+        color: white;
+        font-size: 18px;
+        border-radius: 20px;
+    }
+
+    .puzzle-slot {
+        background-color: #eaeaea;
+        border-radius: 20px;
+    }
+
+    .puzzle-piece.correct {
+        background-color: #28a745;
+        cursor: default;
+    }
+
+    #result {
+        margin-top: 20px;
+        font-size: 24px;
+        text-align: center;
+    }
+
+    @media (max-width: 768px) {
+        .puzzle-container {
+            grid-template-columns: repeat(3, 100px);
+            width: 350px;
+        }
+
+        .puzzle-piece, .puzzle-slot {
+            width: 90px;
+            height: 90px;
+            font-size: 16px;
+        }
+
+        #result {
+            font-size: 20px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .puzzle-container {
+            grid-template-columns: repeat(2, 100px);
+            width: 220px;
+        }
+
+        .puzzle-piece, .puzzle-slot {
+            width: 80px;
+            height: 80px;
+            font-size: 14px;
+        }
+
+        #result {
+            font-size: 18px;
+        }
+    }
+</style>
+<body>
+    <header>
+        <div class="logo">
+            <a href="../index.html"><img src="pictures/logo.png" alt="Coconut Company Logo"></a>
+        </div>
+    </header>
+
+    <center><h1>Ethics Enigma</h1></center>
+
+    <p style="text-align: center;">Drag and drop the puzzle pieces into the correct slots to complete the anti-doping message!</p>
+    
+    <h3 id="question-number" style="margin-left: 35%;">Question 1</h3>
+    <div class="puzzle-container" id="puzzle-container"></div>
+
+    <div id="result"></div>
+
+    <!-- Audio Elements -->
+    <audio id="correct-sound" src="music/correct.mp3"></audio>
+    <audio id="error-sound" src="music/incorrect.mp3"></audio>
+
+    <script>
+        const puzzleContainer = document.getElementById('puzzle-container');
+        const resultDiv = document.getElementById('result');
+        const questionNumberHeader = document.getElementById('question-number');
+        const questions = [
+            { slots: ["To", "!", "Say No", "Doping"], pieces: ["Say No", "To", "Doping", "!"] },
+            { slots: ["Integrity", "Win", "!", "With"], pieces: ["Win", "With", "Integrity", "!"] },
+            { slots: ["Stay", "Play", "Safe", "Clean"], pieces: ["Play", "Clean", "Stay", "Safe"] },
+            { slots: ["Be", "Strong", "Avoid", "Drugs"], pieces: ["Avoid", "Drugs", "Be", "Strong"] },
+            { slots: ["Say No", "Focused", "Stay", "To Doping"], pieces: ["Stay", "Focused", "Say No", "To Doping"] }
+        ];
+        
+        let score = 0;
+        let currentQuestionIndex = 0;
+        let startTime;
+        let questionTimes = [];
+        
+        function updateQuestionNumber() {
+            questionNumberHeader.textContent = `Question ${currentQuestionIndex + 1}`;
+        }
+        
+        function loadQuestion() {
+            const question = questions[currentQuestionIndex];
+            updateQuestionNumber();
+            puzzleContainer.innerHTML = '';
+            resultDiv.textContent = '';
+        
+            // Start timer for this question
+            startTime = Date.now();
+        
+            // Add slots
+            question.slots.forEach((slot, index) => {
+                const div = document.createElement('div');
+                div.classList.add('puzzle-slot');
+                div.setAttribute('data-piece', index + 1);
+                const slotNumber = document.createElement('span');
+                slotNumber.textContent = "Slot " + (index + 1);
+                slotNumber.style.color = '#aaa';
+                slotNumber.style.fontSize = '14px';
+                div.style.position = 'relative';
+                div.appendChild(slotNumber);
+                puzzleContainer.appendChild(div);
+            });
+        
+            // Add pieces (shuffled)
+            const shuffledPieces = question.pieces
+                .map((piece, index) => ({ piece, index: index + 1 }))
+                .sort(() => Math.random() - 0.5);
+        
+            shuffledPieces.forEach(({ piece, index }) => {
+                const div = document.createElement('div');
+                div.classList.add('puzzle-piece');
+                div.setAttribute('draggable', 'true');
+                div.setAttribute('data-piece', index);
+                div.textContent = piece;
+                puzzleContainer.appendChild(div);
+            });
+        
+            enableDragAndDrop();
+        }
+        
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                Swal.fire({
+                    title: 'Welcome to Ethics Enigma',
+                    text: 'Drag and drop the puzzle pieces into the correct slots to complete the anti-doping message!',
+                    icon: 'info',
+                    confirmButtonText: 'Got it!'
+                }).then(() => {
+                    loadQuestion(); // Start the game after the user acknowledges
+                });
+            }, 1000);
+        });
+        
+        function enableDragAndDrop() {
+            const puzzleSlots = document.querySelectorAll('.puzzle-slot');
+            const puzzlePieces = document.querySelectorAll('.puzzle-piece');
+        
+            puzzlePieces.forEach(piece => {
+                piece.addEventListener('dragstart', dragStart);
+            });
+        
+            puzzleSlots.forEach(slot => {
+                slot.addEventListener('dragover', dragOver);
+                slot.addEventListener('drop', dropPiece);
+            });
+        }
+        
+        function dragStart(e) {
+            e.dataTransfer.setData('text/plain', e.target.getAttribute('data-piece'));
+        }
+        
+        function dragOver(e) {
+            e.preventDefault();
+        }
+        
+        function playSound(soundId) {
+            const sound = document.getElementById(soundId);
+            if (sound) {
+                sound.currentTime = 0;
+                sound.play();
+            }
+        }
+        
+        function dropPiece(e) {
+            e.preventDefault();
+        
+            const droppedPiece = e.dataTransfer.getData('text/plain');
+            const targetSlot = e.target.closest('.puzzle-slot');
+        
+            if (targetSlot && targetSlot.getAttribute('data-piece') === droppedPiece) {
+                const piece = document.querySelector(`.puzzle-piece[data-piece='${droppedPiece}']`);
+                targetSlot.innerHTML = '';
+                targetSlot.appendChild(piece);
+                piece.classList.add('correct');
+                piece.setAttribute('draggable', 'false');
+                playSound('correct-sound');
+        
+                if (document.querySelectorAll('.puzzle-piece.correct').length === 4) {
+                    const timeTakenForQuestion = ((Date.now() - startTime) / 1000).toFixed(2);
+                    questionTimes.push(timeTakenForQuestion);
+                    score++;
+        
+                    if (currentQuestionIndex < questions.length - 1) {
+                        currentQuestionIndex++;
+                        setTimeout(() => {
+                            Swal.fire({
+                                title: 'Correct!',
+                                text: `Great job! Moving to question ${currentQuestionIndex + 1}.`,
+                                icon: 'success',
+                                confirmButtonText: 'Next Question'
+                            }).then(() => {
+                                loadQuestion();
+                            });
+                        }, 500);
+                    } else {
+                        setTimeout(() => {
+                            Swal.fire({
+                                title: 'Congratulations!',
+                                text: `You completed all questions! Final score: ${score}`,
+                                icon: 'success',
+                                confirmButtonText: 'Submit Score'
+                            }).then(() => {
+                                finishGame();
+                            });
+                        }, 500);
+                    }
+                }
+            } else {
+                playSound('error-sound');
+            }
+        }
+    
+        function finishGame() {
+            const totalTime = questionTimes.reduce((total, time) => total + parseFloat(time), 0);
+            submitGameScore(score, totalTime);
+        }
+    
+        
+    function submitGameScore(gameScore, timeElapsed) {
+        fetch('/submit_game_score', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                game_score: gameScore,
+                time_elapsed: timeElapsed,
+            }),
+            credentials: 'include', // Send cookies with the request
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'success') {
+                Swal.fire({
+                    title: 'Score Submitted!',
+                    text: 'Your score has been successfully submitted.',
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                });
+            } else {
+                Swal.fire({
+                    title: 'Error',
+                    text: data.message,
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                });
+            }
+        })
+        .catch(error => console.error('Fetch error:', error));
+    }
+
+
+    
+        loadQuestion();
+    </script>
+    
+
+    
+</body>
+</html>

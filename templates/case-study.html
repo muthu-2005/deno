@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Athlete Profiles</title>
+    <link rel="stylesheet" href="styles.css">
+    <link
+    href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;500;600;700;800&family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<style>
+ html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: "Poppins", sans-serif;
+            background-color: hsl(168, 56%, 89%);
+            color: #333;
+        }
+
+        header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Ensures elements in the header are spaced properly */
+    padding: 10px 20px;
+    background-color: white; /* Light background for the header */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Optional: Adds a slight shadow */
+}
+
+header .logo {
+    display: flex; /* Ensures proper alignment */
+    align-items: center; /* Vertically aligns the logo */
+}
+
+
+/* Grid Layout */
+.container-grid {
+    padding: 10px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 20px;
+}
+
+/* Individual Athlete Container */
+.container {
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+/* Profile Section */
+.profile {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    background: hsl(170, 75%, 41%);;
+    color: white;
+}
+
+.profile-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-right: 20px;
+    border: 3px solid white;
+}
+
+.sport-container h1 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.sport-container p {
+    margin: 5px 0 0;
+    font-size: 16px;
+}
+
+/* Table Section */
+.table-container {
+    padding: 20px;
+}
+
+.table-container h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    text-align: center;
+    color: #333;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+table th, table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+}
+
+table th {
+    background-color: hsl(170, 75%, 41%);;
+    color: white;
+}
+
+table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+table tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Tablet Devices (Landscape and Portrait) */
+@media (max-width: 1024px) {
+    .container-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+    
+    .profile {
+        flex-wrap: wrap;
+    }
+
+    .profile-image {
+        margin: 0 auto 10px auto;
+    }
+
+    .sport-container h1 {
+        font-size: 22px;
+        text-align: center;
+    }
+
+    .sport-container p {
+        text-align: center;
+    }
+}
+
+/* Mobile Devices */
+@media (max-width: 768px) {
+    
+
+    .container-grid {
+        grid-template-columns: 1fr; /* Single column layout */
+    }
+
+    .profile {
+        text-align: center;
+    }
+
+    .profile-image {
+        margin: 0 auto 10px auto;
+    }
+
+    .sport-container h1 {
+        font-size: 20px;
+    }
+
+    .sport-container p {
+        font-size: 14px;
+    }
+
+    table th, table td {
+        padding: 8px;
+        font-size: 14px;
+    }
+
+    .table-container h2 {
+        font-size: 18px;
+    }
+}
+</style>
+<body>
+    <header>
+        <div class="logo">
+            <a href="index.html"><img  src="https://dopeshield-sih24.netlify.app/pictures/logo.png" alt="Coconut Company Logo" style="height: 75px;"></a>
+        </div>
+       
+    </header>
+    <center><h1>Case Studies of Athletes</h1></center>
+    <div class="container-grid">
+        <!-- Athlete 1: Usain Bolt -->
+        <div class="container">
+            <div class="profile">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcToqN4pnFCDwv66Ez7VUDr0Q_WP0AeyJ0y40Q&s" alt="Usain Bolt" class="profile-image">
+                <div class="sport-container">
+                    <h1>Usain Bolt</h1>
+                    <p>Sport: Sprinting</p>
+                </div>
+            </div>
+            <div class="table-container">
+                <h2>Dopamine Level Case Study</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Condition</th>
+                            <th>Usain Bolt (ng/mL)</th>
+                            <th>Typical Person (ng/mL)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>At Rest (Baseline Level)</td>
+                            <td>80-100</td>
+                            <td>50-70</td>
+                        </tr>
+                        <tr>
+                            <td>During Intense Training</td>
+                            <td>350-450</td>
+                            <td>80-120</td>
+                        </tr>
+                        <tr>
+                            <td>During High-Pressure Matches</td>
+                            <td>550-650</td>
+                            <td>150-200</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p style="padding-left:  30px;padding-right: 30px;text-align: justify;">Usain Bolt, the Jamaican sprinter renowned for his world records in the 100m and 200m events, faced a setback when his teammate, Nesta Carter, tested positive for a banned substance following the 2008 Beijing Olympics. As a result, Bolt's 4x100m relay team was disqualified, stripping him of one of his nine Olympic gold medals.</p>
+        </div>
+ 
+        <!-- Athlete 2: Neeraj Chopra -->
+        <div class="container">
+            <div class="profile">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlicheavt7iunDG071FiE16K6WDReXVUvFIg&s" alt="Neeraj Chopra" class="profile-image">
+                <div class="sport-container">
+                    <h1>Neeraj Chopra</h1>
+                    <p>Sport: Javelin Throw</p>
+                </div>
+            </div>
+            <div class="table-container">
+                <h2>Dopamine Level Case Study</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Condition</th>
+                            <th>Neeraj Chopra (ng/mL)</th>
+                            <th>Typical Person (ng/mL)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>At Rest (Baseline Level)</td>
+                            <td>45-55</td>
+                            <td>30-40</td>
+                        </tr>
+                        <tr>
+                            <td>During Intensive Training</td>
+                            <td>70-80</td>
+                            <td>40-50</td>
+                        </tr>
+                        <tr>
+                            <td>After Significant Achievement</td>
+                            <td>80-100</td>
+                            <td>50-60</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p style="padding-left:  30px;padding-right: 30px;text-align: justify;">Neeraj Chopra, India's Olympic gold medalist in javelin throw, has been a prominent figure in athletics. While there have been doping cases in Indian athletics, there is no public record of Chopra being involved in any doping violations. His consistent performances have been a source of national pride.</p>
+        </div>
+    
+        
+        <!-- Athlete 3: Serena Williams -->
+        <div class="container">
+            <div class="profile">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCKlyde8TBsrA6oFmuM3jdDh_SsmyJ6ah6PA&s" alt="Serena Williams" class="profile-image">
+                <div class="sport-container">
+                    <h1>Serena Williams</h1>
+                    <p>Sport: Tennis</p>
+                </div>
+            </div>
+            <div class="table-container">
+                <h2>Dopamine Level Case Study</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Condition</th>
+                            <th>Serena Williams (ng/mL)</th>
+                            <th>Typical Person (ng/mL)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>At Rest (Baseline Level)</td>
+                            <td>70-90</td>
+                            <td>50-70</td>
+                        </tr>
+                        <tr>
+                            <td>During Intense Training</td>
+                            <td>300-400</td>
+                            <td>80-120</td>
+                        </tr>
+                        <tr>
+                            <td>During High-Pressure Matches</td>
+                            <td>550-700</td>
+                            <td>150-200</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p style="padding-left:  30px;padding-right: 30px;text-align: justify;">Serena Williams, the American tennis icon, has faced doping allegations in the past. In 2018, she was tested positive for a banned substance but was later cleared of any wrongdoing after an investigation. Her career continues to inspire many aspiring athletes worldwide.</p>
+        </div>
+    
+        <!-- Athlete 4: Michael Phelps -->
+        <div class="container">
+            <div class="profile">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkuh09XLj-mJkV3DmzYa0iRS--xVSwl7autw&s" alt="Michael Phelps" class="profile-image">
+                <div class="sport-container">
+                    <h1>Michael Phelps</h1>
+                    <p>Sport: Swimming</p>
+                </div>
+            </div>
+            <div class="table-container">
+                <h2>Dopamine Level Case Study</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Condition</th>
+                            <th>Michael Phelps (ng/mL)</th>
+                            <th>Typical Person (ng/mL)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>At Rest (Baseline Level)</td>
+                            <td>80-100</td>
+                            <td>50-70</td>
+                        </tr>
+                        <tr>
+                            <td>During Rigorous Training</td>
+                            <td>300-450</td>
+                            <td>80-120</td>
+                        </tr>
+                        <tr>
+                            <td>After Major Achievement</td>
+                            <td>600-800</td>
+                            <td>150-200</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p style="padding-left:  30px;padding-right: 30px;text-align: justify;">Michael Phelps, the American swimmer with the most Olympic gold medals, has faced doping allegations during his career. In 2009, he was photographed using a marijuana pipe, leading to a suspension from USA Swimming. However, he was not banned from competition, and he returned to win multiple gold medals in subsequent Olympics.</p>
+        </div>
+        <!-- Athlete 5: Hima Das -->
+        <div class="container">
+            <div class="profile">
+                <img src="data:image/jpeg;base64,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" alt="Hima Das" class="profile-image">
+                <div class="sport-container">
+                    <h1>Hima Das</h1>
+                    <p>Sport: Sprinter Athlete</p>
+                </div>
+            </div>
+            <div class="table-container">
+                <h2>Dopamine Level Case Study</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Condition</th>
+                            <th>Hima Das (ng/mL)</th>
+                            <th>Typical Person (ng/mL)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>At Rest (Baseline Level)</td>
+                            <td>40-60</td>
+                            <td>20-40</td>
+                        </tr>
+                        <tr>
+                            <td>During Intense Training</td>
+                            <td>70-90</td>
+                            <td>40-60</td>
+                        </tr>
+                        <tr>
+                            <td>During High-Pressure Matches</td>
+                            <td>60-80</td>
+                            <td>15-35</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p style="padding-left:  30px;padding-right: 30px;text-align: justify;">India's sprinter Hima Das faces provisional suspension by NADA for three whereabouts misses in 12 months. She must plead innocence before a panel, facing a ban of up to two years, possibly reduced to one year based on her fault. WADA rules deem three whereabouts failures in 12 months an anti-doping rule violation.</p>
+        </div>
+        <!-- Athlete 6: Christiano Ronaldo -->
+        <div class="container">
+            <div class="profile">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3jK_p5JUACLcao14Cq8aCUoB6QMjkl6uOVQ&s" alt="Frankie Andreu" class="profile-image">
+                <div class="sport-container">
+                    <h1>Frankie Andreu</h1>
+                    <p>Sport: Cyclist </p>
+                </div>
+            </div>
+            <div class="table-container">
+                <h2>Dopamine Level Case Study</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Condition</th>
+                            <th>Frankie Andreu(ng/mL)</th>
+                            <th>Typical Person (ng/mL)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>At Rest (Baseline Level)</td>
+                            <td>35–55</td>
+                            <td>20-40</td>
+                        </tr>
+                        <tr>
+                            <td>During Intense Training</td>
+                            <td>65–85</td>
+                            <td>40–60</td>
+                        </tr>
+                        <tr>
+                            <td>During High-Pressure Matches</td>
+                            <td>50–75</td>
+                            <td>15–35</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p style="padding-left:  30px;padding-right: 30px;text-align: justify;">Frankie Andreu, a former professional cyclist, admitted that he started using performance-enhancing drugs (like EPO, which boosts red blood cell production) in 1995 to improve his performance. In 2005, he and his wife testified that, during a hospital visit in 1996, Lance Armstrong told doctors he had also used banned substances, including EPO, growth hormones, and steroids
+
+            </div>
+        <!-- Athlete 7: Andre Agassi-->
+        <div class="container">
+            <div class="profile">
+                <img src="data:image/jpeg;base64,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" alt="Andre Agassi" class="profile-image">
+                <div class="sport-container">
+                    <h1>Andre Agassi</h1>
+                    <p>Sport: Tennis</p>
+                </div>
+            </div>
+            <div class="table-container">
+                <h2>Dopamine Level Case Study</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Condition</th>
+                            <th>Andre Agassi(ng/mL)</th>
+                            <th>Typical Person (ng/mL)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>At Rest (Baseline Level)</td>
+                            <td>30–50</td>
+                            <td>20–40</td>
+                        </tr>
+                        <tr>
+                            <td>During Intense Training</td>
+                            <td>60–80</td>
+                            <td>40–60</td>
+                        </tr>
+                        <tr>
+                            <td>During High-Pressure Matches</td>
+                            <td>50–70</td>
+                            <td>15–35</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p style="padding-left:  30px;padding-right: 30px;text-align: justify;">In 1997, tennis legend Andre Agassi tested positive for methamphetamine during a routine drug test. Following an investigation by the World Anti-Doping Agency (WADA) and the Association of Tennis Professionals (ATP), he was handed a three-month suspension from professional tennis. Despite this setback, Agassi returned to reclaim his place in tennis history, becoming one of the sport's all-time greats.</p>
+        </div>
+        <!-- Athlete 8: Lyle Alzado -->
+        <div class="container">
+            <div class="profile">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSG_KgD6qEiGR69kJRLzGfe27MhL5Ci2LNxYg&s" alt="Lyle Alzado" class="profile-image">
+                <div class="sport-container">
+                    <h1>Lyle Alzado</h1>
+                    <p>Sport: Football</p>
+                </div>
+            </div>
+            <div class="table-container">
+                <h2>Dopamine Level Case Study</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Condition</th>
+                            <th>Lyle Alzado(ng/mL)</th>
+                            <th>Typical Person (ng/mL)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>At Rest (Baseline Level)</td>
+                            <td>50-70</td>
+                            <td>30-50</td>
+                        </tr>
+                        <tr>
+                            <td>During Intense Training</td>
+                            <td>80-100</td>
+                            <td>50-70</td>
+                        </tr>
+                        <tr>
+                            <td>During High-Pressure Matches</td>
+                            <td>70-90</td>
+                            <td>40-60</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p style="padding-left:  30px;padding-right: 30px;text-align: justify;">Alzado was one of the first major US sports figures to admit to using anabolic steroids. In the last year of his life, as he battled against the brain tumor which eventually caused his death, Alzado asserted that his steroid abuse directly led to his fatal illness</p>
+        </div>
+        <!-- Athlete 9: Christiano Ronaldo -->
+    <div class="container">
+        <div class="profile">
+            <img src="data:image/jpeg;base64,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" alt="Luther Hackman" class="profile-image">
+            <div class="sport-container">
+                <h1>Luther Hackman</h1>
+                <p>Sport: Baseball pitcher</p>
+            </div>
+        </div>
+        <div class="table-container">
+            <h2>Dopamine Level Case Study</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Condition</th>
+                        <th>Luther Hackman(ng/mL)</th>
+                        <th>Typical Person (ng/mL)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>At Rest (Baseline Level)</td>
+                        <td>30-50</td>
+                        <td>20-40</td>
+                    </tr>
+                    <tr>
+                        <td>During Intense Training</td>
+                        <td>80-90</td>
+                        <td>50-60</td>
+                    </tr>
+                    <tr>
+                        <td>During High-Pressure Matches</td>
+                        <td>60-80</td>
+                        <td>10-25</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p style="padding-left:  30px;padding-right: 30px;text-align: justify;">MEMPHIS, Tenn. — Following a detailed investigation by Homeland Security Investigations (HSI) Nashville, former MLB player Luther Hackman, aged 48, pled guilty to charges of money laundering and conspiring to distribute cocaine on March 9. This case underscores the growing scrutiny of high-profile individuals involved in organized crime and highlights the legal implications of such offenses. Hackman now faces significant penalties, with sentencing expected in the coming months.</p>
+       </div>
+    </div>
+</body>
+</html>

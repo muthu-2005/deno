@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Life's Bounty</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<style>
+    html,
+    body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        font-family: "Poppins", sans-serif;
+        background-color: hsl(168, 56%, 89%);
+        color: #333;
+    }
+
+    header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 20px;
+        background-color: #f8f9fa;
+        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    header .logo {
+        display: flex;
+        align-items: center;
+    }
+
+    header .logo img {
+        height: 100px;
+    }
+    #gameControls {
+    display: flex;
+    justify-content: center; /* Centers the controls */
+    gap: 20px;
+    margin-top: 15px;
+  }
+  
+  #gameControls li {
+    list-style: none;
+  }
+  
+  #score, #lives {
+    font-size: 18px;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-weight: bold;
+  }
+  
+  #stopButton {
+    padding: 12px 24px;
+    font-size: 18px;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  #stopButton:hover {
+    background-color: #c82333;
+    transform: scale(1.05);
+  }
+  
+  #stopButton:active {
+    transform: scale(1);
+  }
+  
+  /* Button Container */
+  #buttonContainer {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+  }
+  
+  .gameButton {
+    padding: 12px 24px;
+    font-size: 18px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .gameButton:hover {
+    background-color: #218838;
+    transform: scale(1.05);
+  }
+  
+  .gameButton:active {
+    transform: scale(1);
+  }
+  
+  /* Canvas Styles */
+  canvas {
+    display: block;
+    margin: auto;
+    background: linear-gradient(to bottom, #87ceeb, #f3f9fd);
+    border: 3px solid #218838;
+    border-radius: 8px;
+  }
+  
+  /* Responsive Adjustments */
+  @media screen and (max-width: 768px) {
+    #gameControls {
+      flex-direction: column;
+      justify-content: space-around;
+      gap: 10px;
+    }
+  
+    #score, #lives {
+      font-size: 4px;
+      padding: 6px 12px;
+    }
+  
+    #stopButton {
+      font-size: 4px;
+      padding: 10px 20px;
+    }
+  
+    #buttonContainer {
+      flex-direction: column;
+      gap: 15px;
+    }
+  
+    .gameButton {
+      font-size: 16px;
+      padding: 10px 20px;
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    #score, #lives {
+      font-size: 14px;
+      padding: 6px 10px;
+    }
+  
+    #stopButton {
+      font-size: 14px;
+      padding: 8px 16px;
+    }
+  
+    .gameButton {
+      font-size: 14px;
+      padding: 8px 16px;
+    }
+  
+    canvas {
+      width: 90%;
+      height: auto;
+    }
+  }
+  
+  </style>
+<body>
+    <header>
+        <div class="logo">
+            <a href="../index.html"><img src="https://dopeshield-sih24.netlify.app/pictures/logo.png" alt="Coconut Company Logo"></a>
+        </div>
+    
+
+    
+    <ul id="gameControls" style="display: none;">
+        <li><button id="stopButton" style="font-family: poppins;">Stop Game</button></li>
+        <li><div id="score">Score: 0</div></li>
+        <li><div id="lives">Lives: 3</div></li>
+      </ul>
+      
+    </header>
+    <center>
+        <h1>Life's Bounty</h1>
+    </center>
+  
+   
+  
+    <div id="buttonContainer"><center>
+      <button class="gameButton" id="instructionsButton"  style="font-family: poppins;">Instructions</button>
+      <button class="gameButton" id="startButton"  style="font-family: poppins;">Start Game</button></center>
+    </div>
+  
+    <canvas id="gameCanvas" style="display: none;"></canvas>
+  
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+    <script>
+      const canvas = document.getElementById("gameCanvas");
+      const ctx = canvas.getContext("2d");
+      const scoreDisplay = document.getElementById("score");
+      const livesDisplay = document.getElementById("lives");
+      const instructionsButton = document.getElementById("instructionsButton");
+      const startButton = document.getElementById("startButton");
+      const stopButton = document.getElementById("stopButton");
+      const buttonContainer = document.getElementById("buttonContainer");
+    
+      // Set canvas size
+      canvas.width = window.innerWidth > 800 ? 800 : window.innerWidth;
+      canvas.height = window.innerHeight > 500 ? 500 : window.innerHeight;
+    
+      // Game variables
+      const basket = {
+        x: canvas.width / 2 - 75,
+        y: canvas.height - 80,
+        width: 70,
+        height: 10,
+        color: "#28a745",
+        speed: 0.5,
+        borderRadius: 20, // Border radius for rounded corners
+      };
+    
+      let items = [];
+      let score = 0;
+      let lives = 5;
+      let gameRunning = false;
+      let itemSpeed = 2; // Start with medium speed for items
+      const maxItems = 3; // Maximum number of items at once
+      const gameStartTime = Date.now(); // Record start time of the game
+    
+      // Item types
+      const goodItems = ["🍎", "🥦", "🥕"];
+      const badItems = ["💊", "💉", "⚗️"];
+    
+      // Sound effects
+      const goodSound = new Audio("music/correct.mp3"); // Path to good item sound
+      const badSound = new Audio("music/incorrect.mp3");   // Path to bad item sound
+    
+      // Set sound volume (optional)
+      goodSound.volume = 0.5;
+      badSound.volume = 0.5;
+    
+      function createItem() {
+        // Create items only if there are fewer than maxItems on the screen
+        if (items.length < maxItems) {
+          const isGood = Math.random() > 0.5;
+          const item = {
+            x: Math.random() * canvas.width,
+            y: -50, // Start above the canvas
+            radius: 30,
+            type: isGood ? "good" : "bad",
+            symbol: isGood
+              ? goodItems[Math.floor(Math.random() * goodItems.length)]
+              : badItems[Math.floor(Math.random() * badItems.length)],
+            dy: itemSpeed, // Set initial speed for the item
+          };
+          items.push(item);
+        }
+      }
+    
+      function drawBasket() {
+        ctx.fillStyle = basket.color;
+        ctx.fillRect(basket.x, basket.y, basket.width, basket.height);
+      }
+    
+      function drawItems() {
+        items.forEach((item) => {
+          ctx.font = "40px Arial";
+          ctx.textAlign = "center";
+          ctx.fillText(item.symbol, item.x, item.y);
+        });
+      }
+    
+      function moveItems() {
+        items.forEach((item) => {
+          item.y += item.dy;
+        });
+      }
+    
+      function checkCollisions() {
+        items = items.filter((item) => {
+          if (
+            item.x > basket.x &&
+            item.x < basket.x + basket.width &&
+            item.y + item.radius > basket.y
+          ) {
+            if (item.type === "good") {
+              score += 10;
+              goodSound.play(); // Play good sound when catching a good item
+            } else {
+              lives -= 1;
+              badSound.play(); // Play bad sound when catching a bad item
+              if (lives <= 0) {
+                endGame();
+              }
+            }
+            updateScoreAndLives();
+            return false;
+          }
+          return item.y < canvas.height;
+        });
+      }
+    
+      function updateScoreAndLives() {
+        scoreDisplay.textContent = `Score: ${score}`;
+        livesDisplay.textContent = `Lives: ${lives}`;
+      }
+    
+      function toggleGameControls(visible) {
+        const gameControls = document.getElementById("gameControls");
+        const stopButton = document.getElementById("stopButton");
+    
+        if (visible) {
+          gameControls.style.display = "flex"; // Show controls
+          stopButton.style.display = "inline-block"; // Show Stop button
+        } else {
+          gameControls.style.display = "none"; // Hide controls
+          stopButton.style.display = "none"; // Hide Stop button
+        }
+      }
+    
+      function endGame() {
+        gameRunning = false;
+        canvas.style.display = "none"; // Hide canvas
+        toggleGameControls(false); // Hide game controls
+        stopButton.style.display = "none"; // Hide Stop button
+    
+        // Calculate game duration
+        const gameDuration = Math.floor((Date.now() - gameStartTime) / 1000); // Duration in seconds
+    
+        // Save score to the database
+        recordGamePerformance(score, gameDuration);
+    
+        // Show SweetAlert popup
+        Swal.fire({
+          title: "Game Over",
+          text: `Your final score is: ${score}`,
+          icon: "error",
+          confirmButtonText: "OK",
+        }).then(() => {
+          buttonContainer.style.display = "block"; // Return to main menu
+        });
+      }
+    
+      function startGame() {
+        buttonContainer.style.display = "none"; // Hide menu buttons
+        canvas.style.display = "block"; // Show canvas
+        toggleGameControls(true); // Show game controls
+        score = 0; // Reset score
+        lives = 5; // Reset lives
+        updateScoreAndLives(); // Update UI
+        gameRunning = true; // Set game state
+        items = []; // Clear existing items
+        setInterval(createItem, 800); // Start generating items
+        gameLoop(); // Start the game loop
+      }
+    
+      function recordGamePerformance(score, duration) {
+        fetch('/record_game_performance', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            score: score,
+            duration: duration,
+          }),
+          credentials: 'include', // Include cookies for authentication
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.status === 'success') {
+            console.log("Performance recorded successfully!");
+          } else {
+            console.error("Error recording performance:", data.message);
+          }
+        })
+        .catch(error => console.error('Error while recording performance:', error));
+      }
+    
+      // Event listeners
+      stopButton.addEventListener("click", endGame);
+    
+      instructionsButton.addEventListener("click", () => {
+        Swal.fire({
+          title: "Instructions",
+          text: "Game Rules:\n\n• Catch healthy items (🍎, 🥦, 🥕) to gain points.\n• Avoid illegal items (💊, 💉, ⚗️) or lose lives.\n• You have 5 lives. Lose them all, and the game ends.\n• Use your cursor or touch to move the basket.",
+          icon: "info",
+        });
+      });
+    
+      startButton.addEventListener("click", startGame);
+    
+      canvas.addEventListener("mousemove", (e) => {
+        if (!gameRunning) return;
+        const rect = canvas.getBoundingClientRect();
+        const mouseX = e.clientX - rect.left;
+        moveBasket(mouseX);
+      });
+    
+      function moveBasket(positionX) {
+        if (!gameRunning) return;
+        basket.x = positionX - basket.width / 2;
+        basket.x = Math.max(0, Math.min(basket.x, canvas.width - basket.width));
+      }
+    
+      function gameLoop() {
+        if (!gameRunning) return;
+    
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+        drawBasket();
+        drawItems();
+        moveItems();
+        checkCollisions();
+    
+        requestAnimationFrame(gameLoop);
+      }
+    </script>
+    
+    </body>
+</html>

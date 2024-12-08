@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 
+    - primary meta tag
+  -->
+    <title>DopeShield</title>
+    <meta name="title" content="DopeShield">
+    <meta name="description" content="DopeShield">
+    <!-- 
+    - favicon
+  -->
+    <link rel="shortcut icon" href="pictures/logo.png" type="image/svg+xml">
+    <!-- Add this to the <head> section to include Ionicons -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ionicons@5.7.0/dist/css/ionicons.min.css">
+
+    <!-- 
+    - custom css link
+  -->
+  <link rel="stylesheet" href="https://dope-2024.github.io/sih/static/style.css">
+  <link rel="stylesheet" href="https://dope-2024.github.io/sih/static/extra.css">
+    
+    <!-- <link rel="stylesheet" href="static/extra.css">
+    <link rel="stylesheet" href="static/style.css"> -->
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+    <!-- 
+    - google font link
+  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;500;600;700;800&family=Poppins:wght@400;500&display=swap"
+        rel="stylesheet">
+    <!-- 
+    - preload images
+  -->
+</head>
+
+<body id="top">
+
+    <!-- 
+    - #HEADER
+  -->
+
+    <header class="header" data-header id="home">
+        <div class="container">
+
+            <a href="/" class="logo">
+                <img src="https://dope-2024.github.io/sih/static/pictures/logo.png" width="162" height="50"
+                    alt="DopeShield logo">
+            </a>
+
+            <nav class="navbar" data-navbar>
+                <ul class="navbar-list">
+                  <li class="navbar-item"><a href="/" class="navbar-link" data-nav-link>Home</a></li>
+                  <!-- <li class="navbar-item"><a href="#about" class="navbar-link" data-nav-link>Know the Facts</a></li> -->
+                  <li class="navbar-item"><a href="#courses" class="navbar-link" data-nav-link>Courses</a></li>
+                  <li class="navbar-item"><a href="/pod" class="navbar-link" data-nav-link>Podcasts</a></li>
+                  <li class="navbar-item"><a href="/awar" class="navbar-link" data-nav-link>Rules</a></li>
+                  <li class="navbar-item"><a href="#games" class="navbar-link" data-nav-link>Games</a></li>
+                  <!-- <li class="navbar-item"><a href="#foot" class="navbar-link" data-nav-link>Contact</a></li> -->
+                  
+                  <!-- Add these two items after login -->
+                  {% if user %}
+                  <!-- Profile Image -->
+                  <li class="navbar-item"><a href="/profile"><img src="https://cdn-icons-png.flaticon.com/128/3177/3177440.png" alt="Profile Image" class="navbar-profile-img" style="height: 30px;margin-top: 15px;"></a></li>
+                  
+                  <!-- Logout Button -->
+                  <li class="navbar-item"><a href="/anal" class="navbar-link" data-nav-link>Analytics</a></li>
+                  <li class="navbar-item"><a href="/logout" class="navbar-link" data-nav-link>Logout</a></li>
+                  {% else %}
+                  <!-- Show Sign In option if not logged in -->
+                  <li class="navbar-item"><a href="/signin" class="navbar-link" data-nav-link>Sign In</a></li>
+                  {% endif %}
+                </ul>
+              </nav>
+              
+              <!-- Hamburger Toggle Button for Mobile View -->
+    <button class="navbar-toggle" aria-label="Toggle navigation">
+        <span class="navbar-toggle-icon"></span>
+    </button>
+
+        </div>
+    </header>
+    <style>
+
+
+
+
+    </style>
+    <div class="slider" id="home">
+        <div class="slides">
+            <img src="https://dope-2024.github.io/sih/static/pictures/banner1.jpg
+            " alt="Banner Image 1"
+                class="slide-image">
+            <img src="https://dope-2024.github.io/sih/static/pictures/banner2.jpg" alt="Banner Image 2"
+                class="slide-image">
+            <img src="https://dope-2024.github.io/sih/static/pictures/banner3.jpg" alt="Banner Image 3"
+                class="slide-image">
+            <img src="https://dope-2024.github.io/sih/static/pictures/banner4.jpg" alt="Banner Image 4"
+                class="slide-image">
+            <img src="https://dope-2024.github.io/sih/static/pictures/banner5.jpg" alt="Banner Image 5"
+                class="slide-image">
+        </div>
+        <!-- <button class="prev" onclick="changeSlide(-1)">&#10094;</button>
+    <button class="next" onclick="changeSlide(1)">&#10095;</button> -->
+    </div>
+
+    <div class="navigation-manual">
+        <div class="manual-btn" onclick="manualSlide(1)"></div>
+        <div class="manual-btn" onclick="manualSlide(2)"></div>
+        <div class="manual-btn" onclick="manualSlide(3)"></div>
+        <div class="manual-btn" onclick="manualSlide(4)"></div>
+        <div class="manual-btn" onclick="manualSlide(5)"></div>
+    </div>
+
+    <main>
+        <article>
+
+            <!-- 
+        - #HERO
+      -->
+
+            <section class="section hero has-bg-image" aria-label="home">
+                <div class="container" style="margin-top: 0px;">
+
+                    <div class="hero-content">
+
+                        <h1 class="h1 section-title" style="font-family: poppins;">
+                            The Top Program to <span class="span">Enroll</span> in Clean Anti-Doping Education
+                        </h1>
+
+                        <p class="hero-text" style="font-family: poppins;">
+                            Our anti-doping education program promotes integrity and responsibility, ensuring
+                            participants remain free from any unethical influence or misconduct.
+                        </p>
+
+                        <a href="#courses" class="btn has-before">
+                            <span class="span">Find courses</span>
+
+                            <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
+                        </a>
+
+                    </div>
+
+                    <figure class="hero-banner" style="margin-top: 20px;">
+
+                        <div class="img-holder one" style="--width: 270; --height: 300;">
+                            <img src="https://dope-2024.github.io/sih/static/pictures/Pic3.png
+" width="270" height="300"
+                                alt="hero banner" class="img-cover">
+                        </div>
+
+                        <div class="img-holder two" style="--width: 240; --height: 370;">
+                            <img src="https://dope-2024.github.io/sih/static/pictures/Pic2.jpg
+                            " width="240" height="370"
+                                alt="hero banner" class="img-cover">
+                        </div>
+
+                    </figure>
+
+                </div>
+            </section><br> <br>
+
+
+
+
+            <!-- 
+        - #COURSE
+      -->
+
+            <section class="section course" id="courses" aria-label="course">
+                <div class="container">
+
+                    <p class="section-subtitle">Popular Courses</p>
+
+                    <h2 class="h2 section-title">Pick A Course To Get Started</h2>
+
+                    <ul class="grid-list">
+
+                        <li>
+                        <a href="/course1"><div class="course-card" style="background-color: rgb(233, 250, 250);">
+
+                                <figure class="card-banner img-holder" style="--width: 370; --height: 220;">
+                                    <img src="https://dope-2024.github.io/sih/static/pictures/Course1.png
+                                    " width="370"
+                                        height="220" loading="lazy" alt="Course-1" class="img-cover">
+                                </figure>
+
+
+
+                                <div class="card-content">
+
+                                    <span class="badge">Beginner</span>
+
+                                    <h3 class="h3">
+                                        <a href="/course1" class="card-title">Introduction to Anti-Doping Education
+                                        </a>
+                                    </h3>
+
+                                </div></a>
+
+                            </div>
+                        </li>
+
+
+
+                        <li>
+                            <a href="/course3">   <div class="course-card" style="background-color: rgb(233, 250, 250);">
+
+                                <figure class="card-banner img-holder" style="--width: 370; --height: 220;">
+                                    <img src="https://dope-2024.github.io/sih/static/pictures/Course3.png
+                                    " width="370"
+                                        height="220" loading="lazy" alt="Course-3" class="img-cover">
+                                </figure>
+
+
+                                <div class="card-content">
+
+                                    <span class="badge">Intermediate</span>
+
+                                    <h3 class="h3">
+                                        <a href="/course3" class="card-title">Anti-Doping Rules, Regulations, and
+                                            Legalities</a>
+                                    </h3>
+
+                                </div>
+
+                            </div></a>
+                        </li>
+
+                        <li>
+                            <a href="/course5"> <div class="course-card" style="background-color: rgb(233, 250, 250);">
+
+                                <figure class="card-banner img-holder" style="--width: 370; --height: 220;">
+                                    <img src="https://dope-2024.github.io/sih/static/pictures/Course5.png
+                                    " width="370"
+                                        height="220" loading="lazy" alt="Course-5" class="img-cover">
+                                </figure>
+
+                                <div class="card-content">
+
+                                    <span class="badge">Advanced</span>
+
+                                    <h3 class="h3">
+                                        <a href="/course5" class="card-title">Comprehensive Education and Athlete
+                                            Support</a>
+                                    </h3>
+
+
+                                </div>
+
+                            </div></a>
+                        </li>
+
+
+                    </ul>
+
+                </div>
+
+                </div>
+                </li>
+
+                </ul>
+                <br>
+                <a href="/courses" class="btn has-before" style="margin-top: 0px;">
+                    <span class="span">Browse more courses</span>
+
+                    <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
+                </a>
+
+                </div>
+            </section>
+
+
+
+            <!-- 
+        - #GAMES
+      -->
+      <br><br>
+      <section class="section stats" id="games" aria-label="stats">
+          <h2 class="h2 section-title">Games of DopeShield</h2>
+          <div class="container">
+
+              <ul class="grid-list">
+
+                
+                <li>
+                    <div class="stats-card" style="--color: 42, 94%, 55%">
+                        <a href="{{url_for('index')}}" class="logo">
+                            <center>
+                                <img src="https://dope-2024.github.io/sih/static/pictures/game3.jpg" width="162"
+                                    height="50" alt="DopeShield logo" style="border-radius: 5px;">
+                            </center>
+                        </a><br>
+                        <a href="/word-scramble">
+                            <h3 class="card-title">Word Whirl </h3>
+                        </a>
+
+                        <a href="/word-scramble">
+                            <p class="card-text">Let's Play</p>
+                        </a>
+                    </div>
+                </li>
+
+
+                  <li>
+                      <div class="stats-card" style="--color: 351, 83%, 61%">
+                          <a href="index.html" class="logo">
+                              <center>
+                                  <img src="https://dope-2024.github.io/sih/static/pictures/game2.jpg" width="162"
+                                      height="50" alt="DopeShield logo" style="border-radius: 5px;">
+                              </center>
+                          </a><br>
+                          <a href="/game4">
+                              <h3 class="card-title">True or Tainted ?</h3>
+                          </a>
+
+                          <a href="/game4">
+                              <p class="card-text">Let's Play</p>
+                          </a>
+                      </div>
+                  </li>
+
+                  <li>
+                      <div class="stats-card" style="--color: 260, 100%, 67%">
+                          <a href="index.html" class="logo">
+                              <center>
+                                  <img src="https://dope-2024.github.io/sih/static/pictures/game4.jpg" width="162"
+                                      height="50" alt="DopeShield logo" style="border-radius: 5px;">
+                              </center>
+                          </a><br>
+                          <a href="/game2">
+                              <h3 class="card-title">Ethics Enigma</h3>
+                          </a>
+                          <a href="/game2">
+                              <p class="card-text">Let's Play</p>
+                          </a>
+                      </div>
+                  </li>
+
+
+                  <li>
+                      <div class="stats-card" style="--color: 190, 75%, 41%">
+                          <a href="index.html" class="logo">
+                              <center>
+                                  <img src="https://dope-2024.github.io/sih/static/pictures/game1.jpg" width="162"
+                                      height="50" alt="DopeShield logo" style="border-radius: 5px;">
+                              </center>
+                          </a><br>
+                          <a href="/game3">
+                              <h3 class="card-title">Doping Dilemma</h3>
+                          </a>
+
+                          <a href="/game3">
+                              <p class="card-text">Let's Play</p>
+                          </a>
+                      </div>
+                  </li>
+
+              </ul>
+              <br>
+              
+          </div>
+      </section><br><br>
+
+
+            <!-- 
+        - #VIDEO
+      -->
+
+            
+      <section style="font-family: 'Poppins', sans-serif;">
+        <h2 class="h2 section-title">Testimonials on Awareness</h2>
+
+        <div class="section-container">
+            <!-- Video Container with Play/Stop Button and Name -->
+            <div class="video-box">
+                <video src="{{ url_for('static', filename='video/pt-sir.mp4') }}" class="video" poster="https://dope-2024.github.io/sih/static/pictures/pt.jpg"></video>
+                <button class="play-stop-btn" onclick="togglePlay(this)">▶</button>
+                <div class="video-name">From Physical Education</div>
+            </div>
+    
+            <div class="video-box">
+                <video src="{{ url_for('static', filename='video/scouts.mp4') }}" class="video" poster="https://dope-2024.github.io/sih/static/pictures/scouts.jpg"></video>
+                <button class="play-stop-btn" onclick="togglePlay(this)">▶</button>
+                <div class="video-name">From SCOUTS</div>
+            </div>
+    
+            <div class="video-box">
+                <video src="{{ url_for('static', filename='video/nss.mp4') }}"  class="video" poster="https://dope-2024.github.io/sih/static/pictures/nss.jpg"></video>
+                <button class="play-stop-btn" onclick="togglePlay(this)">▶</button>
+                <div class="video-name">From NSS</div>
+            </div>
+            <div class="video-box">
+                <video src="{{ url_for('static', filename='video/ncc.mp4') }}" class="video" poster="https://dope-2024.github.io/sih/static/pictures/ncc.jpg"></video>
+                <button class="play-stop-btn" onclick="togglePlay(this)">▶</button>
+                <div class="video-name">From NCC</div>
+            </div>
+            
+    
+           
+        </div>
+        <script>function togglePlay(button) {
+            const video = button.previousElementSibling; // Select the video element
+            if (video.paused) {
+                video.play();
+                button.textContent = '⏸'; // Change button to pause symbol
+            } else {
+                video.pause();
+                button.textContent = '▶'; // Change button back to play symbol
+            }
+        }</script>
+      </section>
+          
+
+
+
+
+
+
+
+
+
+
+
+            <!-- 
+        - #BLOG
+      -->
+            <br><br>
+            <section class="section blog has-bg-image" id="blog" aria-label="blog"
+           >
+            <div class="container">
+    
+              <p class="section-subtitle">Latest Articles</p>
+    
+              <h2 class="h2 section-title">Get News With DopeShield</h2>
+    
+              <ul class="grid-list">
+    
+            
+                
+                <li>
+                  <div class="blog-card">
+    
+                    <figure class="card-banner img-holder has-after" style="--width: 370; --height: 370;">
+                      <img src="https://ss-i.thgim.com/public/incoming/ljayte/article68882836.ece/alternates/LANDSCAPE_1200/AFP_18P8EY.jpg" width="370" height="370" loading="lazy"
+                        alt="Become A Better Blogger: Content Planning" class="img-cover">
+                    </figure>
+    
+                    <div class="card-content">
+    
+                      <a href="https://sportstar.thehindu.com/athletics/vismaya-fails-dope-test-jakarta-asian-games-gold-medallist-relay-womens-out-of-competition-sample-news/article68882824.ece" class="card-btn" aria-label="read more">
+                        <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
+                      </a>
+    
+                      <a href="https://sportstar.thehindu.com/athletics/vismaya-fails-dope-test-jakarta-asian-games-gold-medallist-relay-womens-out-of-competition-sample-news/article68882824.ece" class="card-subtitle">Athletics</a>
+    
+                      <h3 class="h3">
+                        <a href="https://sportstar.thehindu.com/athletics/vismaya-fails-dope-test-jakarta-asian-games-gold-medallist-relay-womens-out-of-competition-sample-news/article68882824.ece" class="card-title">Asiad Gold medallist Vismaya fails doping test</a>
+                      </h3>
+    
+                      <ul class="card-meta-list">
+    
+                        <li class="card-meta-item">
+                          <ion-icon name="calendar-outline" aria-hidden="true"></ion-icon>
+    
+                          <span class="span">Monday , 18 November 2024</span>
+                        </li>
+    
+                        <li class="card-meta-item">
+                        
+    
+                          
+                        </li>
+    
+                      </ul>
+    
+                      <p class="card-text">
+                        NADA informed the athlete on September 12 that her urine sample tested positive for Clomiphene, a prohibited substance in the hormone and metabolic modulators category, banned year-round.                    </p>
+    
+                    </div>
+    
+                  </div>
+                </li>
+                
+    
+                <li>
+                  <div class="blog-card">
+    
+                    <figure class="card-banner img-holder has-after" style="--width: 370; --height: 370;">
+                      <img src="https://d3lzcn6mbbadaf.cloudfront.net/media/details/ANI-20241118063819.jpg" width="370" height="370" loading="lazy"
+                        alt="Become A Better Blogger: Content Planning" class="img-cover">
+                    </figure>
+    
+                    <div class="card-content">
+    
+                      <a href="https://www.aninews.in/news/world/asia/india-to-host-anti-doping-training-in-collaboration-with-world-anti-doping-agency-and-japans-support20241118120829/" class="card-btn" aria-label="read more">
+                        <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
+                      </a>
+    
+                      <a href="https://www.aninews.in/news/world/asia/india-to-host-anti-doping-training-in-collaboration-with-world-anti-doping-agency-and-japans-support20241118120829/" class="card-subtitle">India Hosts Anti-Doping Training</a>
+    
+                      <h3 class="h3">
+                        <a href="https://www.aninews.in/news/world/asia/india-to-host-anti-doping-training-in-collaboration-with-world-anti-doping-agency-and-japans-support20241118120829/" class="card-title">India to host anti-doping training with World Anti-Doping Agency support</a>
+                      </h3>
+    
+                      <ul class="card-meta-list">
+    
+                        <li class="card-meta-item">
+                          <ion-icon name="calendar-outline" aria-hidden="true"></ion-icon>
+    
+                          <span class="span">Monday , 18 November 2024</span>
+                        </li>
+    
+                        <li class="card-meta-item">
+                        
+    
+                          
+                        </li>
+    
+                      </ul>
+    
+                      <p class="card-text">
+                        India will host a 4-day anti-doping training in collaboration with WADA, supported by Japan, with participants from over 10 countries and international bodies like AIU and BWF.
+                      </p>
+    
+                    </div>
+    
+                  </div>
+                </li>
+    
+                <li>
+                  <div class="blog-card">
+    
+                    <figure class="card-banner img-holder has-after" style="--width: 370; --height: 370;">
+                      <img src="https://static.toiimg.com/thumb/msid-115341782,imgsize-32084,width-400,resizemode-4/115341782.jpg" width="370" height="370" loading="lazy"
+                        alt="Become A Better Blogger: Content Planning" class="img-cover">
+                    </figure>
+    
+                    <div class="card-content">
+    
+                      <a href="https://timesofindia.indiatimes.com/sports/more-sports/others/worlds-medallist-indian-para-powerlifter-banned-for-doping/articleshow/115341748.cms" class="card-btn" aria-label="read more">
+                        <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
+                      </a>
+    
+                      <a href="https://timesofindia.indiatimes.com/sports/more-sports/others/worlds-medallist-indian-para-powerlifter-banned-for-doping/articleshow/115341748.cms" class="card-subtitle">Powerlifter</a>
+    
+                      <h3 class="h3">
+                        <a href="https://timesofindia.indiatimes.com/sports/more-sports/others/worlds-medallist-indian-para-powerlifter-banned-for-doping/articleshow/115341748.cms" class="card-title">Worlds medallist Indian para powerlifter banned for doping</a>
+                      </h3>
+    
+                      <ul class="card-meta-list">
+    
+                        <li class="card-meta-item">
+                          <ion-icon name="calendar-outline" aria-hidden="true"></ion-icon>
+    
+                          <span class="span">Friday , 15 November 2024</span>
+                        </li>
+    
+                        <li class="card-meta-item">
+                        
+    
+                          
+                        </li>
+    
+                      </ul>
+    
+                      <p class="card-text">
+                        Indian para powerlifter Sachin Chaudhary received an eight-year ban for a second doping violation, following a positive test at the 2021 World Championships, again repeating his 2014 offense.
+                      </p>
+    
+                    </div>
+    
+                  </div>
+                </li>
+    
+              </ul>
+    
+    
+            </div><br><center>
+            <a href="/news" class="btn has-before">
+              <span class="span">Get More News</span>
+      
+              <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
+            </a>
+          </center>
+          </section>
+
+        </article>
+    </main><br>
+
+    <section class="section combined" id="rehab-meet" aria-label="rehab-meet">
+        <div class="container" style="display: flex; flex-wrap: wrap; gap: 20px; align-items: stretch; justify-content: space-between;">
+            
+            <!-- Rehabilitation Section -->
+            <div class="rehab-content" style="flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 20px; text-align: left;">
+                <h2 class="h2 section-title">
+                    Rehabilitation After <span class="span">Doping</span>
+                </h2>
+                <p class="section-text" style="flex: 1; display: flex; align-items: center;text-align: justify;">
+                    Our mission is to guide individuals back to a path of integrity and fair play. Through tailored programs, we emphasize education, recovery, and reintegration, ensuring a brighter future in the world of sports.
+                </p>
+                <a href="/rebuild" class="cta-button" style="display: inline-block; margin-top: 20px; padding: 10px 20px; background-color: hsl(170, 75%, 41%); color: #fff; text-decoration: none; border-radius: 5px;">
+                    Rebuild
+                </a>
+                <a href="/case" class="cta-button" style="display: inline-block; margin-top: 10px; padding: 10px 20px; background-color: hsl(170, 75%, 41%); color: #fff; text-decoration: none; border-radius: 5px;">
+                    Case Study
+                </a>
+            </div>
+    
+            <!-- Google Meet Section -->
+            <div class="meet-content" style="flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 20px; text-align: center;">
+                <h2 class="h2 section-title">
+                    Join the Live <span class="span">Discussion</span>
+                </h2>
+                <p class="section-text" style="flex: 1; display: flex; align-items: center;text-align: justify;">
+                    Engage in meaningful conversations and share your thoughts in our live discussion forum. Click below to join the Google Meet session.
+                </p>
+    
+                <!-- Button for Google Meet -->
+                <a href="https://meet.google.com/uyz-yhhz-zzp" 
+                   class="cta-button" 
+                   style="display: inline-block; margin-top: 20px; padding: 10px 20px; background-color: hsl(210, 70%, 50%); color: #fff; text-decoration: none; border-radius: 5px;" 
+                   target="_blank">
+                    Join Google Meet
+                </a>
+                
+                <!-- Back to Home -->
+                <a href="{{url_for('index')}}" 
+                   class="cta-button" 
+                   style="display: inline-block; margin-top: 10px; padding: 10px 20px; background-color: hsl(210, 70%, 50%); color: #fff; text-decoration: none; border-radius: 5px;">
+                    Back to Home
+                </a>
+            </div>
+    
+        </div>
+    </section>
+    
+    
+    
+    <!-- 
+        - #ABOUT
+      -->
+
+    <section class="section about" id="feed" aria-label="about">
+        <div class="container" style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center;">
+            <!-- Left: About Us Content -->
+            <div class="about-content" style="flex: 1;">
+                <figure class="about-banner">
+                    <div class="img-holder" style="--width: 520; --height: 370;">
+                        <img src="https://dope-2024.github.io/sih/static/pictures/Pic5.png" width="520" height="370"
+                            loading="lazy" alt="about banner" class="img-cover">
+                    </div>
+                </figure><br>
+
+                <p class="section-subtitle">
+                    About us
+                </p>
+                <h2 class="h2 section-title">
+                    Shaping the Future of <span class="span">Clean Sports</span> Education
+                </h2>
+                <p class="section-text">
+                    Committed to promoting integrity and fairness, the programs are designed to provide valuable
+                    knowledge and insights, helping to understand and apply key principles in various aspects of life.
+                </p>
+            </div>
+
+            <!-- Right: Feedback Form -->
+            <div class="feedback-form-container" style="flex: 1; max-width: 500px;">
+                <p class="section-subtitle" style="text-align: center; font-size: 1.5rem; margin-bottom: 20px;">
+                    We Value Your Opinion
+                </p>
+                <form name="feedback-form" class="feedback-form"
+                    style="background-color: rgb(234, 253, 253); padding: 20px; border-radius: 10px;">
+                    <label for="name" class="form-label">Your Name</label>
+                    <input type="text" id="name" name="name" class="form-input" placeholder="Enter your name" required>
+
+                    <label for="email" class="form-label">Your Email</label>
+                    <input type="email" id="email" name="email" class="form-input" placeholder="Enter your email"
+                        required>
+
+                    <label for="feedback" class="form-label">Your Feedback</label>
+                    <textarea id="feedback" name="feedback" class="form-textarea" placeholder="Share your thoughts"
+                        required style="font-family: Poppins;"></textarea>
+
+                    <button type="submit" class="form-submit">Submit Feedback</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Script for Feedback Form Submission -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script>
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbwbYl6o20aWIyzQ2iimF_-nQ-Nl7HNR_tZMJmdANVDU0nXcm2xIXa3YDkZq_-BOOkjB/exec';
+            const form = document.forms['feedback-form'];
+
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+                    .then(() => {
+                        Swal.fire({
+                            title: 'Thank You!',
+                            text: 'Your feedback has been submitted successfully.',
+                            icon: 'success',
+                            confirmButtonText: 'OK'
+                        }).then(() => {
+                            form.reset(); // Reset the form after successful submission
+                        });
+                    })
+                    .catch((error) => {
+                        Swal.fire({
+                            title: 'Error!',
+                            text: 'There was a problem submitting your feedback. Please try again later.',
+                            icon: 'error',
+                            confirmButtonText: 'OK'
+                        });
+                        console.error('Error!', error.message);
+                    });
+            });
+        </script>
+    </section>
+
+
+    <a href="#top" class="back-top-btn" aria-label="back top top" data-back-top-btn>
+        <ion-icon name="chevron-up" aria-hidden="true"></ion-icon>
+    </a>
+
+
+
+    <!-- 
+    - #FOOTER
+  -->
+    <br>
+    <footer class="footer" id="foot">
+
+        <div class="footer-top section">
+            <div class="container grid-list">
+
+                <div class="footer-brand">
+
+                    <a href="#" class="logo">
+                        <img src="https://dope-2024.github.io/sih/static/pictures/logo-footer.png" width="162" height="50"
+                            alt="EduWeb logo">
+                    </a>
+
+                    <p class="footer-brand-text">
+                        An anti-doping system that safeguards athletes and ensures fair play through testing, education,
+                        and monitoring.
+                    </p>
+
+                    <div class="wrapper">
+                        <span class="span">Add:</span>
+
+                        <address class="address">100, Chennai-44</address>
+                    </div>
+
+                    <div class="wrapper">
+                        <span class="span">Call:</span>
+
+                        <a href="tel:+011234567890" class="footer-link">+01 123 4567 890</a>
+                    </div>
+
+                    <div class="wrapper">
+                        <span class="span">Email:</span>
+
+                        <a href="mailto:dopeshieldsih24@gmail.com" class="footer-link">DopeShield.com</a>
+                    </div>
+
+                </div>
+
+                <ul class="footer-list" style="margin-top: 20px;">
+
+                    <li>
+                        <p class="footer-list-title">Online Platform</p>
+                    </li>
+
+                    <li>
+                        <a href="#about" class="footer-link">About</a>
+                    </li>
+
+                    <li>
+                        <a href="#" class="footer-link">Courses</a>
+                    </li>
+
+                    <li>
+                        <a href="game.html" class="footer-link">Games</a>
+                    </li>
+
+
+
+                </ul>
+
+                <ul class="footer-list" style="margin-top: 20px;">
+
+                    <li>
+                        <p class="footer-list-title">Links</p>
+                    </li>
+
+                    <li>
+                        <a href="#feed" class="footer-link">User-Feedback</a>
+                    </li>
+
+
+
+                    <li>
+                        <a href="/faq" class="footer-link">FAQs</a>
+                    </li>
+
+                    <li>
+                        <a href="#" class="footer-link">Sign In/Registration</a>
+                    </li>
+
+
+
+                </ul>
+
+                <div class="footer-list" style="margin-top: 20px;">
+
+                    <p class="footer-list-title">Contacts</p>
+
+                    <p class="footer-list-text">
+                        Enter your email address to register to our newsletter subscription
+                    </p>
+
+                    <form action="mailto:muthukumarg565@gmail.com?subject=Newsletter Subscription&body=E-MAIL%20ID%20"
+                        method="post" enctype="text/plain" class="newsletter-form">
+                        <input type="email" name="Mail-Id" placeholder="Your email" required class="input-field">
+
+                        <button type="submit" class="btn has-before">
+                            <span class="span">Subscribe</span>
+                            <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
+                        </button>
+                    </form>
+
+
+
+                    <ul class="social-list">
+
+                        <li>
+                            <a href="#" class="social-link" style="color: #1877f2;">
+                                <ion-icon name="logo-facebook"></ion-icon>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#" class="social-link" style="color: #25d366;">
+                                <ion-icon name="logo-whatsapp"></ion-icon>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#" class="social-link" style="color: #0077b5;">
+                                <ion-icon name="logo-linkedin"></ion-icon>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#" class="social-link" style="color: #e4405f;">
+                                <ion-icon name="logo-instagram"></ion-icon>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#" class="social-link" style="color: #ff0000;">
+                                <ion-icon name="logo-youtube"></ion-icon>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#" class="social-link" style="color: #1d9bf0;">
+                                <ion-icon name="logo-twitter"></ion-icon>
+                            </a>
+                        </li>
+
+                        <!--
+            <li>
+              <a href="#" class="social-link" style="color: #b9971d;">
+             
+                  <img src="https://cdn-icons-png.flaticon.com/128/2111/2111624.png" style="height: 20px; width: 20px;">
+                
+              </a>
+            </li>
+
+            <li>
+              <a href="#" class="social-link" style="color: #b9971d;">
+             
+                  <img src="https://cdn-icons-png.flaticon.com/128/5968/5968804.png" style="height: 20px; width: 20px;">
+                
+              </a>
+            </li>
+
+            <li>
+              <a href="#" class="social-link" style="color: #b9971d;">
+             
+                  <img src="https://cdn-icons-png.flaticon.com/128/12105/12105338.png" style="height: 20px; width: 20px;">
+                
+              </a>
+            </li>
+             -->
+
+                    </ul>
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container">
+
+                <p class="copyright">
+                    &copy; 2024 All Rights Reserved by <a href="#" class="copyright-link">RADIANCE 07</a>
+                </p>
+
+            </div>
+        </div>
+
+    </footer>
+
+
+
+
+
+    <!-- 
+    - #BACK TO TOP
+  -->
+
+  <!-- <a href="#top" class="back-top-btn" aria-label="back to top" data-back-top-btn>
+    <ion-icon name="chevron-up" aria-hidden="true"></ion-icon>
+</a> -->
+
+
+
+
+
+    <!-- 
+    - custom js link
+  -->
+
+
+    </script>
+
+    <!-- 
+    - ionicon link
+  -->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script>
+        // Image Slider JavaScript
+        let currentSlide = 0;
+
+        // Function to show the current slide
+        function showSlide(index) {
+            const slides = document.querySelectorAll('.slide-image');
+            const totalSlides = slides.length;
+
+            // Wrap around if the index goes out of bounds
+            if (index >= totalSlides) {
+                currentSlide = 0; // Go to first slide
+            } else if (index < 0) {
+                currentSlide = totalSlides - 1; // Go to last slide
+            } else {
+                currentSlide = index; // Set current slide
+            }
+
+            // Adjust the transform property to show the current slide
+            const slidesContainer = document.querySelector('.slides');
+            slidesContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
+
+            // Highlight the active dot
+            const dots = document.querySelectorAll('.manual-btn');
+            dots.forEach(dot => dot.classList.remove('active'));
+            dots[currentSlide].classList.add('active');
+        }
+
+        // Change slide based on button click
+        function changeSlide(direction) {
+            showSlide(currentSlide + direction);
+        }
+
+        // Show specific slide based on dot click
+        function manualSlide(index) {
+            showSlide(index - 1);
+        }
+
+        // Automatic sliding every 5 seconds
+        setInterval(() => {
+            changeSlide(1); // Move to the next slide
+        }, 5000); // 5000 milliseconds = 5 seconds
+
+        // Show the first slide on page load
+        showSlide(currentSlide);
+
+
+        // Pop-up and Overlay Script
+        document.addEventListener('DOMContentLoaded', function () {
+            const popup = document.querySelector('.popup');
+            const overlay = document.querySelector('.overlay');
+            const closeBtn = document.querySelector('.close-btn');
+
+            setTimeout(() => {
+                popup.classList.add('active');
+                overlay.classList.add('active');
+            }, 2000);
+
+            closeBtn.addEventListener('click', () => {
+                popup.classList.remove('active');
+                overlay.classList.remove('active');
+            });
+        });
+    </script>
+      <div class="widget-container">
+        <!-- Dialogflow Messenger -->
+        <df-messenger
+            chat-icon="https://cdn-icons-png.flaticon.com/128/2021/2021706.png"
+            intent="WELCOME"
+            chat-title="ShieldX"
+            agent-id="e73a79ce-7195-4d64-b394-8feb5fedc228"
+            language-code="en" style="height: 20px;">
+        </df-messenger>
+
+        <!-- Tawk.to Live Chat -->
+        <div id="tawk_1ieaqebot"></div>
+    </div>
+
+    <!-- Dialogflow Messenger Script -->
+    <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+
+    <!-- Tawk.to Live Chat Script -->
+    <script type="text/javascript">
+        var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+        (function () {
+            var s1 = document.createElement("script"),
+                s0 = document.getElementsByTagName("script")[0];
+            s1.async = true;
+            s1.src = 'https://embed.tawk.to/675151b54304e3196aeca2f2/1ieaqebot';
+            s1.charset = 'UTF-8';
+            s1.setAttribute('crossorigin', '*');
+            s0.parentNode.insertBefore(s1, s0);
+        })();
+    </script>
+
+<style>
+       .widget-container {
+    position: fixed;
+    top: 80%; /* Center vertically */
+    right: 6px; /* Distance from the right side */
+    transform: translateY(-50%); /* Adjust to maintain center alignment */
+    z-index: 1000; /* Ensure widgets appear above other elements */
+    display: flex;
+    flex-direction: column; /* Stack widgets vertically */
+    gap: 96px; /* 1-inch space between widgets */
+}
+
+/* Individual Widget Styles */
+df-messenger,
+#tawk_1ieaqebot {
+    width: 50%; /* Consistent width for widgets */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .widget-container {
+        right: 6px; /* Reduce margin for smaller screens */
+        gap: 96px; /* Maintain 1-inch space between widgets */
+    }
+}
+</style>
+</body>
+
+</html>

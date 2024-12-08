@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anti-Doping Education Course</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(120deg, hsl(170, 75%, 41%), hsl(190, 60%, 60%));
+            min-height: 100vh;
+            padding: 2rem;
+            overflow: hidden;
+        }
+
+        .progress-bar-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 30px;
+            background: rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: hsl(170, 75%, 41%);
+            transition: width 0.2s ease;
+        }
+
+        .progress-percentage {
+            margin-left: 10px;
+            font-size: 1rem;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 0.5rem;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 1.5rem;
+            color: hsl(170, 75%, 41%);
+            margin-bottom: 1rem;
+        }
+
+        .module {
+            padding: 1rem;
+            background: #f8f8f8;
+            margin: 2rem 0;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transform: translateX(-100%);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .module.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .module:nth-child(even) {
+            transform: translateX(100%);
+        }
+
+        .module h3 {
+            font-size: 1.8rem;
+            color: hsl(170, 75%, 41%);
+        }
+
+        .module p,
+        .module ul {
+            margin: 1rem 0;
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        .module ul {
+            padding-left: 1.5rem;
+        }
+
+        .start-btn {
+            background: hsl(170, 75%, 41%);
+            color: #fff;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            /* margin-bottom: 1.5rem; */
+        }
+
+        .start-btn:hover {
+            background: hsl(170, 65%, 35%);
+        }
+
+        .next-btn {
+            display: inline-block;
+            background: hsl(170, 75%, 41%);
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.3s;
+            margin-top: 1.5rem;
+        }
+
+        .next-btn:hover {
+            background: hsl(170, 65%, 35%);
+        }
+        .image-container {
+            display: flex; /* Enables side-by-side alignment */
+            justify-content: space-around; /* Adjust spacing between images */
+            align-items: center; /* Align images vertically */
+        }
+        .image-container img {
+            max-width: 45%; /* Restrict image width */
+            height: auto; /* Maintain aspect ratio */
+            border: 2px solid #ccc; /* Optional: Add border around images */
+            border-radius: 5px; /* Optional: Rounded corners */
+        }
+        .tongue-twister-container {
+        background: #fdfdfd;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        font-family: 'Poppins', sans-serif;
+        }
+
+    .twister-button {
+        display: inline-block;
+        margin: 10px;
+        padding: 10px 20px;
+        font-size: 1rem;
+        font-weight: 500;
+        color: #333;
+        background: #e9e9e9;
+        border: 2px solid #ccc;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .twister-button:hover {
+        background: #a7d129;
+        color: #fff;
+    }
+
+    #twister-display {
+        margin-top: 20px;
+        padding: 10px;
+        border: 2px solid #a7d129;
+        border-radius: 8px;
+        background: #f7fff0;
+        color: #333;
+        font-size: 1.2rem;
+        text-align: center;
+    }
+
+    
+
+
+    .video-buttons button {
+      background: hsl(170, 75%, 41%);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      margin: 0 5px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.3s ease;
+    }
+
+    .video-buttons button:hover {
+      background: hsl(170, 65%, 35%);
+    }
+
+    /* Base styles */
+    .video-buttons {
+      margin: 0.5rem 0;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      /* Allows wrapping on small screens */
+    }
+
+    .video-buttons button {
+      background: hsl(170, 75%, 41%);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      margin: 0 5px 10px;
+      /* Adjust bottom margin for better spacing on small screens */
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.3s ease;
+    }
+
+    /* Media query for smaller screens */
+    @media (max-width: 600px) {
+      .video-buttons button {
+        font-size: 0.9rem;
+        /* Slightly smaller text size */
+        padding: 8px 15px;
+        /* Reduce padding for better fit */
+        margin: 5px;
+        /* Uniform margin around buttons */
+      }
+    }
+
+    video {
+      width: 70%;
+      height: 390px;
+      border-radius: 10px;
+      /* margin-bottom: 2rem; */
+    }
+
+    /* Media query for smaller screens */
+    @media (max-width: 768px) {
+      video {
+        width: 100%;
+        /* Set video width to 100% for smaller screens */
+        height: auto;
+        /* Adjust height to maintain aspect ratio */
+      }
+    }
+
+    /* Media query for very small screens (e.g., mobile devices) */
+    @media (max-width: 480px) {
+      video {
+        width: 100%;
+        /* Set video width to 100% for very small screens */
+        height: auto;
+        /* Adjust height to maintain aspect ratio */
+      }
+    }
+
+  #top-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: none; /* Hidden by default */
+    background-color: hsl(62, 87%, 60%);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    transition: opacity 0.3s, transform 0.3s;
+  }
+
+  #top-button:hover {
+    background-color: hsl(63, 83%, 60%);
+    transform: scale(1.1);
+  }
+
+
+    .btn {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: not-allowed;
+      position: relative;
+    }
+
+    .tooltip {
+      position: relative;
+      display: inline-block;
+    }
+
+    .tooltip .tooltip-text {
+      visibility: hidden;
+      width: 150px;
+      background-color: black;
+      color: #fff;
+      text-align: center;
+      padding: 5px;
+      border-radius: 5px;
+
+      /* Position the tooltip */
+      position: absolute;
+      bottom: 130%;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+
+      /* Animation */
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .tooltip:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .btn:enabled {
+      background-color: #28a745;
+      cursor: pointer;
+    }
+
+    </style>
+</head>
+
+<body>
+
+    
+    <!-- Progress Bar -->
+    <div class="progress-bar-container">
+        <div class="progress-bar" id="progress-bar"></div>
+        <div class="progress-percentage" id="progress-percentage">0%</div>
+    </div>
+
+    <div class="container">
+        <center> <a href="{{ url_for('index') }}"><img src="https://muthu-2005.github.io/SIH-Final-2024/pictures/logo.png" style="height: 50px;"
+            alt="Dopeshield"></a></center>
+            <h2>Course 3: Anti-Doping Rules, Regulations, and Legalities</h2>
+      <!-- Video Player -->
+      <center> <video id="video-player" controls>
+          <source id="video-source" src="{{ url_for('static', filename='video/eng/en3.mp4') }}" type="video/mp4">
+          Your browser does not support the video tag.
+        </video></center>
+  
+      <!-- Language Selection -->
+      <div class="video-buttons">
+        <button onclick="changeVideo('en')">English</button>
+        <button onclick="changeVideo('ka')">Kannada</button>
+        <button onclick="changeVideo('ta')">Tamil</button>
+        <button onclick="changeVideo('ml')">Malayalam</button>
+        <button onclick="changeVideo('tl')">Telgu</button>
+        <button onclick="changeVideo('hi')">Hindi</button>
+  
+      </div>
+      <center><button class="start-btn" id="start-btn">Start Course</button></center>
+       
+        
+
+        <!-- Module 1 -->
+        <div class="module" id="module-1" style="text-align: justify; font-family: Arial, sans-serif;">
+                <h3>Module 1: Overview of Prohibited Substances and Methods</h3>
+                <p>This module explores the substances and methods banned in sports by the World Anti-Doping Agency (WADA). Understanding these categories helps athletes, coaches, and support personnel ensure compliance with anti-doping rules while promoting fair and ethical competition
+                    </p>
+                    <h4>1. Overview of Prohibited Substances and Methods</h4>
+                <p>The WADA Prohibited List, updated annually, classifies substances and methods based on their potential to:</p>
+                <ul>
+                    <li>Enhance performance unnaturally.</li>
+                    <li>Pose significant health risks.</li>
+                    <li>Violate the spirit of sport.</li>
+                </ul>
+                <p>Substances and methods are categorized into those:</p>
+                <ul>
+                    <li>Prohibited at all times (in and out of competition).</li>
+                    <li>Banned only during competitions or specific sports.</li>
+                </ul>
+            
+                <h4>2. Categories of Prohibited Substances</h4>
+                <ul>
+                    <li><strong>Stimulants:</strong>
+                        <ul>
+                            <li><strong>Examples:</strong> Amphetamines, cocaine, ephedrine.</li>
+                            <li><strong>Purpose:</strong> Increase alertness, focus, and energy by stimulating the central nervous system.</li>
+                            <li><strong>Risks:</strong> Anxiety, heart palpitations, and addiction.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Anabolic Agents:</strong>
+                        <ul>
+                            <li><strong>Examples:</strong> Testosterone, nandrolone, stanozolol.</li>
+                            <li><strong>Purpose:</strong> Promote muscle growth and recovery.</li>
+                            <li><strong>Risks:</strong> Hormonal imbalance, liver damage, and cardiovascular issues.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Peptide Hormones, Growth Factors, and Related Substances:</strong>
+                        <ul>
+                            <li><strong>Examples:</strong> Erythropoietin (EPO), human growth hormone (hGH).</li>
+                            <li><strong>Purpose:</strong> Enhance endurance or muscle mass.</li>
+                            <li><strong>Risks:</strong> Blood thickening, increased cancer risk, and organ damage.</li>
+                        </ul>
+                    </li>
+                    <div class="image-container">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNAk6QBtpBR3MNmwKMbAWxMO9d-o48N2wytw&s" alt="Image 1">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFK85B5ly2HkZg6S5o_40MFp3j0c54Hfz6Cg&s" alt="Image 2">
+                    </div>
+                    <li><strong>Beta-2 Agonists:</strong>
+                        <ul>
+                            <li><strong>Examples:</strong> Clenbuterol, salbutamol (only permitted in specific doses).</li>
+                            <li><strong>Purpose:</strong> Open airways and enhance oxygen delivery.</li>
+                            <li><strong>Risks:</strong> Cardiovascular complications and muscle tremors.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Diuretics and Masking Agents:</strong>
+                        <ul>
+                            <li><strong>Examples:</strong> Furosemide, hydrochlorothiazide.</li>
+                            <li><strong>Purpose:</strong> Increase urine output to dilute banned substances or achieve rapid weight loss.</li>
+                            <li><strong>Risks:</strong> Dehydration, kidney damage, and electrolyte imbalance.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Cannabinoids and Narcotics (in competition):</strong>
+                        <ul>
+                            <li><strong>Examples:</strong> Cannabis, morphine.</li>
+                            <li><strong>Purpose:</strong> Recreational use or pain relief.</li>
+                            <li><strong>Risks:</strong> Impaired coordination, dependency, and mental health issues.</li>
+                        </ul>
+                    </li>
+                    <li><strong>New and Experimental Substances:</strong>
+                        <ul>
+                            <li>Designer drugs or substances not yet approved for medical use but exploited for performance enhancement.</li>
+                        </ul>
+                    </li>
+                </ul>
+            
+                <h4>3. Prohibited Methods</h4>
+                <ul>
+                    <li><strong>Manipulation of Blood and Blood Components:</strong>
+                        <ul>
+                            <li><strong>Examples:</strong> Blood transfusions, use of synthetic oxygen carriers.</li>
+                            <li><strong>Purpose:</strong> Boost oxygen delivery to muscles, improving endurance.</li>
+                            <li><strong>Risks:</strong> Blood clotting, stroke, and infections.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Chemical and Physical Manipulation:</strong>
+                        <ul>
+                            <li><strong>Examples:</strong> Tampering with samples, catheterization.</li>
+                            <li><strong>Purpose:</strong> Interfere with testing to avoid detection of banned substances.</li>
+                            <li><strong>Risks:</strong> Sanctions and reputational damage.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Gene and Cell Doping:</strong>
+                        <ul>
+                            <li><strong>Examples:</strong> Gene editing tools like CRISPR to alter genetic material for enhanced performance.</li>
+                            <li><strong>Purpose:</strong> Modify traits such as muscle mass or oxygen efficiency.</li>
+                            <li><strong>Risks:</strong> Unpredictable health consequences and ethical violations.</li>
+                        </ul>
+                    </li>
+                </ul>
+            
+                <h4>4. Substances Prohibited in Specific Sports</h4>
+                <ul>
+                    <li>Substances like beta-blockers are prohibited in sports where precision and steady hands are critical (e.g., archery, shooting).</li>
+                </ul>
+            
+                <h4>5. Exceptions and Therapeutic Use Exemptions (TUEs)</h4>
+                <ul>
+                    <li>Athletes with medical conditions requiring prohibited substances or methods (e.g., insulin for diabetes) must apply for a TUE.</li>
+                    <li>TUEs ensure that athletes can receive necessary medical treatment without gaining a performance advantage.</li>
+                </ul>
+            
+                <h4>6. Education and Awareness</h4>
+                <ul>
+                    <li><strong>Importance of Checking Medications:</strong> Athletes must verify medications and supplements for banned substances using resources like WADA’s Global DRO (Drug Reference Online).</li>
+                    <li><strong>Anti-Doping Seminars:</strong> NADA and other agencies provide workshops to educate athletes about the Prohibited List and how to avoid violations.</li>
+                </ul>
+            
+                <p><strong>Conclusion:</strong> Understanding prohibited substances and methods is critical for maintaining integrity and fairness in sports. Athletes and support staff must stay informed about updates to the Prohibited List and seek guidance to compete clean while safeguarding their health and careers.</p> 
+        </div>
+        <div class="module" id="module-challenge" style="text-align: justify; font-family: Arial, sans-serif;">
+            <h3>Challenge: Two Truths and a Lie</h3>
+            <p>Can you identify the lie among these statements?</p>
+            <div>
+                <button class="challenge-option" 
+                        onclick="checkAnswer(this, false)" 
+                        style="padding: 10px 20px; margin: 5px; background-color: #007BFF; color: #fff; border: none; border-radius: 5px; cursor: pointer;">
+                    Anabolic steroids can lead to serious health problems such as liver damage, heart disease, and infertility.
+                </button>
+                <button class="challenge-option" 
+                        onclick="checkAnswer(this, false)" 
+                        style="padding: 10px 20px; margin: 5px; background-color: #007BFF; color: #fff; border: none; border-radius: 5px; cursor: pointer;">
+                    Erythropoietin (EPO) is banned in endurance sports because it increases the number of red blood cells, enhancing oxygen delivery.
+                </button>
+                <button class="challenge-option" 
+                        onclick="checkAnswer(this, true)" 
+                        style="padding: 10px 20px; margin: 5px; background-color: #007BFF; color: #fff; border: none; border-radius: 5px; cursor: pointer;">
+                    Diuretics are banned because they directly enhance athletic performance by increasing muscle mass.
+                </button>
+            </div>
+            
+            <div id="answer-reveal" style="margin-top: 20px; display: none; font-size: 1.2rem; color: #555;">
+                <p><strong>Correct Answer:</strong> The third statement is the lie.</p>
+                <p>Diuretics are banned because they help athletes lose weight quickly and can mask other banned substances, not because they increase muscle mass.</p>
+            </div>
+        </div>
+        <!-- Module 2 -->
+        <div class="module" id="module-challenge" style="text-align: justify; font-family: Arial, sans-serif;">
+            <h3>Module 2: Legal Framework in Anti-Doping</h3>
+                <h4>1. Overview of Anti-Doping Legal Framework</h4>
+                <p>The foundation of anti-doping laws is the World Anti-Doping Code (Code), developed by the World Anti-Doping Agency (WADA). The Code harmonizes regulations, sanctions, and procedures worldwide, ensuring consistent implementation across all sports and nations.</p>
+                <ul>
+                    <li><strong>Purpose of the Code:</strong>
+                        <ul>
+                            <li>Protect the fundamental right of athletes to compete in doping-free sports.</li>
+                            <li>Promote health, fairness, and equality.</li>
+                            <li>Coordinate anti-doping efforts among various organizations.</li>
+                        </ul>
+                    </li>
+                </ul>
+            
+                <h4>2. Key Components of the Legal Framework</h4>
+                <ul>
+                    <li><strong>World Anti-Doping Code (WADA Code):</strong>
+                        <ul>
+                            <li>Outlines the core principles, including the Prohibited List, testing protocols, sanctions, and appeal mechanisms.</li>
+                            <li>All signatories, including sports organizations and national anti-doping agencies (e.g., NADA), must comply.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Prohibited List:</strong>
+                        <ul>
+                            <li>Updated annually, it specifies substances and methods banned in and out of competition.</li>
+                            <li>Violations include possession, trafficking, and use of prohibited substances, among others.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Anti-Doping Rule Violations (ADRVs):</strong>
+                        <ul>
+                            <li>Presence of a banned substance in an athlete’s sample.</li>
+                            <li>Use or attempted use of a prohibited substance or method.</li>
+                            <li>Refusal to submit to testing.</li>
+                            <li>Tampering with doping control processes.</li>
+                        </ul>
+                    </li>
+                </ul>
+                <center><img src="https://jjau.org/wp-content/uploads/2023/01/abc-768x333.jpg" alt="img" style="height: auto;width:100%;"></center>
+                <h4>3. Roles and Responsibilities</h4>
+                <ul>
+                    <li><strong>World Anti-Doping Agency (WADA):</strong> Oversees global anti-doping efforts, manages the Prohibited List, and enforces the Code.</li>
+                    <li><strong>National Anti-Doping Agencies (e.g., NADA):</strong> Implement the Code at a national level, conduct testing, manage TUEs, and provide anti-doping education.</li>
+                    <li><strong>International Federations (IFs):</strong> Ensure adherence to anti-doping regulations within their respective sports.</li>
+                    <li><strong>Court of Arbitration for Sport (CAS):</strong> Resolves disputes, including appeals against sanctions imposed for doping violations.</li>
+                </ul>
+            
+                <h4>4. Testing and Results Management</h4>
+                <ul>
+                    <li><strong>Testing Process:</strong>
+                        <ul>
+                            <li>Athletes are subject to in-competition and out-of-competition testing.</li>
+                            <li>Testing is conducted under strict protocols to maintain sample integrity.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Results Management:</strong>
+                        <ul>
+                            <li>If an Adverse Analytical Finding (AAF) is identified, the athlete is notified and given the opportunity to explain.</li>
+                            <li>Cases are reviewed, and sanctions are determined based on the severity and circumstances of the violation.</li>
+                        </ul>
+                    </li>
+                </ul>
+            
+                <h4>5. Sanctions for Violations</h4>
+                <ul>
+                    <li><strong>Sanction Types:</strong>
+                        <ul>
+                            <li>Suspensions: Bans ranging from months to a lifetime, depending on the severity of the violation.</li>
+                            <li>Disqualification of Results: Removal of titles, medals, and records.</li>
+                            <li>Fines: Monetary penalties in some cases.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Factors Influencing Sanctions:</strong>
+                        <ul>
+                            <li>Intent and level of fault.</li>
+                            <li>Nature of the substance or method.</li>
+                            <li>Cooperation with anti-doping authorities.</li>
+                        </ul>
+                    </li>
+                </ul>
+            
+                <h4>6. Athlete Rights and Responsibilities</h4>
+                <ul>
+                    <li><strong>Rights:</strong>
+                        <ul>
+                            <li>Right to a fair hearing and legal representation.</li>
+                            <li>Right to appeal decisions to CAS or national sports tribunals.</li>
+                            <li>Right to privacy and dignity during testing.</li>
+                        </ul>
+                    </li>
+                    <center><img src="https://www.liveabout.com/thmb/xVw1XynmyfiLxNihOPnjlHyTPSQ=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/athletic-trainer-525986_FINAL-ce2a58dde76947ec94d8bdea527c0081.png" alt="img" style="height: auto;width:100%;"></center>
+                    <li><strong>Responsibilities:</strong>
+                        <ul>
+                            <li>Ensure compliance with anti-doping rules.</li>
+                            <li>Regularly check medications and supplements.</li>
+                            <li>Report for testing and cooperate with anti-doping authorities.</li>
+                        </ul>
+                    </li>
+                </ul>
+            
+                <h4>7. Therapeutic Use Exemptions (TUEs)</h4>
+                <ul>
+                    <li>Athletes with medical conditions requiring prohibited substances or methods can apply for a TUE.</li>
+                    <li><strong>Criteria for Approval:</strong>
+                        <ul>
+                            <li>The treatment must be medically necessary.</li>
+                            <li>No reasonable therapeutic alternative exists.</li>
+                            <li>The treatment should not provide a performance advantage.</li>
+                        </ul>
+                    </li>
+                </ul>
+            
+                <h4>8. Education and Awareness</h4>
+                <ul>
+                    <li>Education is a critical aspect of the legal framework.</li>
+                    <li>Programs ensure athletes and support personnel understand their obligations and the consequences of violations.</li>
+                    <li><strong>Examples:</strong> WADA’s Anti-Doping eLearning Platform (ADeL) and NADA workshops.</li>
+                </ul>
+            
+                <p><strong>Conclusion:</strong> The legal framework in anti-doping is essential for ensuring fair play, safeguarding athlete health, and preserving the integrity of sports. By adhering to these regulations, athletes and organizations can contribute to a doping-free sports culture while protecting their rights and careers.</p>
+        </div>
+        <div class="module" id="module-challenge" style="text-align: justify; font-family: Arial, sans-serif;">
+            <h3>Tongue-Twister Challenge</h3>
+            <p>Click on a tongue twister to try it!</p>
+            <div style="margin-top: 20px;">
+                <button class="twister-button" onclick="showTwister(this, 'True champions choose clean challenges to chase their cherished championships.')">Twister 1</button>
+                <button class="twister-button" onclick="showTwister(this, 'Pure performance prevails, performance pills poison principles.')">Twister 2</button>
+                <button class="twister-button" onclick="showTwister(this, 'Say no to shortcuts, stay strong, stay straight, succeed steadily.')">Twister 3</button>
+            </div>
+            <div id="twister-display" style="margin-top: 20px; font-size: 1.2rem; font-weight: bold; color: #333; display: none;">
+                <p id="twister-text"></p>
+            </div>
+        </div>
+        <!-- Module 3 -->
+        <div class="module" id="module-challenge" style="text-align: justify; font-family: Arial, sans-serif;">
+            <h3>Module 3: Athlete Responsibilities</h3>
+                <p>Athletes are expected to adhere to strict guidelines to ensure fair play and maintain the integrity of sports. Here are the key responsibilities:</p>
+                <ul>
+                    <li><strong>1. Adhere to the WADA Code and NADA Rules:</strong> 
+                        Athletes must understand and comply with the anti-doping rules established by WADA and implemented nationally by NADA.
+                    </li>
+                    <li><strong>2. Be Aware of the Prohibited List:</strong> 
+                        Athletes must stay updated with WADA’s annual Prohibited List to avoid using banned substances or methods.
+                    </li>
+                    <li><strong>3. Strict Liability Principle:</strong> 
+                        Athletes are responsible for any prohibited substance found in their body, regardless of intent or source.
+                    </li>
+                    <li><strong>4. Attend Anti-Doping Education Programs:</strong> 
+                        Participation in WADA or NADA-organized workshops, e-learning modules, and seminars is crucial for understanding anti-doping regulations.
+                    </li>
+                    <li><strong>5. Ensure Medication Compliance:</strong> 
+                        Before using any medication or supplement, athletes must verify its status against the Prohibited List using tools like WADA’s Global DRO or consulting NADA.
+                    </li>
+                </ul>
+            
+                <!-- Image Section -->
+                <div style="text-align: center; margin: 20px 0;">
+                    <img src="data:image/jpeg;base64,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" alt="Athlete in training, symbolizing commitment to clean sport" style="height: auto;width:100%;">
+                </div>
+            
+                <ul>
+                    <li><strong>6. Apply for Therapeutic Use Exemptions (TUEs):</strong> 
+                        If a prohibited substance is medically necessary, athletes must obtain a TUE in advance by following NADA’s or their sport federation’s application process.
+                    </li>
+                    <li><strong>7. Submit to Doping Control Testing:</strong> 
+                        Athletes must comply with in-competition and out-of-competition testing requests and follow proper sample collection procedures.
+                    </li>
+                    <li><strong>8. Provide Accurate Whereabouts Information:</strong> 
+                        Athletes in WADA’s Registered Testing Pool (RTP) or NADA’s national testing pool must submit detailed whereabouts information through platforms like ADAMS (Anti-Doping Administration & Management System).
+                    </li>
+                    <li><strong>9. Avoid Use of Unapproved Supplements:</strong> 
+                        Athletes are advised to minimize supplement use and ensure that any supplements consumed are certified free of banned substances.
+                    </li>
+                    <li><strong>10. Refrain from Tampering with Doping Controls:</strong> 
+                        Tampering with testing processes or sample collection is a serious violation under anti-doping rules.
+                    </li>
+                    <center><img src="https://fastercapital.com/i/Inthepenaltybox--When-Players-are-Ejected-from-the-Game--Balancing-Player-Accountability-and-Fair-Play-in-Sports.webp" alt="img" style="height: auto;width:100%;"></center>
+                    <li><strong>11. Report Suspicious Activities:</strong> 
+                        Athletes are encouraged to use WADA’s Speak Up! platform or NADA’s whistleblower systems to report doping activities or suspicious behavior.
+                    </li>
+                    <li><strong>12. Avoid Associations with Disqualified Personnel:</strong> 
+                        Athletes must not work with coaches, doctors, or other professionals who are serving doping-related bans.
+                    </li>
+                    <li><strong>13. Maintain Clean Sport Values:</strong> 
+                        Promote fair play, respect for opponents, and the health of fellow athletes by competing clean and supporting anti-doping efforts.
+                    </li>
+                    <li><strong>14. Cooperate in Investigations:</strong> 
+                        Athletes must cooperate fully with WADA, NADA, and other authorities in doping-related investigations, including providing information or testimony.
+                    </li>
+                    <li><strong>15. Understand the Consequences of Violations:</strong> 
+                        Athletes must be aware of potential sanctions, including suspensions, disqualification of results, and financial penalties, for anti-doping rule violations (ADRVs).
+                    </li>
+                </ul>
+                
+                <p><strong>Conclusion:</strong> Athletes have a personal and professional obligation to uphold anti-doping regulations. By fulfilling these responsibilities, they contribute to a fair and ethical sporting environment while protecting their careers and reputations.</p>
+        </div> 
+        <div class="decision-container" id="module-decision" style="text-align: justify; font-family: Arial, sans-serif;">
+            <h3>Decision-Making Skills</h3>
+            <p>Would you rather:</p>
+            <div style="margin-top: 20px;">
+                <button class="decision-button" 
+                        onclick="revealDecision('ban')" 
+                        style="padding: 12px 25px; margin: 10px; background-color: #dc3545; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-size: 16px;">
+                    Face a lifetime ban for using a banned substance
+                </button>
+                <button class="decision-button" 
+                        onclick="revealDecision('career')" 
+                        style="padding: 12px 25px; margin: 10px; background-color: #ffc107; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-size: 16px;">
+                    Give up competitive sports and pursue a different career
+                </button>
+            </div>
+            
+        
+            <div id="decision-explanation" style="margin-top: 20px; display: none; font-size: 1rem; text-align: left; background: #f9f9f9; padding: 15px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
+                <h4 id="decision-title"></h4>
+                <p id="decision-text"></p>
+            </div>
+        </div>    
+    </div><br><br>
+
+    <center>
+        <div class="tooltip">
+          <a href="/certificate3"><button class="btn" id="btn" disabled>Complete the course</button></a>
+          <span class="tooltip-text" id="tooltip-text">Time Remaining : 15:00</span>
+        </div>
+      </center>
+      <button id="top-button" title="Go to Top">↑ Top</button>
+    <script>
+       // Get button references
+      // Ensure scrolling is disabled on page load
+      document.body.style.overflow = "hidden";
+
+      // Get button references
+      const startBtn = document.getElementById("start-btn");
+      const completeBtn = document.getElementById("btn");
+
+      // Event listener for the start button
+      startBtn.addEventListener("click", () => {
+        // Enable scrolling
+        document.body.style.overflow = "auto"; // Enable scrolling when the start button is clicked
+
+        // Show the "Complete Course" button
+        completeBtn.style.display = "inline-block";
+
+        // Hide the "Start Course" button
+        startBtn.style.display = "none";
+      });
+
+      const btn = document.getElementById("btn");
+      const tooltipText = document.getElementById("tooltip-text");
+
+      let remainingTime = 15*60; // 15 minutes in seconds
+
+      // Format time into MM:SS
+      const formatTime = (time) => {
+        const minutes = Math.floor(time / 60);
+        const seconds = time % 60;
+        return `${minutes.toString().padStart(2, "0")}:${seconds
+          .toString()
+          .padStart(2, "0")}`;
+      };
+
+      // Update the tooltip text and enable the button when time is up
+      const updateTimer = () => {
+        if (remainingTime > 0) {
+          remainingTime--;
+          tooltipText.textContent = `Time Remaining to complete the course: ${formatTime(remainingTime)}`;
+        } else {
+          clearInterval(timerInterval);
+          btn.disabled = false;
+          btn.textContent = "✅ Course Completed";
+          btn.style.cursor = "pointer";
+          tooltipText.textContent = "Course is now complete!";
+        }
+      };
+      const topButton = document.getElementById("top-button");
+
+// Show the button when the user scrolls down 100px
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 100) {
+    topButton.style.display = "block";
+  } else {
+    topButton.style.display = "none";
+  }
+});
+
+// Scroll to the top when the button is clicked
+topButton.addEventListener("click", () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth", // Smooth scroll effect
+  });
+});
+      // Start the timer
+      const timerInterval = setInterval(updateTimer, 1000);
+
+
+      const videoPlayer = document.getElementById('video-player');
+      const videoSource = document.getElementById('video-source');
+      const modules = document.querySelectorAll('.module');
+      const progressBar = document.getElementById('progress-bar');
+      const progressPercentage = document.getElementById('progress-percentage');
+      const startButton = document.getElementById('start-btn');
+      let courseStarted = false; // Flag to check if the course has started
+
+      // Start course
+      startButton.addEventListener('click', () => {
+        startButton.style.display = 'none'; // Hide start button
+        modules[0].classList.add('active'); // Show the first module
+        courseStarted = true; // Set the flag to true
+      });
+
+      // Update progress bar and module animation on scroll
+      window.addEventListener('scroll', () => {
+        if (!courseStarted) return; // Do nothing if the course hasn't started
+
+        let totalHeight = document.body.scrollHeight - window.innerHeight;
+        let scrollPosition = window.scrollY;
+        let scrollPercentage = (scrollPosition / totalHeight) * 100;
+
+        // Update progress bar width and percentage text
+        progressBar.style.width = scrollPercentage + '%';
+        progressPercentage.textContent = Math.min(Math.round(scrollPercentage), 100) + '%';
+
+        modules.forEach((module, index) => {
+          const rect = module.getBoundingClientRect();
+          if (rect.top >= 0 && rect.top <= window.innerHeight / 2) {
+            if (index % 2 === 0) {
+              // Modules with even index (Module 1, Module 3): Slide from the left
+              module.style.transform = "translateX(0)";
+            } else {
+              // Modules with odd index (Module 2): Slide from the right
+              module.style.transform = "translateX(0)";
+            }
+            module.classList.add('active');
+          }
+        });
+      });
+
+      // Change Video based on Language Button
+      function changeVideo(language) {
+        const videoMap = {
+          'en': '{{ url_for('static', filename='video/eng/en3.mp4') }}',
+          'ta': '{{ url_for('static', filename='video/tam/ta3.mp4') }}',
+          'ka': '{{ url_for('static', filename='video/ka/ka3.mp4') }}',
+          'ml': '{{ url_for('static', filename='video/ml/ml3.mp4') }}',
+           'hi': '{{ url_for('static', filename='video/hi/hi5.mp4') }}',
+            'tl': '{{ url_for('static', filename='video/tl/tl3.mp4') }}'
+        };
+        videoSource.src = videoMap[language];
+        videoPlayer.load(); // Reload the video player
+        videoPlayer.play(); // Start playing the new video
+      }
+    </script>
+     <script>
+        function checkAnswer(button, isLie) {
+            const buttons = document.querySelectorAll('.challenge-option');
+            buttons.forEach(btn => btn.disabled = true); // Disable all buttons after selection
+            button.style.backgroundColor = isLie ? 'green' : 'red'; // Highlight user's choice
+            button.style.color = '#fff';
+    
+            const answerReveal = document.getElementById('answer-reveal');
+            answerReveal.style.display = 'block'; // Reveal the correct answer
+        }
+    </script>
+    <script>
+        function showTwister(button, text) {
+            const twisterDisplay = document.getElementById('twister-display');
+            const twisterText = document.getElementById('twister-text');
+    
+            // Highlight selected button
+            document.querySelectorAll('.twister-button').forEach(btn => btn.style.backgroundColor = '#e9e9e9');
+            button.style.backgroundColor = '#a7d129';
+    
+            // Display the tongue twister
+            twisterText.textContent = text;
+            twisterDisplay.style.display = 'block';
+        }
+    </script>
+    <script>
+        function revealDecision(choice) {
+            const explanationContainer = document.getElementById('decision-explanation');
+            const title = document.getElementById('decision-title');
+            const text = document.getElementById('decision-text');
+    
+            if (choice === 'ban') {
+                title.textContent = "Facing a Lifetime Ban";
+                text.innerHTML = `
+                    A lifetime ban from your sport for using a banned substance would have severe long-term consequences.
+                    <ul>
+                        <li>It would tarnish your reputation and destroy years of hard work and dedication.</li>
+                        <li>Public perception often associates doping with a lack of integrity, leading to lasting professional and personal damage.</li>
+                        <li>You may face loss of sponsorships, endorsements, and fan support.</li>
+                        <li>Psychological effects could include isolation, regret, and a damaged sense of self-worth.</li>
+                        <li>Re-entry into the sports community would be nearly impossible.</li>
+                    </ul>
+                    Ultimately, a lifetime ban makes it difficult to regain trust and continue in the world of sports.
+                `;
+            } else if (choice === 'career') {
+                title.textContent = "Pursuing a Different Career";
+                text.innerHTML = `
+                    While giving up competitive sports might seem like a tough choice, it offers many long-term benefits:
+                    <ul>
+                        <li>It provides an opportunity for personal growth and building a future based on ethics and integrity.</li>
+                        <li>By avoiding a doping scandal, you protect your reputation and mental well-being.</li>
+                        <li>A new career path allows for sustainable success and fulfillment.</li>
+                        <li>You can become a role model for others, demonstrating the value of fair play and resilience.</li>
+                    </ul>
+                    This decision prioritizes your long-term happiness and respect both within and outside of sports.
+                `;
+            }
+    
+            explanationContainer.style.display = 'block';
+        }
+    </script>
+
+<style>
+    #myid {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        z-index: 1000;
+        padding: 8px 15px;
+        font-family: 'Poppins', sans-serif;
+        font-size: 14px;
+        background-color: #3498db;
+        color: white;
+        border-radius: 20px;
+        text-align: center;
+        cursor: pointer;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+  
+    #language-options {
+        display: none;
+        position: absolute;
+        top: 50px;
+        right: 10px;
+        z-index: 999;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        padding: 10px;
+    }
+  
+    #language-options.active {
+        display: block;
+    }
+  
+    .goog-te-combo {
+        width: 100%;
+        padding: 8px;
+        font-family: 'Poppins', sans-serif;
+        font-size: 14px;
+        border-radius: 5px;
+        border: 1px solid #ddd;
+    }
+  
+    @media (max-width: 768px) {
+        #myid {
+            font-size: 12px;
+            padding: 6px 12px;
+        }
+  
+        #language-options {
+            top: 40px;
+        }
+    }
+  
+    @media (max-width: 480px) {
+        #myid {
+            font-size: 10px;
+            padding: 4px 10px;
+        }
+  
+        #language-options {
+            top: 30px;
+        }
+    }
+  </style>
+<script>
+    function loadGoogleTranslate() {
+        new google.translate.TranslateElement({
+            pageLanguage: 'en',
+            includedLanguages: 'en,hi,ta,ml,kn,te',
+            layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+        }, 'language-options');
+    }
+  
+    function toggleLanguageOptions() {
+        const options = document.getElementById('language-options');
+        options.classList.toggle('active');
+    }
+  
+    document.addEventListener('DOMContentLoaded', () => {
+        const observer = new MutationObserver(() => {
+            const translateDropdown = document.querySelector('.goog-te-combo');
+            if (translateDropdown && translateDropdown.value !== '') {
+                document.getElementById('language-options').classList.remove('active');
+            }
+        });
+  
+        observer.observe(document.body, { childList: true, subtree: true });
+    });
+  </script>
+  
+  <div id="myid" onclick="toggleLanguageOptions()">Choose Language</div>
+  <div id="language-options"></div>
+  <script src="https://translate.google.com/translate_a/element.js?cb=loadGoogleTranslate"></script>
+  
+  </body>
+</body>
+
+</html>

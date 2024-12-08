@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TF Game Performance</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h1>TF Game Performance Analytics</h1>
+
+    <!-- Create a canvas element for Chart.js -->
+    <canvas id="tfGameChart" width="400" height="200"></canvas>
+
+    <script>
+        // Data passed from Flask
+        var timestamps = {{ timestamps | tojson }};  // List of timestamps
+        var scores = {{ scores | tojson }};  // List of game scores
+        var times = {{ times | tojson }};  // List of time elapsed
+
+        // Create the chart
+        var ctx = document.getElementById('tfGameChart').getContext('2d');
+        var tfGameChart = new Chart(ctx, {
+            type: 'line',  // Line chart
+            data: {
+                labels: timestamps,  // X-axis labels (timestamps)
+                datasets: [{
+                    label: 'Game Score',
+                    data: scores,  // Y-axis data (scores)
+                    borderColor: 'rgba(54, 162, 235, 1)',  // Line color for scores
+                    fill: false,
+                    tension: 0.1
+                },
+                {
+                    label: 'Time Elapsed (seconds)',
+                    data: times,  // Y-axis data (time elapsed)
+                    borderColor: 'rgba(255, 99, 132, 1)',  // Line color for time elapsed
+                    fill: false,
+                    tension: 0.1
+                }]
+            },
+            options: {
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Timestamp'  // Label for the X-axis
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Score / Time Elapsed (seconds)'  // Label for the Y-axis
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

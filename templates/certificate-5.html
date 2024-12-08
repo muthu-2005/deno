@@ -1,0 +1,374 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-certificate - DopeShield courses</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <script src="index.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: "Poppins", sans-serif;
+            background-color: hsl(168, 56%, 89%);
+            color: #333;
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            /* Ensures elements in the header are spaced properly */
+            padding: 10px 20px;
+            background-color: #f8f9fa;
+            /* Light background for the header */
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+            /* Optional: Adds a slight shadow */
+        }
+
+        header .logo {
+            display: flex;
+            /* Ensures proper alignment */
+            align-items: center;
+            /* Vertically aligns the logo */
+        }
+
+
+        #cform {
+            text-align: center;
+            height: auto;
+            width: 100%;
+            margin: auto;
+            padding: 30px 20px;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            background-color: #ffffff;
+            max-width: 700px;
+        }
+
+        #chform {
+            /* width: 100%; */
+            max-width: 500px;
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin: 0 auto;
+        }
+
+        #fname {
+            height: 40px;
+            width: 100%;
+            max-width: 450px;
+            margin: 10px 0;
+            padding: 8px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 2px solid #3498db;
+            box-sizing: border-box;
+        }
+
+        #bcertificate,
+        #downloaddata {
+            height: 40px;
+            width: 200px;
+            font-weight: bolder;
+            border-radius: 5px;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        #bcertificate {
+            background-color: #2ecc71;
+        }
+
+        #downloaddata {
+            background-color: #2980b9;
+        }
+
+        #bcertificate:hover,
+        #downloaddata:hover {
+            opacity: 0.8;
+        }
+
+        #main {
+            display: none;
+            margin: 50px;
+            max-width: 1000px;
+            background-color: #f2f2f2;
+            border: 6px solid #3498db;
+            border-radius: 20px;
+            position: relative;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        #child1 {
+            background-color: white;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+        }
+
+        .img1 {
+            height: auto;
+            width: 140px;
+            border-radius: 20px;
+            margin-top: 20px;
+        }
+
+        #img2 {
+            font-size: 85px;
+            margin-top: 20px;
+            color: #3498db;
+        }
+
+        .body {
+            font-size: 50px;
+            text-align: center;
+            font-family: 'Georgia', serif;
+            font-weight: bolder;
+            margin-top: -20px;
+            color: #2c3e50;
+        }
+
+        .body2 {
+            font-size: 50px;
+            text-align: center;
+            font-family: 'Georgia', serif;
+            margin-left: 165px;
+            font-weight: bolder;
+            color: #2c3e50;
+        }
+
+        .details {
+            font-size: large;
+            color: #e74c3c;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .organisername {
+            font-size: large;
+            color: #2980b9;
+            font-family: 'Verdana', sans-serif;
+            text-transform: capitalize;
+        }
+
+        #name {
+            font-size: xx-large;
+            background-color: #f39c12;
+            font-family: 'Lucida Handwriting', cursive;
+            padding: 10px;
+            border-radius: 10px;
+            color: white;
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            #main {
+                width: 90%;
+                padding: 1px;
+            }
+
+            #fname {
+                width: 80%;
+                max-width: 400px;
+            }
+
+            #bcertificate,
+            #downloaddata {
+                width: 80%;
+                max-width: 350px;
+            }
+
+            #child1 {
+                background-color: white;
+                padding: 3;
+                text-align: center;
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+                border-radius: 15px;
+            }
+
+
+            .img1 {
+                width: 120px;
+                margin-top: 10px;
+            }
+
+            .body {
+                font-size: 40px;
+            }
+
+            .body2 {
+                font-size: 40px;
+            }
+
+            #main {
+                max-width: 100%;
+            }
+
+            #main {
+                /* width: 100%; */
+                margin: 1px;
+                border-radius: 10px;
+            }
+
+            #img2 {
+                font-size: 45px;
+                margin-top: 20px;
+                color: #3498db;
+            }
+        }
+
+        @media (max-width: 480px) {
+            #main {
+                /* width: 100%; */
+                padding: 5px;
+            }
+
+            #fname {
+                width: 100%;
+                max-width: 350px;
+            }
+
+            #bcertificate,
+            #downloaddata {
+                width: 100%;
+                max-width: 350px;
+            }
+
+            .img1 {
+                width: 100px;
+                margin-top: 10px;
+            }
+
+            .body {
+                font-size: 30px;
+            }
+
+            .body2 {
+                font-size: 30px;
+            }
+
+            #main {
+                max-width: 100%;
+                /* width: 100%; */
+                /* padding: 15px; */
+            }
+        }
+
+        @media print {
+            #chform {
+                display: none;
+                /* Hide the form when printing */
+            }
+
+            header {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body id="body">
+    <header>
+        <div class="logo">
+            <a href="{{ url_for('index') }}"><img src="https://dopeshield-sih24.netlify.app/pictures/logo.png"
+                    style="height: 75px;" alt="Coconut Company Logo"></a>
+        </div>
+
+    </header>
+
+    <div id="chform" style="margin-top: 50px;">
+        <h1 style="text-align:center;margin-top:20px;">Download your certificate</h1>
+        <br>
+        <p style="font-size:large;font-weight:bolder;width:100%;font-family: 'Poppins', sans-serif;">Enter Your Name*
+        </p>
+        <input type="text" id="fname" name="username" required="" placeholder="Enter Your Name......"
+            style="font-family: 'Poppins', sans-serif;">
+
+        <br><br>
+        <button id="bcertificate" onclick="check()">Preview Certificate</button>
+        <button id="downloaddata" onclick="dcheck()">Download E-certificate</button>
+    </div>
+
+
+    <center>
+        <div id="main">
+            <div id="child1">
+                <img src="https://dopeshield-sih24.netlify.app/pictures/logo.png" alt="DopeShield Logo" class="img1">
+                <h1 id="img2">DopeShield</h1>
+                <div class="body">Certificate Of Completion</div>
+                <h3 id="name" align="center"></h3>
+                <hr size="bolder" />
+                <p align="center" style="font-weight:bold;font-size:large;">For Successfully Completing the Anti-Doping
+                    Education Course</p>
+                <h4 class="details" style="text-transform: capitalize; text-align: center;"></h4>
+                <p align="center" style="font-weight:bold;font-size:large;">We Acknowledge Your Efforts! Keep Learning!
+                </p>
+                <h5 class="organisername" style="text-align:center;font-weight:bolder;"></h5>
+            </div>
+        </div>
+    </center>
+
+    <script>
+        function check() {
+            var input = document.getElementById('fname');
+            if (input.value !== "") {
+                ecertificate();
+            } else {
+                alert("Input field is empty.");
+            }
+        }
+
+        function ecertificate() {
+            var x = document.getElementById("main");
+            x.style.display = "block";
+            var name = document.getElementById('fname').value;
+            var course = "Comprehensive Education and Athlete Support";  // Course name updated
+            var organizer = "DopeShield";  // Example organizer name
+            document.getElementsByTagName('h3')[0].innerHTML = name;
+            document.getElementsByTagName('h4')[0].innerHTML = course;
+            document.getElementsByTagName('h5')[0].innerHTML = organizer;
+        }
+
+        function dcheck() {
+            var input = document.getElementById('fname');
+            if (input.value !== "") {
+                download();
+            } else {
+                alert("Input field is empty.");
+            }
+        }
+
+        function download() {
+            var mainContent = document.getElementById('main').innerHTML;  // Get the certificate content
+            var originalContent = document.body.innerHTML;  // Save the original page content
+            var chform = document.getElementById('chform');  // Get the certificate form
+
+            // If the screen width is less than or equal to 768px (mobile view)
+            if (window.innerWidth <= 768) {
+                // Hide the form and other content, leaving only the certificate for printing
+                chform.style.display = 'none';  // Hide the form
+                document.body.innerHTML = mainContent;  // Replace the body content with only the certificate
+            }
+
+            window.print();  // Trigger the print dialog
+
+            // Restore the original page content after printing
+            document.body.innerHTML = originalContent;
+        }
+
+    </script>
+</body>
+
+</html>
