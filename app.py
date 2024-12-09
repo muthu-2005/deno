@@ -15,29 +15,24 @@ import json
 app = Flask(__name__)
 
 
-firebase_credentials = os.getenv('FIREBASE_CREDENTIALS')
-
-if firebase_credentials:
-    # Load the Firebase credentials from the environment variable
-    cred = credentials.Certificate(json.loads(firebase_credentials))
-    firebase_admin.initialize_app(cred, {
-        'databaseURL': 'https://dopeshield-fa348-default-rtdb.firebaseio.com/'  # Your Firebase Realtime Database URL
-    })
-    try:
-        # Load the Firebase credentials from the environment variable
-        cred = credentials.Certificate(json.loads(firebase_credentials))
-        firebase_admin.initialize_app(cred, {
-            'databaseURL': 'https://dopeshield-fa348-default-rtdb.firebaseio.com/'  # Your Firebase Realtime Database URL
-        })
-        print("Firebase initialized successfully.")
-    except json.JSONDecodeError as e:
-        print(f"Error parsing Firebase credentials: {e}")
-        raise
-    except Exception as e:
-        print(f"Error initializing Firebase: {e}")
-        raise
-else:
-    raise ValueError("Firebase credentials not found in environment variables!")
+# Reconstruct Firebase JSON from environment variables
+firebase_config = {
+    "type": os.getenv("type"),
+    "project_id": os.getenv("project_id"),
+    "private_key_id": os.getenv("private_key_id"),
+    "private_key": os.getenv("private_key").replace("\\n", "\n"),
+    "client_email": os.getenv("client_email"),
+    "client_id": os.getenv("client_id"),
+    "auth_uri": os.getenv("auth_uri"),
+    "token_uri": os.getenv("token_uri"),
+    "auth_provider_x509_cert_url": os.getenv("auth_provider_x509_cert_url"),
+    "client_x509_cert_url": os.getenv("client_x509_cert_url")
+}
+# Initialize Firebase Admin SDK
+cred = credentials.Certificate(firebase_config)
+firebase_admin.initialize_app(cred, {
+    'databaseURL': 'https://sih-final-9de37-default-rtdb.firebaseio.com/'  # Replace with your database URL
+})
 
 #################
 #  Main page    #
@@ -139,7 +134,6 @@ def signin():
             return redirect(url_for('signin', message=f'Error signing in: {e}', type='error'))
 
     return render_template('signin.html')
-
 
 #################
 #  Profile      #
